@@ -1,2 +1,2 @@
-# MC322---2026
+# MC322-2026
 Repositório para MC322, Unicamp, 2026 de Arthur Midon e Gabriel Castro
