@@ -13,12 +13,19 @@ public class Inimigo {
 
     public void receberDano(int dano) 
     {
-        vida -= dano;
+        if (escudo > 0) 
+        {
+            escudo -= dano;
+        }
+        else 
+        {
+            vida -= dano;
+        }
     } 
 
     public boolean estarVivo()
     {
-        return (vida != 0); 
+        return (vida > 0); 
     }
 
     public void atacar(Heroi alvo, int dano) 
@@ -26,4 +33,18 @@ public class Inimigo {
         alvo.receberDano(dano);
     }
 
+    public String getNome() 
+    {
+        return nome;
+    }
+
+    public int getVida() 
+    {
+        return vida;
+    }
+
+    public int getEscudo() 
+    {
+        return escudo;
+    }
 }

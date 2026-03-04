@@ -13,7 +13,14 @@ public class Heroi {
 
     public void receberDano(int dano) 
     {
-        vida -= dano;
+        if (escudo > 0) 
+        {
+            escudo -= dano;
+        }
+        else 
+        {
+            vida -= dano;
+        }
     } 
 
     public void ganharEscudo(int ganho)
@@ -23,6 +30,21 @@ public class Heroi {
 
     public boolean estarVivo()
     {
-        return (vida != 0); 
+        return (vida > 0); 
+    }
+
+    public String getNome() 
+    {
+        return nome;
+    }
+
+    public int getVida() 
+    {
+        return vida;
+    }
+
+    public int getEscudo() 
+    {
+        return escudo;
     }
 }
