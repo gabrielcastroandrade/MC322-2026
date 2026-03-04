@@ -28,7 +28,7 @@ public class Jogo {
             energia_i = 3;
             dano_jogador = 1;
 
-            vida_inimigo = 4;
+            vida_inimigo = 2;
             dano_inimigo = 1;
             nome_inimigo = "A Dragoa";
         }
@@ -37,10 +37,10 @@ public class Jogo {
         {
             vida_jogador = 2;
             escudo_i = 2;
-            energia_i = 2;
+            energia_i = 3;
             dano_jogador = 2;
 
-            vida_inimigo = 5;
+            vida_inimigo = 3;
             dano_inimigo = 1;
             nome_inimigo = "A Morte";
         }
@@ -48,8 +48,8 @@ public class Jogo {
         if (dificuldade == 999) 
         {
             vida_jogador = 1;
-            escudo_i = 1;
-            energia_i = 1;
+            escudo_i = 2;
+            energia_i = 3;
             dano_jogador = 1;
 
             vida_inimigo = 10000;
@@ -59,6 +59,11 @@ public class Jogo {
 
         jogador = new Heroi(nome_jogador, vida_jogador, escudo_i);
         inimigo = new Inimigo(nome_inimigo, vida_inimigo, escudo_i);
+
+        while (jogador.estarVivo() && inimigo.estarVivo()) 
+        {
+            
+        }
 
     }
 
