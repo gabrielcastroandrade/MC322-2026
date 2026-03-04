@@ -2,6 +2,7 @@ public class Jogo {
 
     private Heroi jogador;
     private Inimigo inimigo;
+
     private String nome_jogador;
     private String nome_inimigo;
     private int rodada = 0;
@@ -22,14 +23,14 @@ public class Jogo {
 
         if (dificuldade == 1) 
         {
-        vida_jogador = 3;
-        escudo_i = 2;
-        energia_i = 3;
-        dano_jogador = 1;
+            vida_jogador = 3;
+            escudo_i = 2;
+            energia_i = 3;
+            dano_jogador = 1;
 
-        vida_inimigo = 4;
-        dano_inimigo = 1;
-        nome_inimigo = "A Dragoa";
+            vida_inimigo = 4;
+            dano_inimigo = 1;
+            nome_inimigo = "A Dragoa";
         }
 
         if (dificuldade == 2) 

@@ -7,10 +7,12 @@ public class App {
 
         System.out.println("Boa noite Ogro, seja bem vindo ao Shrek 2077: a volta dos que não foram!!!");
 
-        // inicio do jogo
+        // leitura do nome do jogador
         String in_nome; int dificuldade;
         System.out.println("Digite o nome de seu heroi ogro: ");
         in_nome = input.nextLine();
+
+        // leitura da dificuldade
         System.out.println("Informe a dificuldade do jogo (fácil >>> 1, 2 ou 999 >>> difícil): ");
         dificuldade = input.nextInt();
         while (dificuldade != 1 && dificuldade != 2 && dificuldade != 999) 
@@ -19,6 +21,7 @@ public class App {
             dificuldade = input.nextInt();
         }
         
+        // inicialização do jogo
         Jogo jogo = new Jogo(in_nome, dificuldade);
     }
 }
