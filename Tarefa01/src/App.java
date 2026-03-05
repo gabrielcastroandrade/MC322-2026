@@ -13,11 +13,15 @@ public class App {
         in_nome = input.nextLine();
 
         // leitura da dificuldade
-        System.out.println("Informe a dificuldade do jogo (fácil >>> 1, 2 ou 999 >>> difícil): ");
+        System.out.println("Escolha seu oponente: ");
+        System.out.println("1 - A Dragoa");
+        System.out.println("2 - A Morte Encarnada");
+        System.out.println("3 - #@%$&¨@*%");
+
         dificuldade = input.nextInt();
-        while (dificuldade != 1 && dificuldade != 2 && dificuldade != 999) 
+        while (dificuldade != 1 && dificuldade != 2 && dificuldade != 3) 
         {
-            System.out.println("Dificuldade inválide, tente novamente (fácil >>> 1, 2 ou 999 >>> difícil): ");
+            System.out.println("Oponente inválido, tente novamente: ");
             dificuldade = input.nextInt();
         }
         

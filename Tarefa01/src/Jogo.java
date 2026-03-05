@@ -31,10 +31,10 @@ public class Jogo {
         if (dificuldade == 2) 
         {
             vida_inimigo = 3;
-            nome_inimigo = "A Morte";
+            nome_inimigo = "A Morte Encarnada";
         }
 
-        if (dificuldade == 999) 
+        if (dificuldade == 3) 
         {
             vida_inimigo = 10000;
             nome_inimigo = "O BURRO !!!";
