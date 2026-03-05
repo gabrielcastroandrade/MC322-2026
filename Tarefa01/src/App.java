@@ -23,5 +23,6 @@ public class App {
         
         // inicialização do jogo
         Jogo jogo = new Jogo(in_nome, dificuldade);
+        jogo.rodar();
     }
 }

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Jogo {
 
     private Heroi jogador;
@@ -5,16 +7,15 @@ public class Jogo {
 
     private String nome_jogador;
     private String nome_inimigo;
-    private int rodada = 0;
+
     private int dificuldade = 1;
-
-    private int vida_jogador = 0;
-    private int escudo_i = 0;
-    private int energia_i = 0;
-    private int dano_jogador = 0;
-
+    private int vida_jogador = 3;
+    private int energia_base = 3;
+    private int dano_base = 1;
     private int vida_inimigo = 0;
-    private int dano_inimigo = 0;
+
+    Scanner scanner = new Scanner(System.in);
+
 
     public Jogo (String nome_jogador, int dificuldade) 
     {
@@ -23,48 +24,49 @@ public class Jogo {
 
         if (dificuldade == 1) 
         {
-            vida_jogador = 3;
-            escudo_i = 2;
-            energia_i = 3;
-            dano_jogador = 1;
-
             vida_inimigo = 2;
-            dano_inimigo = 1;
             nome_inimigo = "A Dragoa";
         }
 
         if (dificuldade == 2) 
         {
-            vida_jogador = 2;
-            escudo_i = 2;
-            energia_i = 3;
-            dano_jogador = 2;
-
             vida_inimigo = 3;
-            dano_inimigo = 1;
             nome_inimigo = "A Morte";
         }
 
         if (dificuldade == 999) 
         {
-            vida_jogador = 1;
-            escudo_i = 2;
-            energia_i = 3;
-            dano_jogador = 1;
-
             vida_inimigo = 10000;
-            dano_inimigo = 1;
             nome_inimigo = "O BURRO !!!";
         }
 
-        jogador = new Heroi(nome_jogador, vida_jogador, escudo_i);
-        inimigo = new Inimigo(nome_inimigo, vida_inimigo, escudo_i);
-
-        while (jogador.estarVivo() && inimigo.estarVivo()) 
+        jogador = new Heroi(nome_jogador, vida_jogador);
+        inimigo = new Inimigo(nome_inimigo, vida_inimigo);
+        }
+        
+        public void rodar() 
         {
-            Rodada round = new Rodada(jogador, inimigo, energia_i);
+            while (jogador.estarVivo() && inimigo.estarVivo()) 
+            {
+                Rodada round = new Rodada(jogador, inimigo, energia_base, dano_base);
+                round.rodar();
+                System.out.println("Pressione Enter para continuar: ");
+                scanner.nextLine(); 
+            }
+
+            if (jogador.estarVivo()) 
+            {
+                System.out.println("Parabéns, você derrotou o inimigo");
+            }
+
+            if (inimigo.estarVivo()) 
+            {
+                System.out.println("Derrota, o inimigo acabou com você");
+            }
+            System.out.println("Jogo encerrado. Obrigado por jogar!!!");
+            System.out.println("Créditos: Arthur Midon e Gabriel Castro");
         }
 
-    }
-
 }
+
+

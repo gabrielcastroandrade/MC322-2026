@@ -9,7 +9,7 @@ public class CartaEscudo {
         this.custo = custo;
     }
 
-    public void usar(Heroi alvo, int ganhar)
+    public void usar(Inimigo alvo, int ganhar)
     {
         alvo.ganharEscudo(ganhar);
     }
