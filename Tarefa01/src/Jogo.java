@@ -62,7 +62,7 @@ public class Jogo {
 
         while (jogador.estarVivo() && inimigo.estarVivo()) 
         {
-            
+            Rodada round = new Rodada(jogador, inimigo, energia_i);
         }
 
     }
