@@ -58,6 +58,11 @@ public class Rodada {
             }
             if (escolha == 2) 
             {
+                if (energia < 2) 
+                {
+                    System.out.println("Você não possui energia o sulficiente. Sua rodada foi perdida");
+                    energia = 0;
+                }
                 jogador.ganharEscudo(2*dano_base);
                 energia -= 2;
             }
