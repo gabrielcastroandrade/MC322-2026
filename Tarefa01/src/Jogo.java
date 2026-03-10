@@ -25,7 +25,7 @@ public class Jogo {
         if (dificuldade == 1) 
         {
             vida_inimigo = 2;
-            nome_inimigo = "A Dragoa";
+            nome_inimigo = "A Dragão";
         }
 
         if (dificuldade == 2) 

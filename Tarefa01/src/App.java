@@ -14,7 +14,7 @@ public class App {
 
         // leitura da dificuldade
         System.out.println("Escolha seu oponente: ");
-        System.out.println("1 - A Dragoa");
+        System.out.println("1 - A Dragão");
         System.out.println("2 - A Morte Encarnada");
         System.out.println("3 - #@%$&¨@*%");
 
