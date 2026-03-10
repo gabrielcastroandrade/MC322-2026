@@ -16,6 +16,7 @@ public class Jogo {
 
     Scanner scanner = new Scanner(System.in);
 
+
     public Jogo (String nome_jogador, int dificuldade) 
     {
         this.nome_jogador = nome_jogador;
@@ -41,29 +42,29 @@ public class Jogo {
 
         jogador = new Heroi(nome_jogador, vida_jogador);
         inimigo = new Inimigo(nome_inimigo, vida_inimigo);
-    }
-        
-    public void rodar() 
-    {
-        while (jogador.estarVivo() && inimigo.estarVivo()) 
-        {
-            Batalha batalha = new Batalha(jogador, inimigo, energia_base, dano_base);
-            batalha.rodada();
-            System.out.println("Pressione Enter para continuar: ");
-            scanner.nextLine(); 
-        }
-
-        if (jogador.estarVivo()) 
-        {
-            System.out.println("Parabéns, você derrotou o inimigo");
-        }
-
-        if (inimigo.estarVivo()) 
-        {
-            System.out.println("Derrota, o inimigo acabou com você");
         }
         
-    }
+        public void rodar() 
+        {
+            while (jogador.estarVivo() && inimigo.estarVivo()) 
+            {
+                Rodada round = new Rodada(jogador, inimigo, energia_base, dano_base);
+                round.rodar();
+                System.out.println("Pressione Enter para continuar: ");
+                scanner.nextLine(); 
+            }
+
+            if (jogador.estarVivo()) 
+            {
+                System.out.println("Parabéns, você derrotou o inimigo");
+            }
+
+            if (inimigo.estarVivo()) 
+            {
+                System.out.println("Derrota, o inimigo acabou com você");
+            }
+            
+        }
 
 }
 

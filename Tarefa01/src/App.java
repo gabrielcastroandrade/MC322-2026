@@ -24,8 +24,7 @@ public class App {
             System.out.println("Oponente inválido, tente novamente: ");
             dificuldade = input.nextInt();
         }
-        input.close();
-        
+
         // inicialização do jogo
         Jogo jogo = new Jogo(in_nome, dificuldade);
         jogo.rodar();
