@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class Rodada {
+public class Batalha {
 
     private Heroi jogador;
     private Inimigo inimigo;
@@ -9,7 +9,7 @@ public class Rodada {
     private int energia_backup;
     private int dano_base;
 
-    public Rodada(Heroi jogador, Inimigo inimigo, int energia, int dano_base) 
+    public Batalha(Heroi jogador, Inimigo inimigo, int energia, int dano_base) 
     {
         this.jogador = jogador;
         this.inimigo = inimigo;
@@ -18,7 +18,7 @@ public class Rodada {
         this.energia_backup = energia;
     }
     
-    public void rodar() 
+    public void rodada() 
     {
         System.out.println("-//-");
         System.out.println(
@@ -52,7 +52,7 @@ public class Rodada {
             }
             if (escolha == 1) 
             {
-                CartaDano ataque = new CartaDano("Joao", 1);
+                CartaDano ataque = new CartaDano("Dano", 1);
                 ataque.usar(inimigo, dano_base);
                 energia -= 1;
             }
@@ -70,6 +70,7 @@ public class Rodada {
             {
                 energia = 0;
             }
+            input.close();
         }    
 
         System.out.println("-//-");        
@@ -90,7 +91,7 @@ public class Rodada {
             if (reviravolta == 2) 
             {
                 if (energia_backup < 2) {energia_backup = 0;}
-                CartaEscudo defesa = new CartaEscudo("Joao", 2);
+                CartaEscudo defesa = new CartaEscudo("Escudo", 2);
                 defesa.usar(inimigo, 2*dano_base);
                 System.out.println("Seu inimigo se defendeu, ele ganhou " + 2*dano_base + " de escudo");
                 energia_backup -= 2;

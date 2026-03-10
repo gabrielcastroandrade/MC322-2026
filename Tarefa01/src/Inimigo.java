@@ -10,6 +10,28 @@ public class Inimigo {
         this.vida = vida;
     }
 
+    // getters
+    public String getNome() 
+    {
+        return nome;
+    }
+
+    public int getVida() 
+    {
+        return vida;
+    }
+
+    public int getEscudo() 
+    {
+        return escudo;
+    }
+
+    // jogo
+    public void zerarEscudo() 
+    {
+        escudo = 0;
+    }
+
     public void receberDano(int dano) 
     {
         if (escudo > 0) 
@@ -35,25 +57,5 @@ public class Inimigo {
     public void atacar(Heroi alvo, int dano) 
     {
         alvo.receberDano(dano);
-    }
-
-    public String getNome() 
-    {
-        return nome;
-    }
-
-    public int getVida() 
-    {
-        return vida;
-    }
-
-    public int getEscudo() 
-    {
-        return escudo;
-    }
-
-    public void zerarEscudo() 
-    {
-        escudo = 0;
     }
 }

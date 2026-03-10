@@ -10,6 +10,23 @@ public class Heroi {
         this.vida = vida;
     }
 
+    // getters
+    public String getNome() 
+    {
+        return nome;
+    }
+
+    public int getVida() 
+    {
+        return vida;
+    }
+
+    public int getEscudo() 
+    {
+        return escudo;
+    }
+
+    // jogo
     public void receberDano(int dano) 
     {
         if (escudo > 0) 
@@ -30,21 +47,6 @@ public class Heroi {
     public boolean estarVivo()
     {
         return (vida > 0); 
-    }
-
-    public String getNome() 
-    {
-        return nome;
-    }
-
-    public int getVida() 
-    {
-        return vida;
-    }
-
-    public int getEscudo() 
-    {
-        return escudo;
     }
 
     public void zerarEscudo() 
