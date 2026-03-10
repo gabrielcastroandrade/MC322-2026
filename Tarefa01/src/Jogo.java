@@ -63,8 +63,7 @@ public class Jogo {
             {
                 System.out.println("Derrota, o inimigo acabou com você");
             }
-            System.out.println("Jogo encerrado. Obrigado por jogar!!!");
-            System.out.println("Créditos: Arthur Midon e Gabriel Castro");
+            
         }
 
 }

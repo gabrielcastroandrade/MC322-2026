@@ -1,5 +1,5 @@
 # MC322-2026
-Repositório para MC322, Unicamp, 2026 de Arthur Midon e Gabriel Castro
+Repositório para MC322, Unicamp, 2026 de Arthur Midon (247271) e Gabriel Castro (280869)
 
 Bem vindo ao Shrek 2077: a volta dos que não foram!!!
 

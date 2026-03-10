@@ -28,5 +28,7 @@ public class App {
         // inicialização do jogo
         Jogo jogo = new Jogo(in_nome, dificuldade);
         jogo.rodar();
+        System.out.println("Jogo encerrado. Obrigado por jogar!!!");
+        System.out.println("Créditos: Arthur Midon (247271) e Gabriel Castro (280869)");
     }
 }
