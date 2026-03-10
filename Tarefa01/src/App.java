@@ -30,5 +30,6 @@ public class App {
         jogo.rodar();
         System.out.println("Jogo encerrado. Obrigado por jogar!!!");
         System.out.println("Créditos: Arthur Midon (247271) e Gabriel Castro (280869)");
+        input.close();
     }
 }
