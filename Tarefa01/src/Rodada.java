@@ -84,7 +84,7 @@ public class Rodada {
             if (reviravolta == 1) 
             {
                 jogador.receberDano(dano_base);
-                System.out.println("Seu inimigo te atacou, você perdeu " + dano_base + " de vida");
+                System.out.println("Seu inimigo te atacou, você recebeu " + dano_base + " de dano");
                 energia_backup -= 1;
             }
             if (reviravolta == 2) 
