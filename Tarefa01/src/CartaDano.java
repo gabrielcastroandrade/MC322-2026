@@ -1,15 +1,23 @@
-public class CartaDano {
+public class CartaDano extends Carta{
 
-    private String nome;
-    private int custo;
+    protected int dano;
 
-    public CartaDano(String nome, int custo)
+    public CartaDano(String nome, String descricao, int custo, int dano)
     {
-        this.nome = nome;
-        this.custo = custo;
+        super(nome, descricao, custo);
+        this.dano = dano;
     }
 
-    public void usar(Inimigo alvo, int dano)
+    // getters
+
+    public int getDano() 
+    {
+        return dano;
+    }
+
+    // jogo
+    @Override
+    public void usar(Entidade alvo)
     {
         alvo.receberDano(dano);
     }

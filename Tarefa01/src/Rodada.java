@@ -9,34 +9,34 @@ public class Rodada {
     private int energia_backup;
     private int dano_base;
 
-    public Rodada(Heroi jogador, Inimigo inimigo, int energia, int dano_base) 
+    public Rodada(Heroi jogador, Inimigo inimigo, int energia) 
     {
         this.jogador = jogador;
         this.inimigo = inimigo;
         this.energia = energia;
-        this.dano_base = dano_base;
         this.energia_backup = energia;
     }
     
     public void rodar() 
-    {
-        System.out.println("-//-");
-        System.out.println(
-            jogador.getNome() 
-            + " (vida: " + jogador.getVida() 
-            + " / escudo: " + jogador.getEscudo() + ")"
-        );
-        System.out.println("vs");
-        System.out.println(
-            inimigo.getNome() 
-            + " (vida: " + inimigo.getVida() 
-            + " / escudo: " + inimigo.getEscudo() + ")"
-        );
-        System.out.println("-//-");
-        System.out.println();
-        
+    {   
         while (energia > 0) 
         {
+            if (!inimigo.estarVivo()) {break;}
+            System.out.println("-//-");
+            System.out.println(
+                jogador.getNome() 
+                + " (vida: " + jogador.getVida() 
+                + " / escudo: " + jogador.getEscudo() + ")"
+            );
+            System.out.println("vs");
+            System.out.println(
+                inimigo.getNome() 
+                + " (vida: " + inimigo.getVida() 
+                + " / escudo: " + inimigo.getEscudo() + ")"
+            );
+            System.out.println("-//-");
+            System.out.println();
+
             System.out.println("(energia: " + energia + ")");
             System.out.println("1 - Usar Carta de Dano (custo 1)");
             System.out.println("2 - Usar Carta de Escudo (custo 2)");
@@ -52,9 +52,9 @@ public class Rodada {
             }
             if (escolha == 1) 
             {
-                CartaDano ataque = new CartaDano("Joao", 1);
-                ataque.usar(inimigo, dano_base);
-                energia -= 1;
+                CartaDano ataque = new CartaDano("dano", "causa 1 de dano", 1, 1);
+                ataque.usar(inimigo);
+                energia -= ataque.getCusto();
             }
             if (escolha == 2) 
             {
@@ -63,8 +63,9 @@ public class Rodada {
                     System.out.println("Você não possui energia o sulficiente. Sua rodada foi perdida");
                     energia = 0;
                 }
-                jogador.ganharEscudo(2*dano_base);
-                energia -= 2;
+                CartaEscudo defesa = new CartaEscudo("escudo", "recebe 2 de escudo", 2, 2);
+                defesa.usar(jogador);
+                energia -= defesa.getCusto();
             }
             if (escolha == 3) 
             {
@@ -73,27 +74,31 @@ public class Rodada {
         }    
 
         System.out.println("-//-");        
-        System.out.println("Seu turno acabou, o inimigo irá revidar");
+        if (inimigo.estarVivo()) {System.out.println("Seu turno acabou, o inimigo irá revidar");}
         System.out.println();
         Random aleatorio = new Random();
         while (energia_backup > 0) 
         { 
+            if (!inimigo.estarVivo()) {break;}
+            if (!jogador.estarVivo()) {break;}
             int min = 1;
             int max = 2;
             int reviravolta = aleatorio.nextInt((max - min) + 1) + min;
             if (reviravolta == 1) 
             {
-                jogador.receberDano(dano_base);
-                System.out.println("Seu inimigo te atacou, você recebeu " + dano_base + " de dano");
-                energia_backup -= 1;
+                CartaDano ataque = new CartaDano("dano", "causa 1 de dano", 1, 1);
+                ataque.usar(jogador);
+                energia_backup -= ataque.getCusto();
+                System.out.println("Seu inimigo te atacou, você recebeu " + ataque.getDano() + " de dano");
             }
             if (reviravolta == 2) 
             {
                 if (energia_backup < 2) {energia_backup = 0;}
-                CartaEscudo defesa = new CartaEscudo("Joao", 2);
-                defesa.usar(inimigo, 2*dano_base);
-                System.out.println("Seu inimigo se defendeu, ele ganhou " + 2*dano_base + " de escudo");
-                energia_backup -= 2;
+                CartaEscudo defesa = new CartaEscudo("defesa", "recebe 2 de escudo", 2,2 );
+                defesa.usar(inimigo);
+                energia_backup -= defesa.getCusto();
+                System.out.println("Seu inimigo se defendeu, ele ganhou " + defesa.getGanho() + " de escudo");
+                
             }
         }
         System.out.println();

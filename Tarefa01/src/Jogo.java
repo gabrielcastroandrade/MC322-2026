@@ -8,47 +8,50 @@ public class Jogo {
     private String nome_jogador;
     private String nome_inimigo;
 
-    private int dificuldade = 1;
+    private int oponente = 1;
     private int vida_jogador = 3;
     private int energia_base = 3;
-    private int dano_base = 1;
+    private int dano_inimigo = 1;
     private int vida_inimigo = 0;
 
     Scanner scanner = new Scanner(System.in);
 
 
-    public Jogo (String nome_jogador, int dificuldade) 
+    public Jogo (String nome_jogador, int oponente) 
     {
         this.nome_jogador = nome_jogador;
-        this.dificuldade = dificuldade;
+        this.oponente = oponente;
 
-        if (dificuldade == 1) 
+        if (oponente == 1) 
         {
             vida_inimigo = 2;
+            dano_inimigo = 1;
             nome_inimigo = "A Dragão";
         }
 
-        if (dificuldade == 2) 
+        if (oponente == 2) 
         {
             vida_inimigo = 3;
+            dano_inimigo = 2;
             nome_inimigo = "A Morte Encarnada";
         }
 
-        if (dificuldade == 3) 
+        if (oponente == 3) 
         {
             vida_inimigo = 10000;
+            dano_inimigo = 3;
             nome_inimigo = "O BURRO !!!";
         }
 
         jogador = new Heroi(nome_jogador, vida_jogador);
-        inimigo = new Inimigo(nome_inimigo, vida_inimigo);
+        inimigo = new Inimigo(nome_inimigo, vida_inimigo, dano_inimigo);
         }
         
         public void rodar() 
         {
             while (jogador.estarVivo() && inimigo.estarVivo()) 
             {
-                Rodada round = new Rodada(jogador, inimigo, energia_base, dano_base);
+                Rodada round = new Rodada(jogador, inimigo, energia_base);
                 round.rodar();
                 System.out.println("Pressione Enter para continuar: ");
                 scanner.nextLine(); 
