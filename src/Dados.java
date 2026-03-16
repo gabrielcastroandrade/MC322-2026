@@ -21,7 +21,10 @@ public class Dados {
         compra.push(new CartaEscudo("defesa pesada", "levanta 2 de escudo", 2, 2));
     }
 
-    public void getMao() {}
+    public Carta getMaoIndice(int indice) 
+    {
+        return mao.get(indice);
+    }
 
     public void embaralhar() 
     {
@@ -42,5 +45,13 @@ public class Dados {
         lixeira.push(carta);
     }
 
-    public void reiniciar() {}
+    public void reiniciar() 
+    {
+        while (!lixeira.empty()) 
+        {
+            Carta carta = lixeira.removeFirst();
+            compra.addLast(carta);
+        }
+        Collections.shuffle(compra);
+    }
 }

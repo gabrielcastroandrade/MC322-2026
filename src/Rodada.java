@@ -21,6 +21,7 @@ public class Rodada {
     {   
         while (energia > 0) 
         {
+            // dados do duelo
             if (!inimigo.estarVivo()) {break;}
             System.out.println("-//-");
             System.out.println(
@@ -37,6 +38,7 @@ public class Rodada {
             System.out.println("-//-");
             System.out.println();
 
+            // opções de ação jogador
             System.out.println("(energia: " + energia + ")");
             System.out.println("1 - Usar Carta de Dano (custo 1)");
             System.out.println("2 - Usar Carta de Escudo (custo 2)");
