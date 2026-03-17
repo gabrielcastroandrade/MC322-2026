@@ -9,23 +9,47 @@ public class Rodada {
     private int energia_backup;
     private int dano_base;
     private int num_cartas_mao = 3;
+    private Scanner input;
 
-    public Rodada(Heroi jogador, Inimigo inimigo, int energia) 
+    public Rodada(Heroi jogador, Inimigo inimigo, int energia, Scanner input) 
     {
         this.jogador = jogador;
         this.inimigo = inimigo;
         this.energia = energia;
         this.energia_backup = energia;
+        this.input = input;
     }
     
     public void rodar() 
     {   
+        // inicializa os dados dos baralhos
         Dados d = new Dados();
-
+        
+        // escolha da ação do inimigo
+        Random aleatorio = new Random();
+        int min = 1;
+        int max = 4;
+        int acao_inimigo = aleatorio.nextInt((max - min) + 1) + min;
+        if (acao_inimigo == 1) {System.out.println(">> " + inimigo.getNome() + " irá atacar com tudo que tem");}
+        if (acao_inimigo == 2) {System.out.println(">> " + inimigo.getNome() + " irá atacar como quem não quer nada");}
+        if (acao_inimigo == 3) {System.out.println(">> " + inimigo.getNome() + " irá defender como se sua vida estivesse em jogo");}
+        if (acao_inimigo == 4) {System.out.println(">> " + inimigo.getNome() + " irá defender com bastante preguiça");}
+        // se o inimigo for defender, já defende agora
+        if (acao_inimigo == 3) 
+        {
+            inimigo.ganharEscudo(2);    
+        }
+        if (acao_inimigo == 4) 
+        {
+            inimigo.ganharEscudo(1);    
+        }
+        System.out.println();
+        
+        // turno do jogador
+        while (d.getLenMao() < num_cartas_mao && d.getLenCompra() > 0) {d.comprar();}
         while (energia > 0) 
         {
             if (!inimigo.estarVivo()) {break;}
-            while (d.getLenMao() < num_cartas_mao && d.getLenCompra() > 0) {d.comprar();}
 
             // dados do duelo
             System.out.println("-//-");
@@ -47,22 +71,23 @@ public class Rodada {
             System.out.println("(pilha de compra: " + d.getLenCompra() + " cartas)");
             System.out.println("(pilha de descarte: " + d.getLenDescarte() + " cartas)");
             System.out.println("(energia: " + energia + ")");
+            System.out.println("["+0+"]" + " - Encerrar turno");
             for (int i = 0; i < d.getLenMao(); i++) 
             {
                 Carta carta = d.getMaoIndice(i);
-                System.out.println(i + " - " + carta.nome + " - " + carta.descricao + " - (custo " + carta.custo + ")");
+                System.out.println("["+(i+1)+"]" + " - " + carta.nome + " - " + carta.descricao + " - (custo " + carta.custo + ")");
             }
-            System.out.println((d.getLenMao()) + " - Encerrar turno");
             System.out.println("Digite o número da sua próxima ação: ");
             int escolha;
             Scanner input = new Scanner(System.in);
             escolha = input.nextInt();
-            while (escolha < 0 || escolha > d.getLenMao()) 
+            escolha -= 1;
+            while (escolha < -1 || escolha > d.getLenMao()) 
             {
                 System.out.println("Opção indisponível, tente novamente: ");
                 escolha = input.nextInt();
             }
-            if (escolha == d.getLenMao()) {break;}
+            if (escolha == -1) {break;}
             Carta carta_escolhida = d.getMaoIndice(escolha);
             while (carta_escolhida.getCusto() > energia) 
             {
@@ -95,37 +120,22 @@ public class Rodada {
             if (d.getLenCompra() == 0) {d.reiniciar();}
         }    
 
+        // fim do turno do jogador
         System.out.println("-//-");        
-        if (inimigo.estarVivo()) {System.out.println("Seu turno acabou, o inimigo irá revidar");}
-        System.out.println();
-        Random aleatorio = new Random();
-        while (energia_backup > 0) 
-        { 
-            if (!inimigo.estarVivo()) {break;}
-            if (!jogador.estarVivo()) {break;}
-            int min = 1;
-            int max = 2;
-            int reviravolta = aleatorio.nextInt((max - min) + 1) + min;
-            if (reviravolta == 1) 
-            {
-                CartaDano ataque = new CartaDano("dano", "causa 1 de dano", 1, 1);
-                ataque.usar(jogador);
-                energia_backup -= ataque.getCusto();
-                System.out.println("Seu inimigo te atacou, você recebeu " + ataque.getDano() + " de dano");
-            }
-            if (reviravolta == 2) 
-            {
-                if (energia_backup < 2) {energia_backup = 0;}
-                CartaEscudo defesa = new CartaEscudo("defesa", "recebe 2 de escudo", 2,2 );
-                defesa.usar(inimigo);
-                energia_backup -= defesa.getCusto();
-                System.out.println("Seu inimigo se defendeu, ele ganhou " + defesa.getGanho() + " de escudo");
-                
-            }
+        if (!inimigo.estarVivo()) {return;}
+        if (!jogador.estarVivo()) {return;}
+        
+        // se o inimigo for atacar, ataca aqui
+        if (acao_inimigo == 1) 
+        {
+            inimigo.atacar(jogador);
+            inimigo.atacar(jogador);
         }
-        System.out.println();
-        System.out.println("Turno finalizado.");
-        System.out.println("-//-");
+        if (acao_inimigo == 2) 
+        {
+            inimigo.atacar(jogador);
+        } 
+        
         System.out.println();
 
         jogador.zerarEscudo();

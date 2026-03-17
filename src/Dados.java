@@ -20,7 +20,8 @@ public class Dados {
         compra.push(new CartaDano("ataque violento", "causa 3 de dano", 3, 3));
         compra.push(new CartaEscudo("defesa desajeitada", "levanta 1 de escudo", 1, 1));
         compra.push(new CartaEscudo("defesa eficiente", "levanta 2 de escudo", 2, 2));
-        compra.push(new CartaEscudo("defesa impenetrável", "levanta 2 de escudo", 2, 2));
+        compra.push(new CartaEscudo("defesa impenetrável", "levanta 3 de escudo", 3, 3));
+        Collections.shuffle(compra);
     }
 
     // getters

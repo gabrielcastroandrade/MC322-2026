@@ -14,9 +14,9 @@ public class App {
 
         // leitura da oponente
         System.out.println("Escolha seu oponente: ");
-        System.out.println("1 - A Dragão");
-        System.out.println("2 - A Morte Encarnada");
-        System.out.println("3 - #@%$&¨@*%");
+        System.out.println("[1] - A Dragão");
+        System.out.println("[2] - A Morte Encarnada");
+        System.out.println("[3] - #@%$&¨@*%");
 
         oponente = input.nextInt();
         while (oponente != 1 && oponente != 2 && oponente != 3) 
@@ -26,7 +26,7 @@ public class App {
         }
 
         // inicialização do jogo
-        Jogo jogo = new Jogo(in_nome, oponente);
+        Jogo jogo = new Jogo(in_nome, oponente, input);
         jogo.rodar();
         System.out.println("Jogo encerrado. Obrigado por jogar!!!");
         System.out.println("Créditos: Arthur Midon (247271) e Gabriel Castro (280869)");

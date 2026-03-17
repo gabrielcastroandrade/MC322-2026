@@ -29,11 +29,15 @@ public abstract class Entidade {
     // jogo
     public void receberDano(int dano) 
     {
-        if (escudo > 0) 
+        if (escudo > dano) 
         {
             escudo -= dano;
         }
-        else 
+        if (escudo > 0 && escudo < dano) 
+        {
+            vida -= (dano - escudo);
+        }
+        if (escudo == 0) 
         {
             vida -= dano;
         }
