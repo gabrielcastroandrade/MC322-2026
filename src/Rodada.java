@@ -8,6 +8,7 @@ public class Rodada {
     private int energia;
     private int energia_backup;
     private int dano_base;
+    private int num_cartas_mao = 3;
 
     public Rodada(Heroi jogador, Inimigo inimigo, int energia) 
     {
@@ -19,10 +20,14 @@ public class Rodada {
     
     public void rodar() 
     {   
+        Dados d = new Dados();
+
         while (energia > 0) 
         {
-            // dados do duelo
             if (!inimigo.estarVivo()) {break;}
+            while (d.getLenMao() < num_cartas_mao && d.getLenCompra() > 0) {d.comprar();}
+
+            // dados do duelo
             System.out.println("-//-");
             System.out.println(
                 jogador.getNome() 
@@ -38,41 +43,56 @@ public class Rodada {
             System.out.println("-//-");
             System.out.println();
 
-            // opções de ação jogador
+            // opções de ação do jogador
+            System.out.println("(pilha de compra: " + d.getLenCompra() + " cartas)");
+            System.out.println("(pilha de descarte: " + d.getLenDescarte() + " cartas)");
             System.out.println("(energia: " + energia + ")");
-            System.out.println("1 - Usar Carta de Dano (custo 1)");
-            System.out.println("2 - Usar Carta de Escudo (custo 2)");
-            System.out.println("3 - Encerrar turno");
+            for (int i = 0; i < d.getLenMao(); i++) 
+            {
+                Carta carta = d.getMaoIndice(i);
+                System.out.println(i + " - " + carta.nome + " - " + carta.descricao + " - (custo " + carta.custo + ")");
+            }
+            System.out.println((d.getLenMao()) + " - Encerrar turno");
             System.out.println("Digite o número da sua próxima ação: ");
             int escolha;
             Scanner input = new Scanner(System.in);
             escolha = input.nextInt();
-            while (escolha != 1 && escolha != 2 && escolha != 3) 
+            while (escolha < 0 || escolha > d.getLenMao()) 
             {
                 System.out.println("Opção indisponível, tente novamente: ");
                 escolha = input.nextInt();
             }
-            if (escolha == 1) 
+            if (escolha == d.getLenMao()) {break;}
+            Carta carta_escolhida = d.getMaoIndice(escolha);
+            while (carta_escolhida.getCusto() > energia) 
             {
-                CartaDano ataque = new CartaDano("dano", "causa 1 de dano", 1, 1);
-                ataque.usar(inimigo);
-                energia -= ataque.getCusto();
+                System.out.println("Energia insulficiente, tente novamente: ");
+                escolha = input.nextInt();
+                carta_escolhida = d.getMaoIndice(escolha);
             }
-            if (escolha == 2) 
+
+            // lidando com a escolha
+            if (carta_escolhida instanceof CartaDano) 
             {
-                if (energia < 2) 
-                {
-                    System.out.println("Você não possui energia o sulficiente. Sua rodada foi perdida");
-                    energia = 0;
-                }
-                CartaEscudo defesa = new CartaEscudo("escudo", "recebe 2 de escudo", 2, 2);
-                defesa.usar(jogador);
-                energia -= defesa.getCusto();
+                carta_escolhida.usar(inimigo);
+                System.out.println("-//-");
+                System.out.println("Você atacou com " + ((CartaDano) carta_escolhida).getDano() + " de dano");
+                System.out.println("-//-");
+                System.out.println();
+                energia -= carta_escolhida.getCusto();
+                d.descartar(escolha);
             }
-            if (escolha == 3) 
+            if (carta_escolhida instanceof CartaEscudo) 
             {
-                energia = 0;
+                carta_escolhida.usar(jogador);
+                System.out.println("-//-");
+                System.out.println("Você levantou " + ((CartaEscudo) carta_escolhida).getGanho() + " de escudo");
+                System.out.println("-//-");
+                System.out.println();
+                energia -= carta_escolhida.getCusto();
+                d.descartar(escolha);
             }
+            if (d.getLenCompra() == 0) {d.reiniciar();}
         }    
 
         System.out.println("-//-");        
@@ -106,6 +126,7 @@ public class Rodada {
         System.out.println();
         System.out.println("Turno finalizado.");
         System.out.println("-//-");
+        System.out.println();
 
         jogador.zerarEscudo();
         inimigo.zerarEscudo();

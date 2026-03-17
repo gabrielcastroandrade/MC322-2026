@@ -11,6 +11,7 @@ public class CartaEscudo extends Carta{
     public void usar(Inimigo alvo, int ganhar)
     {
         alvo.ganharEscudo(ganhar);
+        System.out.println("Você levantou " + ganho + " de escudo");
     }
 
     // getters

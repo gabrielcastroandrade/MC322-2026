@@ -10,7 +10,7 @@ public class Jogo {
 
     private int oponente = 1;
     private int vida_jogador = 3;
-    private int energia_base = 3;
+    private int energia_base = 4;
     private int dano_inimigo = 1;
     private int vida_inimigo = 0;
 
