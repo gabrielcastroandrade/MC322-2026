@@ -81,12 +81,12 @@ public class Rodada {
             int escolha;
             Scanner input = new Scanner(System.in);
             escolha = input.nextInt();
-            escolha -= 1;
-            while (escolha < -1 || escolha > d.getLenMao()) 
+            while (escolha < 0 || escolha > d.getLenMao()) 
             {
                 System.out.println("Opção indisponível, tente novamente: ");
                 escolha = input.nextInt();
             }
+            escolha -= 1;
             if (escolha == -1) {break;}
             Carta carta_escolhida = d.getMaoIndice(escolha);
             while (carta_escolhida.getCusto() > energia) 
