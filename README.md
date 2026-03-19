@@ -27,8 +27,8 @@
 
 ## As cartas:
 
-- Cartas de Dano: causam dano ao inimigo. Existem 3 tipos. Quanto mais caras, mais dano inflingem;
-- Cartas de Escudo: levantam escudo ao jogador. Existem 3 tipos. Quanro mais caras, mais escudo levantam;
+- Cartas de Dano: causam dano ao inimigo. Existem 3 tipos. Quanto maior o custo, mais dano inflingem;
+- Cartas de Escudo: levantam escudo ao jogador. Existem 3 tipos. Quanto maior o custo, mais escudo levantam;
 
 ## Seus inimigos:
 
