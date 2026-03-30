@@ -31,6 +31,6 @@ public abstract class Carta {
     }
 
     // jogo
-    public abstract void usar(Entidade alvo); 
+    public abstract void usar(Entidade alvo, Entidade caster); 
 
 }

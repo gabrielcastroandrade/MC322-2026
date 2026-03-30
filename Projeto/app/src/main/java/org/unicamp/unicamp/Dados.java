@@ -11,18 +11,20 @@ public class Dados {
     private Stack<Carta> compra;
     private Stack<Carta> descarte;
 
-    public Dados() 
+    public Dados(Entidade jogador) 
     {
         this.mao  = new ArrayList<>();
         this.compra = new Stack<>();
         this.descarte = new Stack<>();
 
-        compra.push(new CartaDano("ataque fofo", "causa 1 de dano", 1, 1));
-        compra.push(new CartaDano("ataque sagaz", "causa 2 de dano", 2, 2));
-        compra.push(new CartaDano("ataque violento", "causa 3 de dano", 3, 3));
+        compra.push(new CartaDano("ataque fofo", "causa 1 de dano", 1, jogador.getDano()));
+        compra.push(new CartaDano("ataque sagaz", "causa 2 de dano", 2, (jogador.getDano())*2));
+        compra.push(new CartaDano("ataque violento", "causa 3 de dano", 3, (jogador.getDano())*3));
         compra.push(new CartaEscudo("defesa desajeitada", "levanta 1 de escudo", 1, 1));
         compra.push(new CartaEscudo("defesa eficiente", "levanta 2 de escudo", 2, 2));
         compra.push(new CartaEscudo("defesa impenetrável", "levanta 3 de escudo", 3, 3));
+        compra.push(new CartaEfeitoFraqueza("intimidação", "enfraquece seu inimigo", 2));
+        compra.push(new CartaEfeitoForca("alongamento", "torna seus ataques mais fortes", 2));
         Collections.shuffle(compra);
     }
 

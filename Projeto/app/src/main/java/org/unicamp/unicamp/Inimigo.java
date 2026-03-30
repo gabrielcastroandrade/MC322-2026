@@ -2,18 +2,15 @@ package org.unicamp.unicamp;
 
 public class Inimigo extends Entidade{
     
-    protected int dano;
-
-    public Inimigo (String nome, int vida, int dano) 
+    public Inimigo (String nome, int vida, int dano_base) 
     {
-        super(nome, vida);
-        this.dano = dano;
+        super(nome, vida, dano_base);
     }
 
     // jogo
 
     public void atacar(Heroi alvo) 
     {
-        alvo.receberDano(dano);
+        alvo.receberDano(dano_base);
     }
 }

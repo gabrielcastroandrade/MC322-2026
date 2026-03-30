@@ -19,9 +19,9 @@ public class CartaDano extends Carta{
 
     // jogo
     @Override
-    public void usar(Entidade alvo)
+    public void usar(Entidade alvo, Entidade caster)
     {
-        alvo.receberDano(dano);
+        alvo.receberDano(caster.getDano());
     }
 
 }

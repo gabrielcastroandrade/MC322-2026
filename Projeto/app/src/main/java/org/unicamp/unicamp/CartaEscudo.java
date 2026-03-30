@@ -24,9 +24,9 @@ public class CartaEscudo extends Carta{
 
     // jogo
     @Override
-    public void usar(Entidade alvo)
+    public void usar(Entidade alvo, Entidade caster)
     {
-        alvo.ganharEscudo(custo);
+        alvo.ganharEscudo(ganho);
     }
 
 }
