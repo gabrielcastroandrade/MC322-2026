@@ -60,12 +60,15 @@ public class Jogo extends Publisher{
         // escolha da ação do inimigo
         Random aleatorio = new Random();
         int min = 1;
-        int max = 4;
+        int max = 7;
         int acao_inimigo = aleatorio.nextInt((max - min) + 1) + min;
         if (acao_inimigo == 1) {System.out.println(">> " + inimigo.getNome() + " irá atacar com tudo que tem");}
         if (acao_inimigo == 2) {System.out.println(">> " + inimigo.getNome() + " irá atacar como quem não quer nada");}
         if (acao_inimigo == 3) {System.out.println(">> " + inimigo.getNome() + " irá defender como se sua vida estivesse em jogo");}
         if (acao_inimigo == 4) {System.out.println(">> " + inimigo.getNome() + " irá defender com bastante preguiça");}
+        if (acao_inimigo == 5) {System.out.println(">> " + inimigo.getNome() + " farmou ego, você ficou fraco");}
+        if (acao_inimigo == 6) {System.out.println(">> " + inimigo.getNome() + " farmou aura, ele está mais forte agora");}
+        if (acao_inimigo == 7) {System.out.println(">> " + inimigo.getNome() + " farmou aura + ego, ele está mais forte agora, e você mais fraco");}
 
         // se o inimigo for defender, já defende agora
         this.notificar("inimgo vai defender");
@@ -76,6 +79,23 @@ public class Jogo extends Publisher{
         if (acao_inimigo == 4) 
         {
             inimigo.ganharEscudo(1);    
+        }
+        if (acao_inimigo == 5) 
+        {
+            Efeito efeito = new EfeitoFraqueza("fraqueza", jogador);
+            jogador.adicionarEfeito(efeito);
+        }
+        if (acao_inimigo == 6) 
+        {
+            Efeito efeito = new EfeitoForca("força", inimigo);
+            inimigo.adicionarEfeito(efeito);  
+        }
+        if (acao_inimigo == 7) 
+        {
+            Efeito efeito = new EfeitoFraqueza("fraqueza", jogador);
+            jogador.adicionarEfeito(efeito); 
+            Efeito efeito2 = new EfeitoForca("força", inimigo);
+            inimigo.adicionarEfeito(efeito2);   
         }
         System.out.println();
         
