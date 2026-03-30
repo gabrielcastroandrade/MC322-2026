@@ -10,7 +10,7 @@ public class CartaEfeitoFraqueza extends Carta{
     }
 
     @Override
-    public void usar(Entidade alvo, Entidade caster) 
+    public void usar(Entidade alvo, int poder) 
     {
         efeito = new EfeitoFraqueza("fraqueza", alvo);
         alvo.adicionarEfeito(efeito);

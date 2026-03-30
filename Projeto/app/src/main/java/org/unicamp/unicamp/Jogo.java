@@ -140,9 +140,9 @@ public class Jogo extends Publisher{
             this.notificar("jogador vai realizar sua ação");
             if (carta_escolhida instanceof CartaDano) 
             {
-                carta_escolhida.usar(inimigo, jogador);
+                carta_escolhida.usar(inimigo, carta_escolhida.getCusto()*jogador.getDano());
                 System.out.println("-//-");
-                System.out.println("Você atacou com " + ((CartaDano) carta_escolhida).getDano() + " de dano");
+                System.out.println("Você atacou seu oponente com " + carta_escolhida.getCusto()*jogador.getDano() + " de dano");
                 System.out.println("-//-");
                 System.out.println();
                 energia -= carta_escolhida.getCusto();
@@ -150,9 +150,9 @@ public class Jogo extends Publisher{
             }
             if (carta_escolhida instanceof CartaEscudo) 
             {
-                carta_escolhida.usar(jogador, jogador);
+                carta_escolhida.usar(jogador, carta_escolhida.getCusto());
                 System.out.println("-//-");
-                System.out.println("Você levantou " + ((CartaEscudo) carta_escolhida).getGanho() + " de escudo");
+                System.out.println("Você levantou " + carta_escolhida.getCusto() + " de escudo");
                 System.out.println("-//-");
                 System.out.println();
                 energia -= carta_escolhida.getCusto();
@@ -160,7 +160,7 @@ public class Jogo extends Publisher{
             }
             if (carta_escolhida instanceof CartaEfeitoFraqueza)
             {
-                carta_escolhida.usar(inimigo, jogador);
+                carta_escolhida.usar(inimigo, 0);
                 Efeito efeito = ((CartaEfeitoFraqueza) carta_escolhida).getEfeito();
                 this.inscrever(efeito);
                 System.out.println("-//-");
@@ -172,7 +172,7 @@ public class Jogo extends Publisher{
             }
             if (carta_escolhida instanceof CartaEfeitoForca)
             {
-                carta_escolhida.usar(jogador, jogador);
+                carta_escolhida.usar(jogador, 0);
                 Efeito efeito = ((CartaEfeitoForca) carta_escolhida).getEfeito();
                 this.inscrever(efeito);
                 System.out.println("-//-");
@@ -214,7 +214,6 @@ public class Jogo extends Publisher{
         inimigo.limpeza();
 
         this.notificar("fim da rodada");
-        System.out.println();
     };
 
         
@@ -224,6 +223,7 @@ public class Jogo extends Publisher{
         {
             this.rodarRound();
             System.out.println("Pressione Enter para continuar: ");
+            System.out.println();
             input.nextLine(); 
         }
 

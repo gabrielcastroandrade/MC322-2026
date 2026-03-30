@@ -43,18 +43,8 @@ public abstract class Entidade {
     public void receberDano(int dano) 
     {
         if (dano <= 0) {return;}
-        if (escudo > dano) 
-        {
-            escudo -= dano;
-        }
-        if (escudo > 0 && escudo < dano) 
-        {
-            vida -= (dano - escudo);
-        }
-        if (escudo == 0) 
-        {
-            vida -= dano;
-        }
+        if (escudo < dano) {vida -= (dano - escudo);}
+        else if (escudo > dano) {escudo -= dano;}
     } 
 
     public void adicionarEfeito(Efeito adicionar) 

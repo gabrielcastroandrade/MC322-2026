@@ -2,26 +2,16 @@ package org.unicamp.unicamp;
 
 public class CartaDano extends Carta{
 
-    protected int dano;
-
-    public CartaDano(String nome, String descricao, int custo, int dano)
+    public CartaDano(String nome, String descricao, int custo)
     {
         super(nome, descricao, custo);
-        this.dano = dano;
-    }
-
-    // getters
-
-    public int getDano() 
-    {
-        return dano;
     }
 
     // jogo
     @Override
-    public void usar(Entidade alvo, Entidade caster)
+    public void usar(Entidade alvo, int dano)
     {
-        alvo.receberDano(caster.getDano());
+        alvo.receberDano(dano);
     }
 
 }
