@@ -29,6 +29,10 @@
 
 - Cartas de Dano: causam dano ao inimigo. Existem 3 tipos. Quanto maior o custo, mais dano inflingem;
 - Cartas de Escudo: levantam escudo ao jogador. Existem 3 tipos. Quanto maior o custo, mais escudo levantam;
+- Cartas de Efeito: jogam um efeito em você (se for positivo) ou em seu inimigo (se for negativo). Existem 2 efeitos:
+   - Força: aumenta o dano base (todos os ataques ficam mais fortes)
+   - Fraqueza: diminui o dano base (todos os ataques ficam mais fracos)
+   - Efeitos duram 3 rodadas. Eles podem se acumular, cada acúmulo faz o efeito ser mais forte e durar mais 2 rounds
 
 ## Seus inimigos:
 
