@@ -7,9 +7,9 @@ import java.util.Stack;
 
 public class Dados {
 
-    private List<Carta> mao; 
-    private Stack<Carta> compra;
-    private Stack<Carta> descarte;
+    private final List<Carta> mao; 
+    private final Stack<Carta> compra;
+    private final Stack<Carta> descarte;
 
     public Dados(Entidade jogador) 
     {

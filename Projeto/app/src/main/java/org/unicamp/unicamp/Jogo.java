@@ -5,24 +5,20 @@ import java.util.Scanner;
 
 public class Jogo extends Publisher{
 
-    private int vida_jogador = 3;
-    private int energia_base = 5;
-    private int num_cartas_mao = 6;
-    private int dano_base_jogador = 1;
+    private final int vida_jogador = 3;
+    private final int energia_base = 5;
+    private final int num_cartas_mao = 4;
+    private final int dano_base_jogador = 1;
 
     private int dano_inimigo = 1;
-    private Heroi jogador;
-    private Inimigo inimigo;
-    private String nome_jogador;
+    private final Heroi jogador;
+    private final Inimigo inimigo;
     private String nome_inimigo;
-    private int oponente = 1;
     private int vida_inimigo = 0;
-    private Scanner input;
+    private final Scanner input;
 
     public Jogo (String nome_jogador, int oponente, Scanner input) 
     {
-        this.nome_jogador = nome_jogador;
-        this.oponente = oponente;
         this.input = input;
 
         if (oponente == 1) 
@@ -57,7 +53,7 @@ public class Jogo extends Publisher{
         Dados d = new Dados(jogador);
         int energia = energia_base;
         
-        // escolha da ação do inimigo
+        // escolha da ação do inimigo - JOGAR TUDO ISSO PARA A CLASSE INIMIGO
         Random aleatorio = new Random();
         int min = 1;
         int max = 7;
