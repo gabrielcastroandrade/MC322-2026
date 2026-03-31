@@ -85,7 +85,7 @@ public abstract class Entidade {
 
     public void limpeza() 
     {
-        for(int i = 0; i < efeitos.size(); i++) {if (efeitos.get(i).getCarga() == 0) {efeitos.remove(i);}}
+        efeitos.removeIf(efeito -> efeito.getCarga() == 0);
     }
 
 }

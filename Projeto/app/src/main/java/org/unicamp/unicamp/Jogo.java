@@ -154,48 +154,48 @@ public class Jogo extends Publisher{
 
             // lidando com a escolha -------------------------------------------------------------------------------------
             this.notificar("jogador vai realizar sua ação");
-            if (carta_escolhida instanceof CartaDano) 
+            if (carta_escolhida instanceof CartaDano c) 
             {
-                carta_escolhida.usar(inimigo, carta_escolhida.getCusto()*jogador.getDano());
+                c.usar(inimigo, c.getCusto()*jogador.getDano());
                 System.out.println("-//-");
-                System.out.println("Você atacou seu oponente com " + carta_escolhida.getCusto()*jogador.getDano() + " de dano");
+                System.out.println("Você atacou seu oponente com " + c.getCusto()*jogador.getDano() + " de dano");
                 System.out.println("-//-");
                 System.out.println();
-                energia -= carta_escolhida.getCusto();
+                energia -= c.getCusto();
                 d.descartar(escolha);
             }
-            if (carta_escolhida instanceof CartaEscudo) 
+            if (carta_escolhida instanceof CartaEscudo c) 
             {
-                carta_escolhida.usar(jogador, carta_escolhida.getCusto());
+                c.usar(jogador, c.getCusto());
                 System.out.println("-//-");
-                System.out.println("Você levantou " + carta_escolhida.getCusto() + " de escudo");
+                System.out.println("Você levantou " + c.getCusto() + " de escudo");
                 System.out.println("-//-");
                 System.out.println();
-                energia -= carta_escolhida.getCusto();
+                energia -= c.getCusto();
                 d.descartar(escolha);
             }
-            if (carta_escolhida instanceof CartaEfeitoFraqueza)
+            if (carta_escolhida instanceof CartaEfeitoFraqueza c)
             {
-                carta_escolhida.usar(inimigo, 0);
-                Efeito efeito = ((CartaEfeitoFraqueza) carta_escolhida).getEfeito();
+                c.usar(inimigo, 0);
+                Efeito efeito = c.getEfeito();
                 this.inscrever(efeito);
                 System.out.println("-//-");
                 System.out.println("Você jogou no seu oponente o efeito de " + efeito.getString());
                 System.out.println("-//-");
                 System.out.println();
-                energia -= carta_escolhida.getCusto();
+                energia -= c.getCusto();
                 d.descartar(escolha);
             }
-            if (carta_escolhida instanceof CartaEfeitoForca)
+            if (carta_escolhida instanceof CartaEfeitoForca c)
             {
-                carta_escolhida.usar(jogador, 0);
-                Efeito efeito = ((CartaEfeitoForca) carta_escolhida).getEfeito();
+                c.usar(jogador, 0);
+                Efeito efeito = c.getEfeito();
                 this.inscrever(efeito);
                 System.out.println("-//-");
                 System.out.println("Você jogou em si mesmo o efeito de " + efeito.getString());
                 System.out.println("-//-");
                 System.out.println();
-                energia -= carta_escolhida.getCusto();
+                energia -= c.getCusto();
                 d.descartar(escolha);
             }
             if (d.getLenCompra() == 0) {d.reiniciar();}
