@@ -1,6 +1,8 @@
 package org.unicamp.unicamp;
 
-
+/**
+ * Classe abstrata Carta é e base para todas as cartas do jogo
+ */
 public abstract class Carta {
 
     protected String nome;
@@ -30,7 +32,11 @@ public abstract class Carta {
         return custo;
     }
 
-    // jogo
+    /**
+     * Método usado para fazer a carta realiar sua ação principal. 
+     * @param alvo Entidade - em quem será usada a carta
+     * @param poder int - indica o quão forte será o efeito da carta
+     */
     public abstract void usar(Entidade alvo, int poder); 
 
 }

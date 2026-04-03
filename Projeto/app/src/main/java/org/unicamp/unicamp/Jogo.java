@@ -50,7 +50,7 @@ public class Jogo extends Publisher{
     public void rodarRound() 
     {
         // inicializa os dados dos baralhos
-        Dados d = new Dados(jogador);
+        Baralho baralho = new Baralho(jogador);
         int energia = energia_base;
         
         // escolha da ação do inimigo - JOGAR TUDO ISSO PARA A CLASSE INIMIGO
@@ -97,7 +97,7 @@ public class Jogo extends Publisher{
         
         // turno do jogador
         this.notificar("jogador começará seu turno");
-        while (d.getLenMao() < num_cartas_mao && d.getLenCompra() > 0) {d.comprar();}
+        while (baralho.getLenMao() < num_cartas_mao && baralho.getLenCompra() > 0) {baralho.comprar();}
         while (energia > 0) 
         {
             if (!inimigo.estarVivo()) {break;}
@@ -124,31 +124,31 @@ public class Jogo extends Publisher{
 
 
             // opções de ação do jogador -----------------------------------------------------------------------------------
-            System.out.println("(pilha de compra: " + d.getLenCompra() + " cartas)");
-            System.out.println("(pilha de descarte: " + d.getLenDescarte() + " cartas)");
+            System.out.println("(pilha de compra: " + baralho.getLenCompra() + " cartas)");
+            System.out.println("(pilha de descarte: " + baralho.getLenDescarte() + " cartas)");
             System.out.println("(energia: " + energia + ")");
             System.out.println("["+0+"]" + " - Encerrar turno");
-            for (int i = 0; i < d.getLenMao(); i++) 
+            for (int i = 0; i < baralho.getLenMao(); i++) 
             {
-                Carta carta = d.getMaoIndice(i);
+                Carta carta = baralho.getMaoIndice(i);
                 System.out.println("["+(i+1)+"]" + " - " + carta.nome + " - " + carta.descricao + " - (custo " + carta.custo + ")");
             }
             System.out.println("Digite o número da sua próxima ação: ");
             int escolha;
             escolha = input.nextInt();
-            while (escolha < 0 || escolha > d.getLenMao()) 
+            while (escolha < 0 || escolha > baralho.getLenMao()) 
             {
                 System.out.println("Opção indisponível, tente novamente: ");
                 escolha = input.nextInt();
             }
             escolha -= 1;
             if (escolha == -1) {break;}
-            Carta carta_escolhida = d.getMaoIndice(escolha);
+            Carta carta_escolhida = baralho.getMaoIndice(escolha);
             while (carta_escolhida.getCusto() > energia) 
             {
                 System.out.println("Energia insulficiente, tente novamente: ");
                 escolha = input.nextInt();
-                carta_escolhida = d.getMaoIndice(escolha);
+                carta_escolhida = baralho.getMaoIndice(escolha);
             }
 
 
@@ -162,7 +162,7 @@ public class Jogo extends Publisher{
                 System.out.println("-//-");
                 System.out.println();
                 energia -= c.getCusto();
-                d.descartar(escolha);
+                baralho.descartar(escolha);
             }
             if (carta_escolhida instanceof CartaEscudo c) 
             {
@@ -172,7 +172,7 @@ public class Jogo extends Publisher{
                 System.out.println("-//-");
                 System.out.println();
                 energia -= c.getCusto();
-                d.descartar(escolha);
+                baralho.descartar(escolha);
             }
             if (carta_escolhida instanceof CartaEfeitoFraqueza c)
             {
@@ -184,7 +184,7 @@ public class Jogo extends Publisher{
                 System.out.println("-//-");
                 System.out.println();
                 energia -= c.getCusto();
-                d.descartar(escolha);
+                baralho.descartar(escolha);
             }
             if (carta_escolhida instanceof CartaEfeitoForca c)
             {
@@ -196,9 +196,9 @@ public class Jogo extends Publisher{
                 System.out.println("-//-");
                 System.out.println();
                 energia -= c.getCusto();
-                d.descartar(escolha);
+                baralho.descartar(escolha);
             }
-            if (d.getLenCompra() == 0) {d.reiniciar();}
+            if (baralho.getLenCompra() == 0) {baralho.reiniciar();}
         }    
 
 

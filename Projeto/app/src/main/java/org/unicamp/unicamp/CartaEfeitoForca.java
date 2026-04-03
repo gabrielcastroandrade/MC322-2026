@@ -1,5 +1,9 @@
 package org.unicamp.unicamp;
 
+/**
+ * Extensão da classe abstrata Carta.
+ * Carta capaz de dar o efeito de força a um alvo
+ */
 public class CartaEfeitoForca extends Carta{
 
     protected Efeito efeito;
@@ -9,15 +13,21 @@ public class CartaEfeitoForca extends Carta{
         super(nome, descricao, custo);
     }
 
+    public Efeito getEfeito() 
+    {
+        return efeito;
+    }
+
     @Override
+
+    /**
+     * Método para usar a carta, dando o efeito de força a um alvo.
+     * @param alvo Entidade - em quem será aplicado o efeito de força
+     * @param poder int - ainda não usado nessa carta na implmentação atual
+     */
     public void usar(Entidade alvo, int poder) 
     {
         efeito = new EfeitoForca("força", alvo);
         alvo.adicionarEfeito(efeito);
-    }
-
-    public Efeito getEfeito() 
-    {
-        return efeito;
     }
 }

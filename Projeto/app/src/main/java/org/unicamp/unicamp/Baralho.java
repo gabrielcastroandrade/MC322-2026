@@ -5,13 +5,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
-public class Dados {
+/**
+ * Classe responsável por guardar e gerenciar todos os baralhos do jogo (pilhas de compra, descarte e mão do jogador)
+ */
+public class Baralho {
 
     private final List<Carta> mao; 
     private final Stack<Carta> compra;
     private final Stack<Carta> descarte;
 
-    public Dados(Entidade jogador) 
+    public Baralho(Entidade jogador) 
     {
         this.mao  = new ArrayList<>();
         this.compra = new Stack<>();
@@ -28,7 +31,11 @@ public class Dados {
         Collections.shuffle(compra);
     }
 
-    // getters
+    /**
+     * Retorna a carta de um índice específico da mão do jogador
+     * @param indice int - indice da carta que se quer obter
+     * @return
+     */
     public Carta getMaoIndice(int indice) 
     {
         return mao.get(indice);
@@ -68,6 +75,9 @@ public class Dados {
         descarte.push(carta);
     }
 
+    /**
+     * Devolve todas as cartas da mão do jogador e do descarte para a pilha de compra, embaralhando
+     */
     public void reiniciar() 
     {
         while (!mao.isEmpty()) 
