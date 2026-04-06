@@ -4,9 +4,9 @@ package org.unicamp.unicamp;
  * Extensão da classe abstrata Carta.
  * Carta capaz de levantar escudos em um alvo
  */
-public class CartaEscudo extends Carta{
+public class CartaDanoEscudo extends Carta{
 
-    public CartaEscudo(String nome, String descricao, int custo)
+    public CartaDanoEscudo(String nome, String descricao, int custo)
     {
         super(nome, descricao, custo);
     }
@@ -14,14 +14,14 @@ public class CartaEscudo extends Carta{
     @Override
 
     /**
-     * Método para usar a carta, levantando escudo no alvo
+     * Método para usar a carta, levantando escudo no caster e atacando um alvo, simultaneamente.
      * @param alvo Entidade - em quem será levantado o escudo
      * @param caster Entidade - quemm está usando a carta
      * @param dano int - quanto será levantado de escudo
      */
-    public void usar(Entidade alvo, Entidade caster, int ganho)
+    public void usar(Entidade alvo, Entidade caster, int poder)
     {
-        alvo.ganharEscudo(ganho);
+        caster.ganharEscudo(poder - 1);
+        alvo.receberDano(poder - 2);
     }
-
 }

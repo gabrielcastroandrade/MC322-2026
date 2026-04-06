@@ -24,7 +24,7 @@ public class Heroi extends Entidade{
     {
         if (carta_escolhida instanceof CartaDano c) 
         {
-            c.usar(inimigo, c.getCusto()*this.getDano());
+            c.usar(inimigo, this, c.getCusto()*this.getDano());
             System.out.println("-//-");
             System.out.println("Você atacou seu oponente com " + c.getCusto()*this.getDano() + " de dano");
             System.out.println("-//-");
@@ -34,7 +34,7 @@ public class Heroi extends Entidade{
         }
         if (carta_escolhida instanceof CartaEscudo c) 
         {
-            c.usar(this, c.getCusto());
+            c.usar(this, this, c.getCusto());
             System.out.println("-//-");
             System.out.println("Você levantou " + c.getCusto() + " de escudo");
             System.out.println("-//-");
@@ -44,7 +44,7 @@ public class Heroi extends Entidade{
         }
         if (carta_escolhida instanceof CartaEfeitoFraqueza c)
         {
-            c.usar(inimigo, 0);
+            c.usar(inimigo, this, c.getCusto());
             Efeito efeito = c.getEfeito();
             jogo.inscrever(efeito);
             System.out.println("-//-");
@@ -56,11 +56,21 @@ public class Heroi extends Entidade{
         }
         if (carta_escolhida instanceof CartaEfeitoForca c)
         {
-            c.usar(this, 0);
+            c.usar(this, this, c.getCusto());
             Efeito efeito = c.getEfeito();
             jogo.inscrever(efeito);
             System.out.println("-//-");
             System.out.println("Você jogou em si mesmo o efeito de " + efeito.getString());
+            System.out.println("-//-");
+            System.out.println();
+            baralho.descartar(indice_carta_escolhida);
+            return c.getCusto();
+        }
+        if (carta_escolhida instanceof CartaDanoEscudo c)
+        {
+            c.usar(inimigo, this, c.getCusto());
+            System.out.println("-//-");
+            System.out.println("Você levantou " + (c.getCusto() - 1) + " de escudo e atacou com " + (c.getCusto() - 2) + " de dano ao mesmo tempo!");
             System.out.println("-//-");
             System.out.println();
             baralho.descartar(indice_carta_escolhida);

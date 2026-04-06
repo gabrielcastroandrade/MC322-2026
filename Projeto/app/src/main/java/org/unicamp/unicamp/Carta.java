@@ -35,8 +35,9 @@ public abstract class Carta {
     /**
      * Método usado para fazer a carta realiar sua ação principal. 
      * @param alvo Entidade - em quem será usada a carta
+     * @param caster Entidade - quem está usando a carta
      * @param poder int - indica o quão forte será o efeito da carta
      */
-    public abstract void usar(Entidade alvo, int poder); 
+    public abstract void usar(Entidade alvo, Entidade caster, int poder); 
 
 }
