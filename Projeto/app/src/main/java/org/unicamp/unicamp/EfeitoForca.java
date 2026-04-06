@@ -14,7 +14,7 @@ public class EfeitoForca extends Efeito{
     @Override
 
     /**
-     * Implementação particular do método da classe Subscriber.
+     * Implementação particular do método abstrato da classe Subscriber.
      * Faz com que o alvo ganhe força quando for atacar.
      * @param mensagem String - informação do momento da rodada
      */

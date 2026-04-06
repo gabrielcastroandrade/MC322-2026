@@ -17,7 +17,7 @@ public abstract class Publisher {
     };
 
     /**
-     * Método para inscrver Subscribers ao Publisher
+     * Método para inscrever Subscribers ao Publisher
      * @param inscrito Subscriber - quem será inscrito a esse Publisher
      */
     public void inscrever(Subscriber inscrito) 
@@ -26,7 +26,7 @@ public abstract class Publisher {
     }
 
     /**
-     * Método para desinscrver Subscribers ao Publisher
+     * Método para desinscrever Subscribers do Publisher
      * @param inscrito Subscriber - quem será desinscrito a esse Publisher
      */
     public void desinscrever(Subscriber inscrito) 
@@ -35,7 +35,7 @@ public abstract class Publisher {
     }
 
     /**
-     * Método para notificar os Subscribers desse Publisher
+     * Método para notificar os Subscribers desse Publisher, enviando à eles uma string.
      * @param mensagem String - mensagem a ser enviada para todos os Subscribers
      */
     public void notificar(String mensagem) 

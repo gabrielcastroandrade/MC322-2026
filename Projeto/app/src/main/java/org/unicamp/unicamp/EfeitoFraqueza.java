@@ -14,8 +14,8 @@ public class EfeitoFraqueza extends Efeito {
     @Override
 
     /**
-     * Implementação particular do método da classe Subscriber.
-     * Faz com que o alvo tenha fraqeza quando for atacar.
+     * Implementação particular do método abstrato da classe Subscriber.
+     * Faz com que o alvo tenha fraqueza quando for atacar.
      * @param mensagem String - informação do momento da rodada
      */
     public void serNotificado(String mensagem) 

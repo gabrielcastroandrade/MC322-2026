@@ -2,6 +2,10 @@ package org.unicamp.unicamp;
 
 import java.util.Scanner;
 
+/**
+ * Classe Jogo extende a classe abstrata publisher.
+ * Classe responsável pelas rodadas e suas sucessões.
+ */
 public class Jogo extends Publisher{
 
     private final int vida_jogador = 3;
@@ -45,7 +49,9 @@ public class Jogo extends Publisher{
         inimigo = new Inimigo(nome_inimigo, vida_inimigo, dano_inimigo);
     }
 
-
+    /**
+     * Método responsável por fazer uma rodada acontecer (inclui o turno do inimigo e do jogador).
+     */
     public void rodarRound() 
     {
         // inicializa os dados dos baralhos
@@ -164,13 +170,11 @@ public class Jogo extends Publisher{
             if (baralho.getLenCompra() == 0) {baralho.reiniciar();}
         }    
 
-
         // fim do turno do jogador ------------------------------------------------------------------------------------------
         this.notificar("fim do turno do jogador");
         System.out.println("fim do turno do jogador");        
         if (!inimigo.estarVivo()) {return;}
         if (!jogador.estarVivo()) {return;}
-        
 
         // se o inimigo for atacar, ataca aqui -------------------------------------------------------------------------------
         this.notificar("inimmgo vai atacar");
@@ -185,8 +189,11 @@ public class Jogo extends Publisher{
 
         this.notificar("fim da rodada");
     };
-
-        
+       
+    /**
+     * Método responsável por fazer o jogo rodar.
+     * Gera um loop de rodadas enquanto nenhum dos oponentes for derrotado.
+     */
     public void rodarJogo() 
     {
         while (jogador.estarVivo() && inimigo.estarVivo()) 
@@ -211,8 +218,8 @@ public class Jogo extends Publisher{
     // achar um lugar bunitin pra isso, tá dificil
     public void limparTerminal() 
     {
-    System.out.print("\033[H\033[2J");
-    System.out.flush();
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
 
