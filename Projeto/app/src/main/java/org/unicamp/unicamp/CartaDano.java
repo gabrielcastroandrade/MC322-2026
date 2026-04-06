@@ -16,9 +16,10 @@ public class CartaDano extends Carta{
     /**
      * Método para usar a carta, causando dano a um alvo
      * @param alvo Entidade - em quem será caudado o dano
+     * @param caster Entidade - quemm está usando a carta
      * @param dano int - qual será o dano causado
      */
-    public void usar(Entidade alvo, int dano)
+    public void usar(Entidade alvo, Entidade caster, int dano)
     {
         alvo.receberDano(dano);
     }

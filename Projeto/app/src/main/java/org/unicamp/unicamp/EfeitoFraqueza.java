@@ -1,5 +1,9 @@
 package org.unicamp.unicamp;
 
+/**
+ * Extensão da classe efeito.
+ * Causa em uma entidade alvo o efeito de fraqueza, que diminui o dano base da entidade
+ */
 public class EfeitoFraqueza extends Efeito {
 
     public EfeitoFraqueza(String nome, Entidade alvo) 
@@ -8,6 +12,12 @@ public class EfeitoFraqueza extends Efeito {
     }
 
     @Override
+
+    /**
+     * Implementação particular do método abstrato da classe Subscriber.
+     * Faz com que o alvo tenha fraqueza quando for atacar.
+     * @param mensagem String - informação do momento da rodada
+     */
     public void serNotificado(String mensagem) 
     {
         if (carga != 0)

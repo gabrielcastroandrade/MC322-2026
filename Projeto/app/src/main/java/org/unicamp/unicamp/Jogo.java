@@ -1,8 +1,11 @@
 package org.unicamp.unicamp;
 
-import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Classe Jogo extende a classe abstrata publisher.
+ * Classe responsável pelas rodadas e suas sucessões.
+ */
 public class Jogo extends Publisher{
 
     private final int vida_jogador = 3;
@@ -46,54 +49,20 @@ public class Jogo extends Publisher{
         inimigo = new Inimigo(nome_inimigo, vida_inimigo, dano_inimigo);
     }
 
-
+    /**
+     * Método responsável por fazer uma rodada acontecer (inclui o turno do inimigo e do jogador).
+     */
     public void rodarRound() 
     {
         // inicializa os dados dos baralhos
         Baralho baralho = new Baralho(jogador);
         int energia = energia_base;
         
-        // escolha da ação do inimigo - JOGAR TUDO ISSO PARA A CLASSE INIMIGO
-        Random aleatorio = new Random();
-        int min = 1;
-        int max = 7;
-        int acao_inimigo = aleatorio.nextInt((max - min) + 1) + min;
-        if (acao_inimigo == 1) {System.out.println(">> " + inimigo.getNome() + " irá atacar com tudo que tem");}
-        if (acao_inimigo == 2) {System.out.println(">> " + inimigo.getNome() + " irá atacar como quem não quer nada");}
-        if (acao_inimigo == 3) {System.out.println(">> " + inimigo.getNome() + " irá defender como se sua vida estivesse em jogo");}
-        if (acao_inimigo == 4) {System.out.println(">> " + inimigo.getNome() + " irá defender com bastante preguiça");}
-        if (acao_inimigo == 5) {System.out.println(">> " + inimigo.getNome() + " farmou ego, você ficou fraco");}
-        if (acao_inimigo == 6) {System.out.println(">> " + inimigo.getNome() + " farmou aura, ele está mais forte agora");}
-        if (acao_inimigo == 7) {System.out.println(">> " + inimigo.getNome() + " farmou aura + ego, ele está mais forte agora, e você mais fraco");}
+        int acao_inimigo = inimigo.escolherAcao();
 
         // se o inimigo for defender, já defende agora
         this.notificar("inimgo vai defender");
-        if (acao_inimigo == 3) 
-        {
-            inimigo.ganharEscudo(2);    
-        }
-        if (acao_inimigo == 4) 
-        {
-            inimigo.ganharEscudo(1);    
-        }
-        if (acao_inimigo == 5) 
-        {
-            Efeito efeito = new EfeitoFraqueza("fraqueza", jogador);
-            jogador.adicionarEfeito(efeito);
-        }
-        if (acao_inimigo == 6) 
-        {
-            Efeito efeito = new EfeitoForca("força", inimigo);
-            inimigo.adicionarEfeito(efeito);  
-        }
-        if (acao_inimigo == 7) 
-        {
-            Efeito efeito = new EfeitoFraqueza("fraqueza", jogador);
-            jogador.adicionarEfeito(efeito); 
-            Efeito efeito2 = new EfeitoForca("força", inimigo);
-            inimigo.adicionarEfeito(efeito2);   
-        }
-        System.out.println();
+        inimigo.agirDefesa(acao_inimigo);
         
         // turno do jogador
         this.notificar("jogador começará seu turno");
@@ -124,8 +93,8 @@ public class Jogo extends Publisher{
 
 
             // opções de ação do jogador -----------------------------------------------------------------------------------
-            System.out.println("(pilha de compra: " + baralho.getLenCompra() + " cartas)");
-            System.out.println("(pilha de descarte: " + baralho.getLenDescarte() + " cartas)");
+            // System.out.println("(pilha de compra: " + baralho.getLenCompra() + " cartas)");
+            // System.out.println("(pilha de descarte: " + baralho.getLenDescarte() + " cartas)");
             System.out.println("(energia: " + energia + ")");
             System.out.println("["+0+"]" + " - Encerrar turno");
             for (int i = 0; i < baralho.getLenMao(); i++) 
@@ -151,88 +120,37 @@ public class Jogo extends Publisher{
                 carta_escolhida = baralho.getMaoIndice(escolha);
             }
 
-
             // lidando com a escolha -------------------------------------------------------------------------------------
             this.notificar("jogador vai realizar sua ação");
-            if (carta_escolhida instanceof CartaDano c) 
-            {
-                c.usar(inimigo, c.getCusto()*jogador.getDano());
-                System.out.println("-//-");
-                System.out.println("Você atacou seu oponente com " + c.getCusto()*jogador.getDano() + " de dano");
-                System.out.println("-//-");
-                System.out.println();
-                energia -= c.getCusto();
-                baralho.descartar(escolha);
-            }
-            if (carta_escolhida instanceof CartaEscudo c) 
-            {
-                c.usar(jogador, c.getCusto());
-                System.out.println("-//-");
-                System.out.println("Você levantou " + c.getCusto() + " de escudo");
-                System.out.println("-//-");
-                System.out.println();
-                energia -= c.getCusto();
-                baralho.descartar(escolha);
-            }
-            if (carta_escolhida instanceof CartaEfeitoFraqueza c)
-            {
-                c.usar(inimigo, 0);
-                Efeito efeito = c.getEfeito();
-                this.inscrever(efeito);
-                System.out.println("-//-");
-                System.out.println("Você jogou no seu oponente o efeito de " + efeito.getString());
-                System.out.println("-//-");
-                System.out.println();
-                energia -= c.getCusto();
-                baralho.descartar(escolha);
-            }
-            if (carta_escolhida instanceof CartaEfeitoForca c)
-            {
-                c.usar(jogador, 0);
-                Efeito efeito = c.getEfeito();
-                this.inscrever(efeito);
-                System.out.println("-//-");
-                System.out.println("Você jogou em si mesmo o efeito de " + efeito.getString());
-                System.out.println("-//-");
-                System.out.println();
-                energia -= c.getCusto();
-                baralho.descartar(escolha);
-            }
+            int custo = jogador.agir(escolha, carta_escolhida, inimigo, baralho, this);
+            energia -= custo;
             if (baralho.getLenCompra() == 0) {baralho.reiniciar();}
         }    
-
 
         // fim do turno do jogador ------------------------------------------------------------------------------------------
         this.notificar("fim do turno do jogador");
         System.out.println("fim do turno do jogador");        
         if (!inimigo.estarVivo()) {return;}
         if (!jogador.estarVivo()) {return;}
-        
 
         // se o inimigo for atacar, ataca aqui -------------------------------------------------------------------------------
         this.notificar("inimmgo vai atacar");
-        if (acao_inimigo == 1) 
-        {
-            inimigo.atacar(jogador);
-            inimigo.atacar(jogador);
-        }
-        if (acao_inimigo == 2) 
-        {
-            inimigo.atacar(jogador);
-        } 
-        
+        inimigo.agirAtaque(acao_inimigo, jogador);      
         // fim da rodada ----------------------------------------------------------------------------------------------------
         System.out.println();
 
         jogador.zerarEscudo();
         inimigo.zerarEscudo();
-        jogador.limpeza();
-        inimigo.limpeza();
+        jogador.limpezaEfeitos();
+        inimigo.limpezaEfeitos();
 
         this.notificar("fim da rodada");
     };
-
-        
+       
+    /**
+     * Método responsável por fazer o jogo rodar.
+     * Gera um loop de rodadas enquanto nenhum dos oponentes for derrotado.
+     */
     public void rodarJogo() 
     {
         while (jogador.estarVivo() && inimigo.estarVivo()) 
@@ -240,7 +158,7 @@ public class Jogo extends Publisher{
             this.rodarRound();
             System.out.println("Pressione Enter para continuar: ");
             System.out.println();
-            input.nextLine(); 
+            input.nextLine();
         }
 
         if (jogador.estarVivo()) 
@@ -253,6 +171,13 @@ public class Jogo extends Publisher{
             System.out.println("Derrota, o inimigo acabou com você");
         }
     };
+
+    // achar um lugar bunitin pra isso, tá dificil
+    public void limparTerminal() 
+    {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
 }
 
 

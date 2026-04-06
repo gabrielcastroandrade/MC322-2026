@@ -14,11 +14,12 @@ public class CartaEscudo extends Carta{
     @Override
 
     /**
-     * Método para usar a carta, levantando escudo em um alvo
+     * Método para usar a carta, levantando escudo no alvo
      * @param alvo Entidade - em quem será levantado o escudo
+     * @param caster Entidade - quemm está usando a carta
      * @param dano int - quanto será levantado de escudo
      */
-    public void usar(Entidade alvo, int ganho)
+    public void usar(Entidade alvo, Entidade caster, int ganho)
     {
         alvo.ganharEscudo(ganho);
     }

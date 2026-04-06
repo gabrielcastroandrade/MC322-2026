@@ -6,8 +6,8 @@
 ## Como rodar o jogo:
 
 - Pelo terminal:
-    - javac App.java
-    - java App
+    - navegue até o endereço: ~/MC322-2026/Projeto
+    - digite: ./gradlew run 
 - Pelo VSCode
    - abra o arquivo App.java
    - selecine "Run main" abaixo de "public class App"

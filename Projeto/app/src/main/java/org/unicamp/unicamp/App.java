@@ -3,8 +3,7 @@ package org.unicamp.unicamp;
 import java.util.Scanner;
 
 /**
- * Classe App é a principal classe para rodar o jogo, nela está contido o método main(), que faz todo o jogo rodar
- * 
+ * Classe App é a principal classe para rodar o jogo, nela está contido o método main(), que faz todo o jogo rodar.
  */
 public class App {
     public static void main(String[] args) throws Exception {
@@ -38,4 +37,5 @@ public class App {
         System.out.println("Créditos: Arthur Midon (247271) e Gabriel Castro (280869)");
         input.close();
     }
+
 }

@@ -41,3 +41,8 @@ tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
+
+tasks.named('run') {
+    // Permite que o Gradle repasse a entrada do teclado (System.in) para o Scanner do Java
+    standardInput = System.in
+}

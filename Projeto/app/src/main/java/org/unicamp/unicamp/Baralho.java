@@ -28,13 +28,16 @@ public class Baralho {
         compra.push(new CartaEscudo("defesa impenetrável", "levanta 3 de escudo", 3));
         compra.push(new CartaEfeitoFraqueza("farmar aura", "enfraquece os ataques do seu inimigo", 2));
         compra.push(new CartaEfeitoForca("farmar ego", "torna seus ataques mais fortes", 2));
+        compra.push(new CartaDanoEscudo("técnica faixa branca", "causa 1 de dano e levanta 2 de escudo", 3));        
+        compra.push(new CartaDanoEscudo("técnica faixa preta", "causa 2 de dano e levanta 3 de escudo", 5));        
+        compra.push(new CartaEfeitoForcaFraqueza("farmar aura + ego", "te da força e causa fraqueza no oponente", 5));
         Collections.shuffle(compra);
     }
 
     /**
      * Retorna a carta de um índice específico da mão do jogador
      * @param indice int - indice da carta que se quer obter
-     * @return
+     * @return Carta
      */
     public Carta getMaoIndice(int indice) 
     {
@@ -69,6 +72,10 @@ public class Baralho {
         mao.addFirst(carta);
     }
 
+    /**
+     * Envia uma carta da mão do jogador para o baralho de descarte.
+     * @param indice int - indice que a carta a ser descartada está na mão do jogador
+     */
     public void descartar(int indice) 
     {
         Carta carta = mao.remove(indice);
