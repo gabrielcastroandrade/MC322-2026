@@ -57,7 +57,6 @@ public class Jogo extends Publisher{
         // se o inimigo for defender, já defende agora
         this.notificar("inimgo vai defender");
         inimigo.agirDefesa(acao_inimigo);
-        System.out.println();
         
         // turno do jogador
         this.notificar("jogador começará seu turno");
@@ -181,8 +180,8 @@ public class Jogo extends Publisher{
 
         jogador.zerarEscudo();
         inimigo.zerarEscudo();
-        jogador.limpeza();
-        inimigo.limpeza();
+        jogador.limpezaEfeitos();
+        inimigo.limpezaEfeitos();
 
         this.notificar("fim da rodada");
     };
@@ -195,7 +194,7 @@ public class Jogo extends Publisher{
             this.rodarRound();
             System.out.println("Pressione Enter para continuar: ");
             System.out.println();
-            input.nextLine(); 
+            input.nextLine();
         }
 
         if (jogador.estarVivo()) 
@@ -208,6 +207,13 @@ public class Jogo extends Publisher{
             System.out.println("Derrota, o inimigo acabou com você");
         }
     };
+
+    // achar um lugar bunitin pra isso, tá dificil
+    public void limparTerminal() 
+    {
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+    }
 }
 
 

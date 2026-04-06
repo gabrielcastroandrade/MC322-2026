@@ -38,4 +38,5 @@ public class App {
         System.out.println("Créditos: Arthur Midon (247271) e Gabriel Castro (280869)");
         input.close();
     }
+
 }

@@ -39,8 +39,8 @@ public class Inimigo extends Entidade{
         if (acao_inimigo == 2) {System.out.println(">> " + nome + " irá atacar como quem não quer nada");}
         if (acao_inimigo == 3) {System.out.println(">> " + nome + " irá defender como se sua vida estivesse em jogo");}
         if (acao_inimigo == 4) {System.out.println(">> " + nome + " irá defender com bastante preguiça");}
-        if (acao_inimigo == 5) {System.out.println(">> " + nome + " farmou ego, você ficou fraco");}
-        if (acao_inimigo == 6) {System.out.println(">> " + nome + " farmou aura, ele está mais forte agora");}
+        if (acao_inimigo == 5) {System.out.println(">> " + nome + " farmou aura, você ficou fraco");}
+        if (acao_inimigo == 6) {System.out.println(">> " + nome + " farmou ego, ele está mais forte agora");}
         if (acao_inimigo == 7) {System.out.println(">> " + nome + " farmou aura + ego, ele está mais forte agora, e você mais fraco");}
         return acao_inimigo;
     }
