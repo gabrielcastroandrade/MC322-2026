@@ -1,6 +1,5 @@
 package org.unicamp.unicamp;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class Jogo extends Publisher{
@@ -53,46 +52,11 @@ public class Jogo extends Publisher{
         Baralho baralho = new Baralho(jogador);
         int energia = energia_base;
         
-        // escolha da ação do inimigo - JOGAR TUDO ISSO PARA A CLASSE INIMIGO
-        Random aleatorio = new Random();
-        int min = 1;
-        int max = 7;
-        int acao_inimigo = aleatorio.nextInt((max - min) + 1) + min;
-        if (acao_inimigo == 1) {System.out.println(">> " + inimigo.getNome() + " irá atacar com tudo que tem");}
-        if (acao_inimigo == 2) {System.out.println(">> " + inimigo.getNome() + " irá atacar como quem não quer nada");}
-        if (acao_inimigo == 3) {System.out.println(">> " + inimigo.getNome() + " irá defender como se sua vida estivesse em jogo");}
-        if (acao_inimigo == 4) {System.out.println(">> " + inimigo.getNome() + " irá defender com bastante preguiça");}
-        if (acao_inimigo == 5) {System.out.println(">> " + inimigo.getNome() + " farmou ego, você ficou fraco");}
-        if (acao_inimigo == 6) {System.out.println(">> " + inimigo.getNome() + " farmou aura, ele está mais forte agora");}
-        if (acao_inimigo == 7) {System.out.println(">> " + inimigo.getNome() + " farmou aura + ego, ele está mais forte agora, e você mais fraco");}
+        int acao_inimigo = inimigo.escolherAcao();
 
         // se o inimigo for defender, já defende agora
         this.notificar("inimgo vai defender");
-        if (acao_inimigo == 3) 
-        {
-            inimigo.ganharEscudo(2);    
-        }
-        if (acao_inimigo == 4) 
-        {
-            inimigo.ganharEscudo(1);    
-        }
-        if (acao_inimigo == 5) 
-        {
-            Efeito efeito = new EfeitoFraqueza("fraqueza", jogador);
-            jogador.adicionarEfeito(efeito);
-        }
-        if (acao_inimigo == 6) 
-        {
-            Efeito efeito = new EfeitoForca("força", inimigo);
-            inimigo.adicionarEfeito(efeito);  
-        }
-        if (acao_inimigo == 7) 
-        {
-            Efeito efeito = new EfeitoFraqueza("fraqueza", jogador);
-            jogador.adicionarEfeito(efeito); 
-            Efeito efeito2 = new EfeitoForca("força", inimigo);
-            inimigo.adicionarEfeito(efeito2);   
-        }
+        inimigo.agirDefesa(acao_inimigo);
         System.out.println();
         
         // turno do jogador
@@ -211,16 +175,7 @@ public class Jogo extends Publisher{
 
         // se o inimigo for atacar, ataca aqui -------------------------------------------------------------------------------
         this.notificar("inimmgo vai atacar");
-        if (acao_inimigo == 1) 
-        {
-            inimigo.atacar(jogador);
-            inimigo.atacar(jogador);
-        }
-        if (acao_inimigo == 2) 
-        {
-            inimigo.atacar(jogador);
-        } 
-        
+        inimigo.agirAtaque(acao_inimigo, jogador);      
         // fim da rodada ----------------------------------------------------------------------------------------------------
         System.out.println();
 

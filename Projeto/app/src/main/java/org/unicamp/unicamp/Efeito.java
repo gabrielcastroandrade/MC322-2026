@@ -1,5 +1,8 @@
 package org.unicamp.unicamp;
 
+/**
+ * Classe abstrata etensão de subscriber, representa os efeitos que entidades podem possuir.
+ */
 public abstract class Efeito extends Subscriber {
 
     protected String nome;
@@ -15,6 +18,9 @@ public abstract class Efeito extends Subscriber {
         carga = 3;
     }
 
+    /**
+     * Aumenta o acúmulo (poder) do efeito e ainda adiciona mais duas cargas (efeito dura mais)
+     */
     public void acumular() 
     {
         acumulo++;
