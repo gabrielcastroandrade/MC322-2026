@@ -2,7 +2,7 @@ package org.unicamp.unicamp;
 
 /**
  * Extensão da classe abstrata Carta.
- * Carta capaz de aplciar o efeito de fraqueza a um alvo
+ * Carta capaz de aplicar o efeito de fraqueza a um alvo
  */
 public class CartaEfeitoFraqueza extends Carta{
 

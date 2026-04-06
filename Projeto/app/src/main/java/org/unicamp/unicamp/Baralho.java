@@ -30,7 +30,7 @@ public class Baralho {
         compra.push(new CartaEfeitoForca("farmar ego", "torna seus ataques mais fortes", 2));
         compra.push(new CartaDanoEscudo("técnica faixa branca", "causa 1 de dano e levanta 2 de escudo", 3));        
         compra.push(new CartaDanoEscudo("técnica faixa preta", "causa 2 de dano e levanta 3 de escudo", 5));        
-        
+        compra.push(new CartaEfeitoForcaFraqueza("farmar aura + ego", "te da força e causa fraqueza no oponente", 5));
         Collections.shuffle(compra);
     }
 

@@ -2,7 +2,7 @@ package org.unicamp.unicamp;
 
 /**
  * Extensão da classe abstrata Carta.
- * Carta capaz de levantar escudos em um alvo
+ * Carta capaz de causar dano a um alvo e levantar escudos ao caster, simultaneamente.
  */
 public class CartaDanoEscudo extends Carta{
 

@@ -76,6 +76,20 @@ public class Heroi extends Entidade{
             baralho.descartar(indice_carta_escolhida);
             return c.getCusto();
         }
+        if (carta_escolhida instanceof CartaEfeitoForcaFraqueza c)
+        {
+            c.usar(inimigo, this, c.getCusto());
+            Efeito efeito_forca = c.getEfeitoForca();
+            Efeito efeito_fraqueza = c.getEfeitoFraqueza();
+            jogo.inscrever(efeito_forca);
+            jogo.inscrever(efeito_fraqueza);
+            System.out.println("-//-");
+            System.out.println("Você jogou em si mesmo o efeito de " + efeito_forca.getString() + " e no seu inimigo o efeito de " + efeito_fraqueza.getString());
+            System.out.println("-//-");
+            System.out.println();
+            baralho.descartar(indice_carta_escolhida);
+            return c.getCusto();
+        }
         return 0;
     }
 }

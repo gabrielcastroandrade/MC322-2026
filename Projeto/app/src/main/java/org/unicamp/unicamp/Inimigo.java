@@ -70,13 +70,6 @@ public class Inimigo extends Entidade{
             Efeito efeito = new EfeitoForca("força", this);
             this.adicionarEfeito(efeito);  
         }
-        if (acao_inimigo == 7) 
-        {
-            Efeito efeito = new EfeitoFraqueza("fraqueza", this);
-            this.adicionarEfeito(efeito); 
-            Efeito efeito2 = new EfeitoForca("força", this);
-            this.adicionarEfeito(efeito2);   
-        }
     }
 
     /**
@@ -96,5 +89,12 @@ public class Inimigo extends Entidade{
         {
             this.atacar(alvo);
         } 
+        if (acao_inimigo == 7) 
+        {
+            Efeito efeito = new EfeitoFraqueza("fraqueza", alvo);
+            alvo.adicionarEfeito(efeito); 
+            Efeito efeito2 = new EfeitoForca("força", this);
+            this.adicionarEfeito(efeito2);   
+        }
     }
 }
