@@ -28,6 +28,7 @@ public class Baralho {
         compra.push(new CartaEscudo("defesa impenetrável", "levanta 3 de escudo", 3));
         compra.push(new CartaEfeitoFraqueza("farmar aura", "enfraquece os ataques do seu inimigo", 2));
         compra.push(new CartaEfeitoForca("farmar ego", "torna seus ataques mais fortes", 2));
+        
         Collections.shuffle(compra);
     }
 
