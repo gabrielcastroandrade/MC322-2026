@@ -20,7 +20,7 @@ public class Heroi extends Entidade{
      * @param jogo Jogo
      * @return int - curto da ação realizada
      */
-    public int agir(int indice_carta_escolhida, Carta carta_escolhida, Inimigo inimigo, Baralho baralho, Jogo jogo) 
+    public int agir(int indice_carta_escolhida, Carta carta_escolhida, Inimigo inimigo, Baralho baralho, Batalha jogo) 
     {
         if (carta_escolhida instanceof CartaDano c) 
         {
