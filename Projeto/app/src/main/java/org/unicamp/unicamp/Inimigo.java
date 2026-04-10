@@ -35,10 +35,10 @@ public class Inimigo extends Entidade{
         int min = 1;
         int max = 7;
         int acao_inimigo = aleatorio.nextInt((max - min) + 1) + min;
-        if (acao_inimigo == 1) {System.out.println(">> " + nome + " irá atacar com tudo que tem");}
-        if (acao_inimigo == 2) {System.out.println(">> " + nome + " irá atacar como quem não quer nada");}
-        if (acao_inimigo == 3) {System.out.println(">> " + nome + " irá defender como se sua vida estivesse em jogo");}
-        if (acao_inimigo == 4) {System.out.println(">> " + nome + " irá defender com bastante preguiça");}
+        if (acao_inimigo == 1) {System.out.println(">> " + nome + " irá atacar com " + dano_base*2 + " de dano");}
+        if (acao_inimigo == 2) {System.out.println(">> " + nome + " irá atacar com " + dano_base + " de dano");}
+        if (acao_inimigo == 3) {System.out.println(">> " + nome + " levantou 2 de escudo");}
+        if (acao_inimigo == 4) {System.out.println(">> " + nome + " levantou 1 de escudo");}
         if (acao_inimigo == 5) {System.out.println(">> " + nome + " farmou aura, você ficou fraco");}
         if (acao_inimigo == 6) {System.out.println(">> " + nome + " farmou ego, ele está mais forte agora");}
         if (acao_inimigo == 7) {System.out.println(">> " + nome + " farmou aura + ego, ele está mais forte agora, e você mais fraco");}
@@ -50,7 +50,7 @@ public class Inimigo extends Entidade{
      * Esse método deve ser chamado assim que o inimigo escolher sua ação, antes do jogador escolher a sua ação.
      * @param acao_inimigo int - ação que o inimgo ecolheu tomar
      */
-    public void agirDefesa(int acao_inimigo) 
+    public void agirDefesa(int acao_inimigo, Heroi alvo) 
     {
         if (acao_inimigo == 3) 
         {
@@ -69,6 +69,13 @@ public class Inimigo extends Entidade{
         {
             Efeito efeito = new EfeitoForca("força", this);
             this.adicionarEfeito(efeito);  
+        }
+        if (acao_inimigo == 7) 
+        {
+            Efeito efeito = new EfeitoFraqueza("fraqueza", alvo);
+            alvo.adicionarEfeito(efeito); 
+            Efeito efeito2 = new EfeitoForca("força", this);
+            this.adicionarEfeito(efeito2);   
         }
     }
 
@@ -89,12 +96,5 @@ public class Inimigo extends Entidade{
         {
             this.atacar(alvo);
         } 
-        if (acao_inimigo == 7) 
-        {
-            Efeito efeito = new EfeitoFraqueza("fraqueza", alvo);
-            alvo.adicionarEfeito(efeito); 
-            Efeito efeito2 = new EfeitoForca("força", this);
-            this.adicionarEfeito(efeito2);   
-        }
     }
 }

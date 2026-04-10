@@ -10,29 +10,21 @@ public class App {
         
         Scanner input = new Scanner(System.in);
 
+        System.out.println("");
         System.out.println("Boa noite Ogro, seja bem vindo ao Shrek 2077: a volta dos que não foram!!!");
 
-        // leitura do nome do jogador
-        String in_nome; int oponente;
-        System.out.println("Digite o nome de seu heroi ogro: ");
-        in_nome = input.nextLine();
-
-        // leitura da oponente
-        System.out.println("Escolha seu oponente: ");
-        System.out.println("[1] - A Dragão");
-        System.out.println("[2] - A Morte Encarnada");
-        System.out.println("[3] - #@%$&¨@*%");
-
-        oponente = input.nextInt();
-        while (oponente != 1 && oponente != 2 && oponente != 3) 
+        Jogo jogo = new Jogo(input);
+        boolean resultado = jogo.rodarJogo();
+        if (resultado) 
         {
-            System.out.println("Oponente inválido, tente novamente: ");
-            oponente = input.nextInt();
+            System.out.println("Parabéns, você agora pode ficar em paz e seu pântano.");
+        }
+        if (!resultado) 
+        {
+            System.out.println("Não foi dessa vez, os invasores acabaram com você e seu pântano.");
         }
 
-        // inicialização do jogo
-        Jogo jogo = new Jogo(in_nome, oponente, input);
-        jogo.rodarJogo();
+        System.out.println("");
         System.out.println("Jogo encerrado. Obrigado por jogar!!!");
         System.out.println("Créditos: Arthur Midon (247271) e Gabriel Castro (280869)");
         input.close();
