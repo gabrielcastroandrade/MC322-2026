@@ -28,21 +28,28 @@ public class Jogo {
     {
         String nome_jogador = this.lerNome();
         jogador = new Heroi(nome_jogador, vida_jogador, dano_base_jogador);
+        Mapa mapa = new Mapa(inimigos);
 
         System.err.println("Três desafiantes secretos invadem seu pântano...");
         while(!inimigos.empty()) 
         {
             String proxInimigo = this.lerInimigo();
+            mapa.proxInimigo(proxInimigo);
             Batalha dueloAtual = new Batalha(jogador, proxInimigo, input, energia_base, num_cartas_mao);
             Entidade vencedor = dueloAtual.rodarBatalha();
             if (vencedor instanceof Heroi) 
             {
                 System.out.println("Você derrotou " + proxInimigo);
-                inimigos.remove(proxInimigo);
+                System.out.println();
+                mapa.printCaminho();
+                System.out.println();
             }
             if (vencedor instanceof Inimigo)
             {
                 System.out.println(proxInimigo + " te derrotou");
+                System.out.println();
+                mapa.printCaminho();
+                System.out.println();
                 return false;
             }
         }

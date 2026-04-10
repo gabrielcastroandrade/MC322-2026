@@ -27,21 +27,21 @@ public class Batalha extends Publisher{
 
         if (oponente.equals("A Dragão")) 
         {
-            vida_inimigo = 4;
+            vida_inimigo = 5;
             dano_inimigo = 1;
             nome_inimigo = "A Dragão";
         }
 
         if (oponente.equals("A Morte")) 
         {
-            vida_inimigo = 6;
+            vida_inimigo = 4;
             dano_inimigo = 2;
             nome_inimigo = "A Morte Encarnada";
         }
 
-        if (oponente.equals("A Dragão")) 
+        if (oponente.equals("O Burro")) 
         {
-            vida_inimigo = 10000;
+            vida_inimigo = 3;
             dano_inimigo = 3;
             nome_inimigo = "O Burro";
         }
@@ -59,10 +59,8 @@ public class Batalha extends Publisher{
         int energia = energia_base;
         
         int acao_inimigo = inimigo.escolherAcao();
-
-        // se o inimigo for defender, já defende agora
         this.notificar("inimgo vai defender");
-        inimigo.agirDefesa(acao_inimigo);
+        inimigo.agirDefesa(acao_inimigo, jogador);
         
         // turno do jogador
         this.notificar("jogador começará seu turno");
@@ -129,7 +127,7 @@ public class Batalha extends Publisher{
 
         // fim do turno do jogador ------------------------------------------------------------------------------------------
         this.notificar("fim do turno do jogador");
-        System.out.println("fim do turno do jogador");        
+        System.out.println("fim do turno");        
         if (!inimigo.estarVivo()) {return;}
         if (!jogador.estarVivo()) {return;}
 
@@ -157,9 +155,9 @@ public class Batalha extends Publisher{
         while (jogador.estarVivo() && inimigo.estarVivo()) 
         {
             this.rodarRound();
-            System.out.println("Pressione Enter para continuar: ");
+            System.out.println("Pressione [1] para continuar: ");
             System.out.println();
-            input.nextLine();
+            input.nextInt();
         }
 
         if (jogador.estarVivo()) 
