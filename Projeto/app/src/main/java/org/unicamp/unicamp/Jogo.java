@@ -3,6 +3,9 @@ package org.unicamp.unicamp;
 import java.util.Scanner;
 import java.util.Stack;
 
+/**
+ * Classe responsável por organizar o jogo, incluindo os diferentes combates
+ */
 public class Jogo {
 
     private final Scanner input;
@@ -24,6 +27,10 @@ public class Jogo {
 
     }
 
+    /**
+     * Coloca o jogo em movimento
+     * @return boolean - retorna True se o jogador ganhou de todos os inimigos, False se ele perdeu para algum
+     */
     public boolean rodarJogo() 
     {
         String nome_jogador = this.lerNome();
@@ -57,6 +64,10 @@ public class Jogo {
 
     }
 
+    /**
+     * Cuida de todo o processo de ler o nome do jogador
+     * @return String - nome do jogador
+     */
     public String lerNome() 
     {
         String nome_jogador;
@@ -65,6 +76,10 @@ public class Jogo {
         return nome_jogador;
     }
 
+    /**
+     * Cuida de todo o processo do jogador escolher seu próximo combatente
+     * @return String - o nome do inimigo escolhido
+     */
     public String lerInimigo() 
     {
         System.out.println("Escolha seu oponente: ");

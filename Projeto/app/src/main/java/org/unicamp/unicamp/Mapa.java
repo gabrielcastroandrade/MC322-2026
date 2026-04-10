@@ -3,6 +3,9 @@ import java.util.Stack;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
+/**
+ * Classe responsável por gerar um mapa de possibilidades de escolhas de combate do jogador
+ */
 public class Mapa {
 
     DefaultMutableTreeNode raiz = new DefaultMutableTreeNode();
@@ -15,6 +18,10 @@ public class Mapa {
         no_atual = raiz;
     }
 
+    /**
+     * Recebe o nome do próximo inimigo a ser enfrentado e processa essa informação, contruindo assim o mapa
+     * @param proxInimigo String - nome do próximo inimigo que o jogador escolheu ennfrantar
+     */
     public void proxInimigo(String proxInimigo) 
     {
         DefaultMutableTreeNode prox_no = null;
@@ -35,6 +42,9 @@ public class Mapa {
         inimigos.remove(proxInimigo);
     }
 
+    /**
+     * Printa os combates que o jogador ja realizou, na ordem em que foram enfrentados
+     */
     public void printCaminho() 
     {
         Stack<String> caminho = new Stack<>();

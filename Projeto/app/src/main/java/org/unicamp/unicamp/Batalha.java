@@ -3,7 +3,7 @@ package org.unicamp.unicamp;
 import java.util.Scanner;
 
 /**
- * Classe Jogo extende a classe abstrata publisher.
+ * Classe Batalha extende a classe abstrata publisher.
  * Classe responsável pelas rodadas e suas sucessões.
  */
 public class Batalha extends Publisher{
