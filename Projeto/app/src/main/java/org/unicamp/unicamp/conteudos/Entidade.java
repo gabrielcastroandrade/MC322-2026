@@ -9,7 +9,7 @@ public abstract class Entidade {
 
     protected String nome;
     protected int vida;
-    protected int escudo = 0;
+    protected int escudo;
     protected ArrayList<Efeito> efeitos;
     protected int dano_base = 1;
 
@@ -19,6 +19,7 @@ public abstract class Entidade {
         this.vida = vida;
         this.dano_base = dano_base;
         this.efeitos = new ArrayList<>();
+        this.escudo = 0;
     }
 
     // getters
