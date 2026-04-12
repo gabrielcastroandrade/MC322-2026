@@ -1,4 +1,6 @@
-package org.unicamp.unicamp;
+package org.unicamp.unicamp.conteudos;
+
+import org.unicamp.unicamp.sistema.Subscriber;
 
 /**
  * Classe abstrata etensão de subscriber, representa os efeitos que entidades podem possuir.

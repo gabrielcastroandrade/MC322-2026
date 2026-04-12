@@ -1,4 +1,4 @@
-package org.unicamp.unicamp;
+package org.unicamp.unicamp.sistema;
 
 /**
  * Classe abstrata Subscriber.

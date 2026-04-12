@@ -1,7 +1,11 @@
-package org.unicamp.unicamp;
+package org.unicamp.unicamp.sistema;
 
 import java.util.Scanner;
 import java.util.Stack;
+
+import org.unicamp.unicamp.conteudos.Entidade;
+import org.unicamp.unicamp.conteudos.Heroi;
+import org.unicamp.unicamp.conteudos.Inimigo;
 
 /**
  * Classe responsável por organizar o jogo, incluindo os diferentes combates

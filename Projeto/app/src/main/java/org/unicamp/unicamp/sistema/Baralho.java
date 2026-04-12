@@ -1,9 +1,18 @@
-package org.unicamp.unicamp;
+package org.unicamp.unicamp.sistema;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
+
+import org.unicamp.unicamp.conteudos.Carta;
+import org.unicamp.unicamp.conteudos.CartaDano;
+import org.unicamp.unicamp.conteudos.CartaDanoEscudo;
+import org.unicamp.unicamp.conteudos.CartaEfeitoForca;
+import org.unicamp.unicamp.conteudos.CartaEfeitoForcaFraqueza;
+import org.unicamp.unicamp.conteudos.CartaEfeitoFraqueza;
+import org.unicamp.unicamp.conteudos.CartaEscudo;
+import org.unicamp.unicamp.conteudos.Entidade;
 
 /**
  * Classe responsável por guardar e gerenciar todos os baralhos do jogo (pilhas de compra, descarte e mão do jogador)

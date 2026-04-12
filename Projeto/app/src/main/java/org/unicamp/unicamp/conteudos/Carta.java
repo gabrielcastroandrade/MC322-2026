@@ -1,4 +1,4 @@
-package org.unicamp.unicamp;
+package org.unicamp.unicamp.conteudos;
 
 /**
  * Classe abstrata Carta é e base para todas as cartas do jogo

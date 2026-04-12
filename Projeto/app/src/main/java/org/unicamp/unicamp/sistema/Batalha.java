@@ -1,6 +1,11 @@
-package org.unicamp.unicamp;
+package org.unicamp.unicamp.sistema;
 
 import java.util.Scanner;
+
+import org.unicamp.unicamp.conteudos.Carta;
+import org.unicamp.unicamp.conteudos.Entidade;
+import org.unicamp.unicamp.conteudos.Heroi;
+import org.unicamp.unicamp.conteudos.Inimigo;
 
 /**
  * Classe Batalha extende a classe abstrata publisher.
@@ -98,7 +103,7 @@ public class Batalha extends Publisher{
             for (int i = 0; i < baralho.getLenMao(); i++) 
             {
                 Carta carta = baralho.getMaoIndice(i);
-                System.out.println("["+(i+1)+"]" + " - " + carta.nome + " - " + carta.descricao + " - (custo " + carta.custo + ")");
+                System.out.println("["+(i+1)+"]" + " - " + carta.getNome() + " - " + carta.getDescricao() + " - (custo " + carta.getCusto() + ")");
             }
             System.out.println("Digite o número da sua próxima ação: ");
             int escolha;

@@ -1,12 +1,12 @@
-package org.unicamp.unicamp;
+package org.unicamp.unicamp.conteudos;
 
 /**
  * Extensão da classe efeito.
- * Causa em uma entidade alvo o efeito de força, que aumenta o dano base da entidade
+ * Causa em uma entidade alvo o efeito de fraqueza, que diminui o dano base da entidade
  */
-public class EfeitoForca extends Efeito{
+public class EfeitoFraqueza extends Efeito {
 
-    public EfeitoForca(String nome, Entidade alvo) 
+    public EfeitoFraqueza(String nome, Entidade alvo) 
     {
         super(nome, alvo);
     }
@@ -15,27 +15,28 @@ public class EfeitoForca extends Efeito{
 
     /**
      * Implementação particular do método abstrato da classe Subscriber.
-     * Faz com que o alvo ganhe força quando for atacar.
+     * Faz com que o alvo tenha fraqueza quando for atacar.
      * @param mensagem String - informação do momento da rodada
      */
     public void serNotificado(String mensagem) 
     {
-        if (carga != 0) 
+        if (carga != 0)
         {
             if (mensagem.equals("fim do turno do jogador") && alvo instanceof Inimigo) 
             {
-                alvo.bulking(acumulo);
+                alvo.cutting(acumulo);
             }
-            if (mensagem.equals("jogador vai realizar sua ação") && alvo instanceof Heroi) 
+            if (mensagem.equals("jogador começará seu turno") && alvo instanceof Heroi) 
             {
-                alvo.bulking(acumulo);
+                alvo.cutting(acumulo);
             }
             if (mensagem.equals("fim da rodada")) 
             {
-                alvo.cutting(acumulo);
+                alvo.bulking(acumulo);
                 carga--;
             }
         }
+
     }
 
 }

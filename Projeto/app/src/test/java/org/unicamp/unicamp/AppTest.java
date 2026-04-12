@@ -4,6 +4,7 @@
 package org.unicamp.unicamp;
 
 import org.junit.jupiter.api.Test;
+import org.unicamp.unicamp.sistema.App;
 
 class AppTest {
     @Test void appHasAGreeting() {

@@ -1,4 +1,7 @@
-package org.unicamp.unicamp;
+package org.unicamp.unicamp.conteudos;
+
+import org.unicamp.unicamp.sistema.Baralho;
+import org.unicamp.unicamp.sistema.Batalha;
 
 /**
  * Extensão da classe abstrata Entidade.
