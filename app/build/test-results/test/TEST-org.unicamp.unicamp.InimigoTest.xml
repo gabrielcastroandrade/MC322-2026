@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.unicamp.unicamp.InimigoTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-04-13T22:24:37.556Z" hostname="castro" time="0.067">
+  <properties/>
+  <testcase name="danoMaiorEscudoMenorVidaTotal()" classname="org.unicamp.unicamp.InimigoTest" time="0.006"/>
+  <testcase name="escolherAcao()" classname="org.unicamp.unicamp.InimigoTest" time="0.02"/>
+  <testcase name="estarVivo()" classname="org.unicamp.unicamp.InimigoTest" time="0.003"/>
+  <testcase name="bulkingECutting()" classname="org.unicamp.unicamp.InimigoTest" time="0.002"/>
+  <testcase name="estarMorto()" classname="org.unicamp.unicamp.InimigoTest" time="0.002"/>
+  <testcase name="danoSemEscudo()" classname="org.unicamp.unicamp.InimigoTest" time="0.002"/>
+  <testcase name="bulking()" classname="org.unicamp.unicamp.InimigoTest" time="0.002"/>
+  <testcase name="ganharEscudo()" classname="org.unicamp.unicamp.InimigoTest" time="0.002"/>
+  <testcase name="cutting()" classname="org.unicamp.unicamp.InimigoTest" time="0.003"/>
+  <testcase name="danoMaiorTotal()" classname="org.unicamp.unicamp.InimigoTest" time="0.002"/>
+  <testcase name="danoMenorEscudo()" classname="org.unicamp.unicamp.InimigoTest" time="0.001"/>
+  <system-out><![CDATA[>> Inimigo farmou aura + ego, ele está mais forte agora, e você mais fraco
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

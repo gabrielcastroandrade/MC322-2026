@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.unicamp.unicamp.HeroiTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-04-13T22:24:37.464Z" hostname="castro" time="0.09">
+  <properties/>
+  <testcase name="danoMaiorEscudoMenorVidaTotal()" classname="org.unicamp.unicamp.HeroiTest" time="0.039"/>
+  <testcase name="estarVivo()" classname="org.unicamp.unicamp.HeroiTest" time="0.009"/>
+  <testcase name="bulkingECutting()" classname="org.unicamp.unicamp.HeroiTest" time="0.003"/>
+  <testcase name="estarMorto()" classname="org.unicamp.unicamp.HeroiTest" time="0.002"/>
+  <testcase name="danoSemEscudo()" classname="org.unicamp.unicamp.HeroiTest" time="0.003"/>
+  <testcase name="bulking()" classname="org.unicamp.unicamp.HeroiTest" time="0.003"/>
+  <testcase name="ganharEscudo()" classname="org.unicamp.unicamp.HeroiTest" time="0.002"/>
+  <testcase name="cutting()" classname="org.unicamp.unicamp.HeroiTest" time="0.003"/>
+  <testcase name="danoMaiorTotal()" classname="org.unicamp.unicamp.HeroiTest" time="0.003"/>
+  <testcase name="danoMenorEscudo()" classname="org.unicamp.unicamp.HeroiTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
