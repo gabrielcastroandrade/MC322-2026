@@ -8,6 +8,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'jacoco'
 }
 
 repositories {
@@ -45,4 +46,21 @@ tasks.named('test') {
 tasks.named('run') {
     // Permite que o Gradle repasse a entrada do teclado (System.in) para o Scanner do Java
     standardInput = System.in
+}
+
+jacoco {
+    toolVersion = "0.8.14" // Verifique a versão mais recente
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport // Relatório gerado após testes
+}
+
+jacocoTestReport {
+    dependsOn test // Testes devem rodar antes do relatório
+    reports {
+        xml.required = true
+        html.required = true
+    }
 }

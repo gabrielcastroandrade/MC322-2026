@@ -50,7 +50,12 @@ public abstract class Entidade {
     public void receberDano(int dano) 
     {
         if (dano <= 0) {return;}
-        if (escudo < dano) {vida -= (dano - escudo);}
+        if (escudo < dano) 
+        {
+            vida -= (dano - escudo); 
+            escudo = 0;
+            if (vida <= 0) {vida = 0;}
+        }
         else if (escudo > dano) {escudo -= dano;}
     } 
 
