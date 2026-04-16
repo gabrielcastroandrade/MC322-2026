@@ -2,6 +2,7 @@ package org.unicamp.unicamp;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+import org.unicamp.unicamp.conteudos.Heroi;
 import org.unicamp.unicamp.conteudos.Inimigo;
 
 public class InimigoTest {
@@ -77,10 +78,28 @@ public class InimigoTest {
     @Test void escolherAcao() {
         Inimigo i = new Inimigo("Inimigo", 10, 1);
         int acao = i.escolherAcao();
-        boolean e_int = false;
-        if ((acao -= acao) == 0) {e_int = true;}
-        assertEquals(true, e_int);
+        boolean acertou = false;
+        if (1 <= acao && acao <= 7) {acertou = true;}
+        assertEquals(true, acertou);
     }
+
+    @Test void executandoAtaqueDuplo() {
+        Inimigo i = new Inimigo("Inimigo", 10, 1);
+        int acao = 1;
+        Heroi h = new Heroi("heroi", 10, 1);
+        i.agirAtaque(acao, h);
+        assertEquals(8, h.getVida());
+    }
+
+    @Test void executandoAtaqueSimples() {
+        Inimigo i = new Inimigo("Inimigo", 10, 1);
+        int acao = 2;
+        Heroi h = new Heroi("heroi", 10, 1);
+        i.agirAtaque(acao, h);
+        assertEquals(9, h.getVida());
+    }
+
+    
     
 
 }
