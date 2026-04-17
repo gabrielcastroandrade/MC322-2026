@@ -15,7 +15,6 @@ import org.unicamp.unicamp.conteudos.CartaEfeitoForca;
 import org.unicamp.unicamp.conteudos.CartaEfeitoForcaFraqueza;
 import org.unicamp.unicamp.conteudos.CartaEfeitoFraqueza;
 import org.unicamp.unicamp.conteudos.CartaEscudo;
-import org.unicamp.unicamp.conteudos.Efeito;
 import org.unicamp.unicamp.conteudos.EfeitoForca;
 import org.unicamp.unicamp.conteudos.EfeitoFraqueza;
 
