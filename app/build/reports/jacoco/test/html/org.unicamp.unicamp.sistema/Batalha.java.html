@@ -16,43 +16,48 @@ public class Batalha extends Publisher{
     private final int energia_base;
     private final int num_cartas_mao;
 
-<span class="nc" id="L19">    private int dano_inimigo = 1;</span>
+<span class="fc" id="L19">    private int dano_inimigo = 1;</span>
     private final Heroi jogador;
     private final Inimigo inimigo;
     private String nome_inimigo;
-<span class="nc" id="L23">    private int vida_inimigo = 0;</span>
+<span class="fc" id="L23">    private int vida_inimigo = 0;</span>
     private final Scanner input;
 
     public Batalha (Heroi jogador, String oponente, Scanner input, int energia_base, int num_cartas_mao) 
-<span class="nc" id="L27">    {</span>
-<span class="nc" id="L28">        this.input = input;</span>
-<span class="nc" id="L29">        this.jogador = jogador;</span>
-<span class="nc" id="L30">        this.energia_base = energia_base;</span>
-<span class="nc" id="L31">        this.num_cartas_mao = num_cartas_mao;</span>
+<span class="fc" id="L27">    {</span>
+<span class="fc" id="L28">        this.input = input;</span>
+<span class="fc" id="L29">        this.jogador = jogador;</span>
+<span class="fc" id="L30">        this.energia_base = energia_base;</span>
+<span class="fc" id="L31">        this.num_cartas_mao = num_cartas_mao;</span>
 
-<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (oponente.equals(&quot;A Dragão&quot;)) </span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        if (oponente.equals(&quot;A Dragão&quot;)) </span>
         {
-<span class="nc" id="L35">            vida_inimigo = 5;</span>
-<span class="nc" id="L36">            dano_inimigo = 1;</span>
-<span class="nc" id="L37">            nome_inimigo = &quot;A Dragão&quot;;</span>
+<span class="fc" id="L35">            vida_inimigo = 5;</span>
+<span class="fc" id="L36">            dano_inimigo = 1;</span>
+<span class="fc" id="L37">            nome_inimigo = &quot;A Dragão&quot;;</span>
         }
 
-<span class="nc bnc" id="L40" title="All 2 branches missed.">        if (oponente.equals(&quot;A Morte&quot;)) </span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if (oponente.equals(&quot;A Morte&quot;)) </span>
         {
-<span class="nc" id="L42">            vida_inimigo = 4;</span>
-<span class="nc" id="L43">            dano_inimigo = 2;</span>
-<span class="nc" id="L44">            nome_inimigo = &quot;A Morte Encarnada&quot;;</span>
+<span class="fc" id="L42">            vida_inimigo = 4;</span>
+<span class="fc" id="L43">            dano_inimigo = 2;</span>
+<span class="fc" id="L44">            nome_inimigo = &quot;A Morte&quot;;</span>
         }
 
-<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (oponente.equals(&quot;O Burro&quot;)) </span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if (oponente.equals(&quot;O Burro&quot;)) </span>
         {
-<span class="nc" id="L49">            vida_inimigo = 3;</span>
-<span class="nc" id="L50">            dano_inimigo = 3;</span>
-<span class="nc" id="L51">            nome_inimigo = &quot;O Burro&quot;;</span>
+<span class="fc" id="L49">            vida_inimigo = 3;</span>
+<span class="fc" id="L50">            dano_inimigo = 3;</span>
+<span class="fc" id="L51">            nome_inimigo = &quot;O Burro&quot;;</span>
         }
 
-<span class="nc" id="L54">        inimigo = new Inimigo(nome_inimigo, vida_inimigo, dano_inimigo);</span>
-<span class="nc" id="L55">    }</span>
+<span class="fc" id="L54">        inimigo = new Inimigo(nome_inimigo, vida_inimigo, dano_inimigo);</span>
+<span class="fc" id="L55">    }</span>
+
+    public String getNomeInimigo() 
+    {
+<span class="fc" id="L59">        return inimigo.getNome();</span>
+    }
 
     /**
      * Método responsável por fazer uma rodada acontecer (inclui o turno do inimigo e do jogador).
@@ -60,95 +65,95 @@ public class Batalha extends Publisher{
     public void rodarRound() 
     {
         // inicializa os dados dos baralhos
-<span class="nc" id="L63">        Baralho baralho = new Baralho(jogador);</span>
-<span class="nc" id="L64">        int energia = energia_base;</span>
+<span class="nc" id="L68">        Baralho baralho = new Baralho();</span>
+<span class="nc" id="L69">        int energia = energia_base;</span>
         
-<span class="nc" id="L66">        int acao_inimigo = inimigo.escolherAcao();</span>
-<span class="nc" id="L67">        this.notificar(&quot;inimgo vai defender&quot;);</span>
-<span class="nc" id="L68">        inimigo.agirDefesa(acao_inimigo, jogador);</span>
+<span class="nc" id="L71">        int acao_inimigo = inimigo.escolherAcao();</span>
+<span class="nc" id="L72">        this.notificar(&quot;inimgo vai defender&quot;);</span>
+<span class="nc" id="L73">        inimigo.agirDefesa(acao_inimigo, jogador);</span>
         
         // turno do jogador
-<span class="nc" id="L71">        this.notificar(&quot;jogador começará seu turno&quot;);</span>
-<span class="nc bnc" id="L72" title="All 4 branches missed.">        while (baralho.getLenMao() &lt; num_cartas_mao &amp;&amp; baralho.getLenCompra() &gt; 0) {baralho.comprar();}</span>
-<span class="nc bnc" id="L73" title="All 2 branches missed.">        while (energia &gt; 0) </span>
+<span class="nc" id="L76">        this.notificar(&quot;jogador começará seu turno&quot;);</span>
+<span class="nc bnc" id="L77" title="All 4 branches missed.">        while (baralho.getLenMao() &lt; num_cartas_mao &amp;&amp; baralho.getLenCompra() &gt; 0) {baralho.comprar();}</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        while (energia &gt; 0) </span>
         {
-<span class="nc bnc" id="L75" title="All 2 branches missed.">            if (!inimigo.estarVivo()) {break;}</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            if (!inimigo.estarVivo()) {break;}</span>
 
             // dados do duelo -------------------------------------------------------------------------------------------
-<span class="nc" id="L78">            System.out.println(&quot;-//-&quot;);</span>
-<span class="nc" id="L79">            System.out.println(</span>
-<span class="nc" id="L80">                jogador.getNome() </span>
-<span class="nc" id="L81">                + &quot; (vida: &quot; + jogador.getVida() </span>
-<span class="nc" id="L82">                + &quot; / escudo: &quot; + jogador.getEscudo() + &quot;)&quot;</span>
+<span class="nc" id="L83">            System.out.println(&quot;-//-&quot;);</span>
+<span class="nc" id="L84">            System.out.println(</span>
+<span class="nc" id="L85">                jogador.getNome() </span>
+<span class="nc" id="L86">                + &quot; (vida: &quot; + jogador.getVida() </span>
+<span class="nc" id="L87">                + &quot; / escudo: &quot; + jogador.getEscudo() + &quot;)&quot;</span>
             );
-<span class="nc" id="L84">            System.out.println(&quot;efeitos:&quot;);</span>
-<span class="nc" id="L85">            jogador.printEfeitos();</span>
-<span class="nc" id="L86">            System.out.println(&quot;vs&quot;);</span>
-<span class="nc" id="L87">            System.out.println(</span>
-<span class="nc" id="L88">                inimigo.getNome() </span>
-<span class="nc" id="L89">                + &quot; (vida: &quot; + inimigo.getVida() </span>
-<span class="nc" id="L90">                + &quot; / escudo: &quot; + inimigo.getEscudo() + &quot;)&quot;</span>
+<span class="nc" id="L89">            System.out.println(&quot;efeitos:&quot;);</span>
+<span class="nc" id="L90">            jogador.printEfeitos();</span>
+<span class="nc" id="L91">            System.out.println(&quot;vs&quot;);</span>
+<span class="nc" id="L92">            System.out.println(</span>
+<span class="nc" id="L93">                inimigo.getNome() </span>
+<span class="nc" id="L94">                + &quot; (vida: &quot; + inimigo.getVida() </span>
+<span class="nc" id="L95">                + &quot; / escudo: &quot; + inimigo.getEscudo() + &quot;)&quot;</span>
             );
-<span class="nc" id="L92">            System.out.println(&quot;efeitos:&quot;);</span>
-<span class="nc" id="L93">            inimigo.printEfeitos();</span>
-<span class="nc" id="L94">            System.out.println(&quot;-//-&quot;);</span>
-<span class="nc" id="L95">            System.out.println();</span>
+<span class="nc" id="L97">            System.out.println(&quot;efeitos:&quot;);</span>
+<span class="nc" id="L98">            inimigo.printEfeitos();</span>
+<span class="nc" id="L99">            System.out.println(&quot;-//-&quot;);</span>
+<span class="nc" id="L100">            System.out.println();</span>
 
 
             // opções de ação do jogador -----------------------------------------------------------------------------------
             // System.out.println(&quot;(pilha de compra: &quot; + baralho.getLenCompra() + &quot; cartas)&quot;);
             // System.out.println(&quot;(pilha de descarte: &quot; + baralho.getLenDescarte() + &quot; cartas)&quot;);
-<span class="nc" id="L101">            System.out.println(&quot;(energia: &quot; + energia + &quot;)&quot;);</span>
-<span class="nc" id="L102">            System.out.println(&quot;[&quot;+0+&quot;]&quot; + &quot; - Encerrar turno&quot;);</span>
-<span class="nc bnc" id="L103" title="All 2 branches missed.">            for (int i = 0; i &lt; baralho.getLenMao(); i++) </span>
+<span class="nc" id="L106">            System.out.println(&quot;(energia: &quot; + energia + &quot;)&quot;);</span>
+<span class="nc" id="L107">            System.out.println(&quot;[&quot;+0+&quot;]&quot; + &quot; - Encerrar turno&quot;);</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            for (int i = 0; i &lt; baralho.getLenMao(); i++) </span>
             {
-<span class="nc" id="L105">                Carta carta = baralho.getMaoIndice(i);</span>
-<span class="nc" id="L106">                System.out.println(&quot;[&quot;+(i+1)+&quot;]&quot; + &quot; - &quot; + carta.getNome() + &quot; - &quot; + carta.getDescricao() + &quot; - (custo &quot; + carta.getCusto() + &quot;)&quot;);</span>
+<span class="nc" id="L110">                Carta carta = baralho.getMaoIndice(i);</span>
+<span class="nc" id="L111">                System.out.println(&quot;[&quot;+(i+1)+&quot;]&quot; + &quot; - &quot; + carta.getNome() + &quot; - &quot; + carta.getDescricao() + &quot; - (custo &quot; + carta.getCusto() + &quot;)&quot;);</span>
             }
-<span class="nc" id="L108">            System.out.println(&quot;Digite o número da sua próxima ação: &quot;);</span>
+<span class="nc" id="L113">            System.out.println(&quot;Digite o número da sua próxima ação: &quot;);</span>
             int escolha;
-<span class="nc" id="L110">            escolha = input.nextInt();</span>
-<span class="nc bnc" id="L111" title="All 4 branches missed.">            while (escolha &lt; 0 || escolha &gt; baralho.getLenMao()) </span>
+<span class="nc" id="L115">            escolha = input.nextInt();</span>
+<span class="nc bnc" id="L116" title="All 4 branches missed.">            while (escolha &lt; 0 || escolha &gt; baralho.getLenMao()) </span>
             {
-<span class="nc" id="L113">                System.out.println(&quot;Opção indisponível, tente novamente: &quot;);</span>
-<span class="nc" id="L114">                escolha = input.nextInt();</span>
+<span class="nc" id="L118">                System.out.println(&quot;Opção indisponível, tente novamente: &quot;);</span>
+<span class="nc" id="L119">                escolha = input.nextInt();</span>
             }
-<span class="nc" id="L116">            escolha -= 1;</span>
-<span class="nc bnc" id="L117" title="All 2 branches missed.">            if (escolha == -1) {break;}</span>
-<span class="nc" id="L118">            Carta carta_escolhida = baralho.getMaoIndice(escolha);</span>
-<span class="nc bnc" id="L119" title="All 2 branches missed.">            while (carta_escolhida.getCusto() &gt; energia) </span>
+<span class="nc" id="L121">            escolha -= 1;</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">            if (escolha == -1) {break;}</span>
+<span class="nc" id="L123">            Carta carta_escolhida = baralho.getMaoIndice(escolha);</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            while (carta_escolhida.getCusto() &gt; energia) </span>
             {
-<span class="nc" id="L121">                System.out.println(&quot;Energia insulficiente, tente novamente: &quot;);</span>
-<span class="nc" id="L122">                escolha = input.nextInt();</span>
-<span class="nc" id="L123">                carta_escolhida = baralho.getMaoIndice(escolha);</span>
+<span class="nc" id="L126">                System.out.println(&quot;Energia insulficiente, tente novamente: &quot;);</span>
+<span class="nc" id="L127">                escolha = input.nextInt();</span>
+<span class="nc" id="L128">                carta_escolhida = baralho.getMaoIndice(escolha);</span>
             }
 
             // lidando com a escolha -------------------------------------------------------------------------------------
-<span class="nc" id="L127">            this.notificar(&quot;jogador vai realizar sua ação&quot;);</span>
-<span class="nc" id="L128">            int custo = jogador.agir(escolha, carta_escolhida, inimigo, baralho, this);</span>
-<span class="nc" id="L129">            energia -= custo;</span>
-<span class="nc bnc" id="L130" title="All 2 branches missed.">            if (baralho.getLenCompra() == 0) {baralho.reiniciar();}</span>
-<span class="nc" id="L131">        }    </span>
+<span class="nc" id="L132">            this.notificar(&quot;jogador vai realizar sua ação&quot;);</span>
+<span class="nc" id="L133">            int custo = jogador.agir(escolha, carta_escolhida, inimigo, baralho, this);</span>
+<span class="nc" id="L134">            energia -= custo;</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">            if (baralho.getLenCompra() == 0) {baralho.reiniciar();}</span>
+<span class="nc" id="L136">        }    </span>
 
         // fim do turno do jogador ------------------------------------------------------------------------------------------
-<span class="nc" id="L134">        this.notificar(&quot;fim do turno do jogador&quot;);</span>
-<span class="nc" id="L135">        System.out.println(&quot;fim do turno&quot;);        </span>
-<span class="nc bnc" id="L136" title="All 2 branches missed.">        if (!inimigo.estarVivo()) {return;}</span>
-<span class="nc bnc" id="L137" title="All 2 branches missed.">        if (!jogador.estarVivo()) {return;}</span>
+<span class="nc" id="L139">        this.notificar(&quot;fim do turno do jogador&quot;);</span>
+<span class="nc" id="L140">        System.out.println(&quot;fim do turno&quot;);        </span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">        if (!inimigo.estarVivo()) {return;}</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">        if (!jogador.estarVivo()) {return;}</span>
 
         // se o inimigo for atacar, ataca aqui -------------------------------------------------------------------------------
-<span class="nc" id="L140">        this.notificar(&quot;inimmgo vai atacar&quot;);</span>
-<span class="nc" id="L141">        inimigo.agirAtaque(acao_inimigo, jogador);      </span>
+<span class="nc" id="L145">        this.notificar(&quot;inimmgo vai atacar&quot;);</span>
+<span class="nc" id="L146">        inimigo.agirAtaque(acao_inimigo, jogador);      </span>
         // fim da rodada ----------------------------------------------------------------------------------------------------
-<span class="nc" id="L143">        System.out.println();</span>
+<span class="nc" id="L148">        System.out.println();</span>
 
-<span class="nc" id="L145">        jogador.zerarEscudo();</span>
-<span class="nc" id="L146">        inimigo.zerarEscudo();</span>
-<span class="nc" id="L147">        jogador.limpezaEfeitos();</span>
-<span class="nc" id="L148">        inimigo.limpezaEfeitos();</span>
+<span class="nc" id="L150">        jogador.zerarEscudo();</span>
+<span class="nc" id="L151">        inimigo.zerarEscudo();</span>
+<span class="nc" id="L152">        jogador.limpezaEfeitos();</span>
+<span class="nc" id="L153">        inimigo.limpezaEfeitos();</span>
 
-<span class="nc" id="L150">        this.notificar(&quot;fim da rodada&quot;);</span>
-<span class="nc" id="L151">    };</span>
+<span class="nc" id="L155">        this.notificar(&quot;fim da rodada&quot;);</span>
+<span class="nc" id="L156">    };</span>
        
     /**
      * Método responsável por fazer a batalha rodar.
@@ -157,33 +162,33 @@ public class Batalha extends Publisher{
      */
     public Entidade rodarBatalha() 
     {
-<span class="nc bnc" id="L160" title="All 4 branches missed.">        while (jogador.estarVivo() &amp;&amp; inimigo.estarVivo()) </span>
+<span class="nc bnc" id="L165" title="All 4 branches missed.">        while (jogador.estarVivo() &amp;&amp; inimigo.estarVivo()) </span>
         {
-<span class="nc" id="L162">            this.rodarRound();</span>
-<span class="nc" id="L163">            System.out.println(&quot;Pressione [1] para continuar: &quot;);</span>
-<span class="nc" id="L164">            System.out.println();</span>
-<span class="nc" id="L165">            input.nextInt();</span>
+<span class="nc" id="L167">            this.rodarRound();</span>
+<span class="nc" id="L168">            System.out.println(&quot;Pressione [1] para continuar: &quot;);</span>
+<span class="nc" id="L169">            System.out.println();</span>
+<span class="nc" id="L170">            input.nextInt();</span>
         }
 
-<span class="nc bnc" id="L168" title="All 2 branches missed.">        if (jogador.estarVivo()) </span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        if (jogador.estarVivo()) </span>
         {
-<span class="nc" id="L170">            return jogador;</span>
+<span class="nc" id="L175">            return jogador;</span>
         }
 
-<span class="nc bnc" id="L173" title="All 2 branches missed.">        if (inimigo.estarVivo()) </span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">        if (inimigo.estarVivo()) </span>
         {
-<span class="nc" id="L175">            return inimigo;</span>
+<span class="nc" id="L180">            return inimigo;</span>
         }
 
-<span class="nc" id="L178">        return inimigo;</span>
+<span class="nc" id="L183">        return inimigo;</span>
     };
 
     // achar um lugar bunitin pra isso, tá dificil
     public void limparTerminal() 
     {
-<span class="nc" id="L184">        System.out.print(&quot;\033[H\033[2J&quot;);</span>
-<span class="nc" id="L185">        System.out.flush();</span>
-<span class="nc" id="L186">    }</span>
+<span class="nc" id="L189">        System.out.print(&quot;\033[H\033[2J&quot;);</span>
+<span class="nc" id="L190">        System.out.flush();</span>
+<span class="nc" id="L191">    }</span>
 }
 
 

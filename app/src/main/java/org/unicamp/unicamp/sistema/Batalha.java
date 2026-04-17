@@ -41,7 +41,7 @@ public class Batalha extends Publisher{
         {
             vida_inimigo = 4;
             dano_inimigo = 2;
-            nome_inimigo = "A Morte Encarnada";
+            nome_inimigo = "A Morte";
         }
 
         if (oponente.equals("O Burro")) 
@@ -54,13 +54,18 @@ public class Batalha extends Publisher{
         inimigo = new Inimigo(nome_inimigo, vida_inimigo, dano_inimigo);
     }
 
+    public String getNomeInimigo() 
+    {
+        return inimigo.getNome();
+    }
+
     /**
      * Método responsável por fazer uma rodada acontecer (inclui o turno do inimigo e do jogador).
      */
     public void rodarRound() 
     {
         // inicializa os dados dos baralhos
-        Baralho baralho = new Baralho(jogador);
+        Baralho baralho = new Baralho();
         int energia = energia_base;
         
         int acao_inimigo = inimigo.escolherAcao();

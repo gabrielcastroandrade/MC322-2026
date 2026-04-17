@@ -12,7 +12,6 @@ import org.unicamp.unicamp.conteudos.CartaEfeitoForca;
 import org.unicamp.unicamp.conteudos.CartaEfeitoForcaFraqueza;
 import org.unicamp.unicamp.conteudos.CartaEfeitoFraqueza;
 import org.unicamp.unicamp.conteudos.CartaEscudo;
-import org.unicamp.unicamp.conteudos.Entidade;
 
 /**
  * Classe responsável por guardar e gerenciar todos os baralhos do jogo (pilhas de compra, descarte e mão do jogador)
@@ -23,25 +22,25 @@ public class Baralho {
     private final Stack&lt;Carta&gt; compra;
     private final Stack&lt;Carta&gt; descarte;
 
-    public Baralho(Entidade jogador) 
-<span class="nc" id="L27">    {</span>
-<span class="nc" id="L28">        this.mao  = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L29">        this.compra = new Stack&lt;&gt;();</span>
-<span class="nc" id="L30">        this.descarte = new Stack&lt;&gt;();</span>
+    public Baralho() 
+<span class="fc" id="L26">    {</span>
+<span class="fc" id="L27">        this.mao  = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L28">        this.compra = new Stack&lt;&gt;();</span>
+<span class="fc" id="L29">        this.descarte = new Stack&lt;&gt;();</span>
 
-<span class="nc" id="L32">        compra.push(new CartaDano(&quot;ataque fofo&quot;, &quot;causa dano base&quot;, 1));</span>
-<span class="nc" id="L33">        compra.push(new CartaDano(&quot;ataque sagaz&quot;, &quot;causa 2 vezes o dano&quot;, 2));</span>
-<span class="nc" id="L34">        compra.push(new CartaDano(&quot;ataque violento&quot;, &quot;causa 3 vezes o dano&quot;, 3));</span>
-<span class="nc" id="L35">        compra.push(new CartaEscudo(&quot;defesa desajeitada&quot;, &quot;levanta 1 de escudo&quot;, 1));</span>
-<span class="nc" id="L36">        compra.push(new CartaEscudo(&quot;defesa eficiente&quot;, &quot;levanta 2 de escudo&quot;, 2));</span>
-<span class="nc" id="L37">        compra.push(new CartaEscudo(&quot;defesa impenetrável&quot;, &quot;levanta 3 de escudo&quot;, 3));</span>
-<span class="nc" id="L38">        compra.push(new CartaEfeitoFraqueza(&quot;farmar aura&quot;, &quot;enfraquece os ataques do seu inimigo&quot;, 2));</span>
-<span class="nc" id="L39">        compra.push(new CartaEfeitoForca(&quot;farmar ego&quot;, &quot;torna seus ataques mais fortes&quot;, 2));</span>
-<span class="nc" id="L40">        compra.push(new CartaDanoEscudo(&quot;técnica faixa branca&quot;, &quot;causa 1 de dano e levanta 2 de escudo&quot;, 3));        </span>
-<span class="nc" id="L41">        compra.push(new CartaDanoEscudo(&quot;técnica faixa preta&quot;, &quot;causa 2 de dano e levanta 3 de escudo&quot;, 5));        </span>
-<span class="nc" id="L42">        compra.push(new CartaEfeitoForcaFraqueza(&quot;farmar aura + ego&quot;, &quot;te da força e causa fraqueza no oponente&quot;, 5));</span>
-<span class="nc" id="L43">        Collections.shuffle(compra);</span>
-<span class="nc" id="L44">    }</span>
+<span class="fc" id="L31">        compra.push(new CartaDano(&quot;ataque fofo&quot;, &quot;causa dano base&quot;, 1));</span>
+<span class="fc" id="L32">        compra.push(new CartaDano(&quot;ataque sagaz&quot;, &quot;causa 2 vezes o dano&quot;, 2));</span>
+<span class="fc" id="L33">        compra.push(new CartaDano(&quot;ataque violento&quot;, &quot;causa 3 vezes o dano&quot;, 3));</span>
+<span class="fc" id="L34">        compra.push(new CartaEscudo(&quot;defesa desajeitada&quot;, &quot;levanta 1 de escudo&quot;, 1));</span>
+<span class="fc" id="L35">        compra.push(new CartaEscudo(&quot;defesa eficiente&quot;, &quot;levanta 2 de escudo&quot;, 2));</span>
+<span class="fc" id="L36">        compra.push(new CartaEscudo(&quot;defesa impenetrável&quot;, &quot;levanta 3 de escudo&quot;, 3));</span>
+<span class="fc" id="L37">        compra.push(new CartaEfeitoFraqueza(&quot;farmar aura&quot;, &quot;enfraquece os ataques do seu inimigo&quot;, 2));</span>
+<span class="fc" id="L38">        compra.push(new CartaEfeitoForca(&quot;farmar ego&quot;, &quot;torna seus ataques mais fortes&quot;, 2));</span>
+<span class="fc" id="L39">        compra.push(new CartaDanoEscudo(&quot;técnica faixa branca&quot;, &quot;causa 1 de dano e levanta 2 de escudo&quot;, 3));        </span>
+<span class="fc" id="L40">        compra.push(new CartaDanoEscudo(&quot;técnica faixa preta&quot;, &quot;causa 2 de dano e levanta 3 de escudo&quot;, 5));        </span>
+<span class="fc" id="L41">        compra.push(new CartaEfeitoForcaFraqueza(&quot;farmar aura + ego&quot;, &quot;te da força e causa fraqueza no oponente&quot;, 5));</span>
+<span class="fc" id="L42">        Collections.shuffle(compra);</span>
+<span class="fc" id="L43">    }</span>
 
     /**
      * Retorna a carta de um índice específico da mão do jogador
@@ -50,36 +49,36 @@ public class Baralho {
      */
     public Carta getMaoIndice(int indice) 
     {
-<span class="nc" id="L53">        return mao.get(indice);</span>
+<span class="fc" id="L52">        return mao.get(indice);</span>
     }
 
     public int getLenCompra() 
     {
-<span class="nc" id="L58">        return compra.size();</span>
+<span class="fc" id="L57">        return compra.size();</span>
     }
 
     public int getLenMao() 
     {
-<span class="nc" id="L63">        return mao.size();</span>
+<span class="fc" id="L62">        return mao.size();</span>
     }
 
     public int getLenDescarte() 
     {
-<span class="nc" id="L68">        return descarte.size();</span>
+<span class="fc" id="L67">        return descarte.size();</span>
     }
 
     // jogo
     public void embaralhar() 
     {
-<span class="nc" id="L74">        Collections.shuffle(descarte);</span>
-<span class="nc" id="L75">    }</span>
+<span class="nc" id="L73">        Collections.shuffle(descarte);</span>
+<span class="nc" id="L74">    }</span>
 
     public void comprar() 
     {
         Carta carta;
-<span class="nc" id="L80">        carta = compra.removeFirst();</span>
-<span class="nc" id="L81">        mao.addFirst(carta);</span>
-<span class="nc" id="L82">    }</span>
+<span class="fc" id="L79">        carta = compra.removeFirst();</span>
+<span class="fc" id="L80">        mao.addFirst(carta);</span>
+<span class="fc" id="L81">    }</span>
 
     /**
      * Envia uma carta da mão do jogador para o baralho de descarte.
@@ -87,27 +86,27 @@ public class Baralho {
      */
     public void descartar(int indice) 
     {
-<span class="nc" id="L90">        Carta carta = mao.remove(indice);</span>
-<span class="nc" id="L91">        descarte.push(carta);</span>
-<span class="nc" id="L92">    }</span>
+<span class="fc" id="L89">        Carta carta = mao.remove(indice);</span>
+<span class="fc" id="L90">        descarte.push(carta);</span>
+<span class="fc" id="L91">    }</span>
 
     /**
      * Devolve todas as cartas da mão do jogador e do descarte para a pilha de compra, embaralhando
      */
     public void reiniciar() 
     {
-<span class="nc bnc" id="L99" title="All 2 branches missed.">        while (!mao.isEmpty()) </span>
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">        while (!mao.isEmpty()) </span>
         {
-<span class="nc" id="L101">            Carta carta = mao.removeFirst();</span>
-<span class="nc" id="L102">            descarte.addLast(carta);</span>
-<span class="nc" id="L103">        }</span>
-<span class="nc" id="L104">        Collections.shuffle(descarte);</span>
-<span class="nc bnc" id="L105" title="All 2 branches missed.">        while (!descarte.empty()) </span>
+<span class="nc" id="L100">            Carta carta = mao.removeFirst();</span>
+<span class="nc" id="L101">            descarte.addLast(carta);</span>
+<span class="nc" id="L102">        }</span>
+<span class="fc" id="L103">        Collections.shuffle(descarte);</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        while (!descarte.empty()) </span>
         {
-<span class="nc" id="L107">            Carta carta = descarte.removeFirst();</span>
-<span class="nc" id="L108">            compra.addLast(carta);</span>
-<span class="nc" id="L109">        }</span>
-<span class="nc" id="L110">        Collections.shuffle(compra);</span>
-<span class="nc" id="L111">    }</span>
+<span class="fc" id="L106">            Carta carta = descarte.removeFirst();</span>
+<span class="fc" id="L107">            compra.addLast(carta);</span>
+<span class="fc" id="L108">        }</span>
+<span class="fc" id="L109">        Collections.shuffle(compra);</span>
+<span class="fc" id="L110">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

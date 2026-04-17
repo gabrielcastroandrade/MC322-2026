@@ -12,7 +12,6 @@ import org.unicamp.unicamp.conteudos.CartaEfeitoForca;
 import org.unicamp.unicamp.conteudos.CartaEfeitoForcaFraqueza;
 import org.unicamp.unicamp.conteudos.CartaEfeitoFraqueza;
 import org.unicamp.unicamp.conteudos.CartaEscudo;
-import org.unicamp.unicamp.conteudos.Entidade;
 
 /**
  * Classe responsável por guardar e gerenciar todos os baralhos do jogo (pilhas de compra, descarte e mão do jogador)
@@ -23,7 +22,7 @@ public class Baralho {
     private final Stack<Carta> compra;
     private final Stack<Carta> descarte;
 
-    public Baralho(Entidade jogador) 
+    public Baralho() 
     {
         this.mao  = new ArrayList<>();
         this.compra = new Stack<>();
