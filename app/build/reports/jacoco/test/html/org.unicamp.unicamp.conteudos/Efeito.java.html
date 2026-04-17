@@ -13,35 +13,35 @@ public abstract class Efeito extends Subscriber {
     protected int carga;
 
     public Efeito(String nome ,Entidade alvo) 
-<span class="nc" id="L16">    {</span>
-<span class="nc" id="L17">        this.nome = nome;</span>
-<span class="nc" id="L18">        this.alvo = alvo;</span>
-<span class="nc" id="L19">        acumulo = 1;</span>
-<span class="nc" id="L20">        carga = 3;</span>
-<span class="nc" id="L21">    }</span>
+<span class="fc" id="L16">    {</span>
+<span class="fc" id="L17">        this.nome = nome;</span>
+<span class="fc" id="L18">        this.alvo = alvo;</span>
+<span class="fc" id="L19">        acumulo = 1;</span>
+<span class="fc" id="L20">        carga = 3;</span>
+<span class="fc" id="L21">    }</span>
 
     /**
      * Aumenta o acúmulo (poder) do efeito e ainda adiciona mais duas cargas (efeito dura mais)
      */
     public void acumular() 
     {
-<span class="nc" id="L28">        acumulo++;</span>
-<span class="nc" id="L29">        carga += 2;</span>
-<span class="nc" id="L30">    }</span>
+<span class="fc" id="L28">        acumulo++;</span>
+<span class="fc" id="L29">        carga += 2;</span>
+<span class="fc" id="L30">    }</span>
 
     public String getString() 
     {
-<span class="nc" id="L34">        return (nome + &quot; &quot; + acumulo);</span>
+<span class="fc" id="L34">        return (nome + &quot; &quot; + acumulo);</span>
     }
 
     public int getCarga() 
     {
-<span class="nc" id="L39">        return carga;</span>
+<span class="fc" id="L39">        return carga;</span>
     }
 
     public String getNome() 
     {
-<span class="nc" id="L44">        return nome;</span>
+<span class="fc" id="L44">        return nome;</span>
     }
 
 }

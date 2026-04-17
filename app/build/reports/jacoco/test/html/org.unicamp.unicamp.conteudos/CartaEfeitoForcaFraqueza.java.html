@@ -16,12 +16,12 @@ public class CartaEfeitoForcaFraqueza extends Carta{
 
     public Efeito getEfeitoForca() 
     {
-<span class="nc" id="L19">        return efeito2;</span>
+<span class="fc" id="L19">        return efeito2;</span>
     }
 
     public Efeito getEfeitoFraqueza() 
     {
-<span class="nc" id="L24">        return efeito1;</span>
+<span class="fc" id="L24">        return efeito1;</span>
     }
 
     @Override
@@ -34,10 +34,10 @@ public class CartaEfeitoForcaFraqueza extends Carta{
      */
     public void usar(Entidade alvo, Entidade caster, int poder) 
     {
-<span class="nc" id="L37">        efeito1 = new EfeitoFraqueza(&quot;fraqueza&quot;, alvo);</span>
-<span class="nc" id="L38">        alvo.adicionarEfeito(efeito1);</span>
-<span class="nc" id="L39">        efeito2 = new EfeitoForca(&quot;força&quot;, caster);</span>
-<span class="nc" id="L40">        caster.adicionarEfeito(efeito2);</span>
-<span class="nc" id="L41">    }</span>
+<span class="fc" id="L37">        efeito1 = new EfeitoFraqueza(&quot;fraqueza&quot;, alvo);</span>
+<span class="fc" id="L38">        alvo.adicionarEfeito(efeito1);</span>
+<span class="fc" id="L39">        efeito2 = new EfeitoForca(&quot;força&quot;, caster);</span>
+<span class="fc" id="L40">        caster.adicionarEfeito(efeito2);</span>
+<span class="fc" id="L41">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

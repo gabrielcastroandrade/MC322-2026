@@ -43,6 +43,11 @@ public abstract class Entidade {
         return dano_base;
     }
 
+    public Efeito getEfeito(int indice) 
+    {
+        return efeitos.get(indice);
+    }
+
     /**
      * Faz a entidade receber dano
      * @param dano int - dano a ser recebido
