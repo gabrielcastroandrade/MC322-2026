@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Entidade.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">org.unicamp.unicamp.conteudos</a> &gt; <span class="el_source">Entidade.java</span></div><h1>Entidade.java</h1><pre class="source lang-java linenums">package org.unicamp.unicamp.conteudos;
+
+import java.util.ArrayList;
+
+/**
+ * Classe abstrata Entidade é a base para todos os personagens do jogo.
+ */
+public abstract class Entidade {
+
+    protected String nome;
+    protected int vida;
+    protected int escudo;
+    protected ArrayList&lt;Efeito&gt; efeitos;
+<span class="fc" id="L14">    protected int dano_base = 1;</span>
+
+    public Entidade(String nome, int vida, int dano_base) 
+<span class="fc" id="L17">    {</span>
+<span class="fc" id="L18">        this.nome = nome;</span>
+<span class="fc" id="L19">        this.vida = vida;</span>
+<span class="fc" id="L20">        this.dano_base = dano_base;</span>
+<span class="fc" id="L21">        this.efeitos = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L22">        this.escudo = 0;</span>
+<span class="fc" id="L23">    }</span>
+
+    // getters
+    public String getNome() 
+    {
+<span class="nc" id="L28">        return nome;</span>
+    }
+
+    public int getVida() 
+    {
+<span class="fc" id="L33">        return vida;</span>
+    }
+
+    public int getEscudo() 
+    {
+<span class="fc" id="L38">        return escudo;</span>
+    }
+
+    public int getDano () 
+    {
+<span class="fc" id="L43">        return dano_base;</span>
+    }
+
+    /**
+     * Faz a entidade receber dano
+     * @param dano int - dano a ser recebido
+     */
+    public void receberDano(int dano) 
+    {
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        if (dano &lt;= 0) {return;}</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        if (escudo &lt; dano) </span>
+        {
+<span class="fc" id="L55">            vida -= (dano - escudo); </span>
+<span class="fc" id="L56">            escudo = 0;</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">            if (vida &lt;= 0) {vida = 0;}</span>
+        }
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">        else if (escudo &gt; dano) {escudo -= dano;}</span>
+<span class="fc" id="L60">    } </span>
+
+    /**
+     * Adiciona um efeito à entidade.
+     * @param adicionar Efeito - efeito a ser adicionado à entidade
+     */
+    public void adicionarEfeito(Efeito adicionar) 
+    {
+<span class="nc bnc" id="L68" title="All 4 branches missed.">        for (int i = 0; i &lt; efeitos.size(); i++) {if (efeitos.get(i).getNome().equals(adicionar.getNome())) {efeitos.get(i).acumular(); return;}}</span>
+<span class="nc" id="L69">        efeitos.add(adicionar);</span>
+<span class="nc" id="L70">    }</span>
+
+    /**
+     * Levanta escudo na entidade.
+     * @param ganho int - quantidade de escunho que será levantado na entidade
+     */
+    public void ganharEscudo(int ganho)
+    {
+<span class="fc" id="L78">        escudo += ganho;</span>
+<span class="fc" id="L79">    }</span>
+
+    /**
+     * Aumenta o dano base da entidade.
+     * @param acumulo int - acrescimo de dano
+     */
+    public void bulking(int acumulo) 
+    {
+<span class="fc" id="L87">        dano_base += acumulo;</span>
+<span class="fc" id="L88">    }</span>
+
+    /**
+     * Diminui o dano base da entidade.
+     * @param acumulo int - decrescimo de dano
+     */
+    public void cutting(int acumulo) 
+    {
+<span class="fc" id="L96">        dano_base -= acumulo;</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">        if (dano_base &lt; 0) {dano_base = 0;}</span>
+<span class="fc" id="L98">    }</span>
+
+    /**
+     * Printa todos os efeitos que a entidade possui
+     */
+    public void printEfeitos() 
+    {
+<span class="nc" id="L105">        efeitos.forEach(efeito -&gt; System.out.println(efeito.getString()));</span>
+<span class="nc" id="L106">    }</span>
+
+    /**
+     * Verifica se a entidade está viva.
+     * @return boolean - sim se vida, não se morta
+     */
+    public boolean estarVivo()
+    {
+<span class="fc bfc" id="L114" title="All 2 branches covered.">        return (vida &gt; 0); </span>
+    }
+
+    public void zerarEscudo() 
+    {
+<span class="nc" id="L119">        escudo = 0;</span>
+<span class="nc" id="L120">    }</span>
+
+    /**
+     * Limpa os efeitos da entidade que estiverem com carga zerada.
+     */
+    public void limpezaEfeitos() 
+    {
+<span class="nc bnc" id="L127" title="All 2 branches missed.">        efeitos.removeIf(efeito -&gt; efeito.getCarga() == 0);</span>
+<span class="nc" id="L128">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

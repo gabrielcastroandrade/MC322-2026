@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Heroi.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">org.unicamp.unicamp.conteudos</a> &gt; <span class="el_source">Heroi.java</span></div><h1>Heroi.java</h1><pre class="source lang-java linenums">package org.unicamp.unicamp.conteudos;
+
+import org.unicamp.unicamp.sistema.Baralho;
+import org.unicamp.unicamp.sistema.Batalha;
+
+/**
+ * Extensão da classe abstrata Entidade.
+ * Se refere ao próprio jogador.
+ */
+public class Heroi extends Entidade{
+
+    public Heroi(String nome, int vida, int dano_base) 
+    {
+<span class="fc" id="L14">        super(nome, vida, dano_base);</span>
+<span class="fc" id="L15">    }</span>
+
+    /**
+     * Método responsável por fazer o jogador realizar sua ação.
+     * @param indice_carta_escolhida int
+     * @param carta_escolhida Carta
+     * @param inimigo Inimigo
+     * @param baralho Baralho
+     * @param jogo Jogo
+     * @return int - curto da ação realizada
+     */
+    public int agir(int indice_carta_escolhida, Carta carta_escolhida, Inimigo inimigo, Baralho baralho, Batalha jogo) 
+    {
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        if (carta_escolhida instanceof CartaDano c) </span>
+        {
+<span class="fc" id="L30">            c.usar(inimigo, this, c.getCusto()*this.getDano());</span>
+<span class="fc" id="L31">            System.out.println(&quot;-//-&quot;);</span>
+<span class="fc" id="L32">            System.out.println(&quot;Você atacou seu oponente com &quot; + c.getCusto()*this.getDano() + &quot; de dano&quot;);</span>
+<span class="fc" id="L33">            System.out.println(&quot;-//-&quot;);</span>
+<span class="fc" id="L34">            System.out.println();</span>
+<span class="fc" id="L35">            baralho.descartar(indice_carta_escolhida);</span>
+<span class="fc" id="L36">            return c.getCusto();</span>
+        }
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (carta_escolhida instanceof CartaEscudo c) </span>
+        {
+<span class="fc" id="L40">            c.usar(this, this, c.getCusto());</span>
+<span class="fc" id="L41">            System.out.println(&quot;-//-&quot;);</span>
+<span class="fc" id="L42">            System.out.println(&quot;Você levantou &quot; + c.getCusto() + &quot; de escudo&quot;);</span>
+<span class="fc" id="L43">            System.out.println(&quot;-//-&quot;);</span>
+<span class="fc" id="L44">            System.out.println();</span>
+<span class="fc" id="L45">            baralho.descartar(indice_carta_escolhida);</span>
+<span class="fc" id="L46">            return c.getCusto();</span>
+        }
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (carta_escolhida instanceof CartaEfeitoFraqueza c)</span>
+        {
+<span class="fc" id="L50">            c.usar(inimigo, this, c.getCusto());</span>
+<span class="fc" id="L51">            Efeito efeito = c.getEfeito();</span>
+<span class="fc" id="L52">            jogo.inscrever(efeito);</span>
+<span class="fc" id="L53">            System.out.println(&quot;-//-&quot;);</span>
+<span class="fc" id="L54">            System.out.println(&quot;Você jogou no seu oponente o efeito de &quot; + efeito.getString());</span>
+<span class="fc" id="L55">            System.out.println(&quot;-//-&quot;);</span>
+<span class="fc" id="L56">            System.out.println();</span>
+<span class="fc" id="L57">            baralho.descartar(indice_carta_escolhida);</span>
+<span class="fc" id="L58">            return c.getCusto();</span>
+        }
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (carta_escolhida instanceof CartaEfeitoForca c)</span>
+        {
+<span class="fc" id="L62">            c.usar(this, this, c.getCusto());</span>
+<span class="fc" id="L63">            Efeito efeito = c.getEfeito();</span>
+<span class="fc" id="L64">            jogo.inscrever(efeito);</span>
+<span class="fc" id="L65">            System.out.println(&quot;-//-&quot;);</span>
+<span class="fc" id="L66">            System.out.println(&quot;Você jogou em si mesmo o efeito de &quot; + efeito.getString());</span>
+<span class="fc" id="L67">            System.out.println(&quot;-//-&quot;);</span>
+<span class="fc" id="L68">            System.out.println();</span>
+<span class="fc" id="L69">            baralho.descartar(indice_carta_escolhida);</span>
+<span class="fc" id="L70">            return c.getCusto();</span>
+        }
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        if (carta_escolhida instanceof CartaDanoEscudo c)</span>
+        {
+<span class="fc" id="L74">            c.usar(inimigo, this, c.getCusto());</span>
+<span class="fc" id="L75">            System.out.println(&quot;-//-&quot;);</span>
+<span class="fc" id="L76">            System.out.println(&quot;Você levantou &quot; + (c.getCusto() - 1) + &quot; de escudo e atacou com &quot; + (c.getCusto() - 2) + &quot; de dano ao mesmo tempo!&quot;);</span>
+<span class="fc" id="L77">            System.out.println(&quot;-//-&quot;);</span>
+<span class="fc" id="L78">            System.out.println();</span>
+<span class="fc" id="L79">            baralho.descartar(indice_carta_escolhida);</span>
+<span class="fc" id="L80">            return c.getCusto();</span>
+        }
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">        if (carta_escolhida instanceof CartaEfeitoForcaFraqueza c)</span>
+        {
+<span class="fc" id="L84">            c.usar(inimigo, this, c.getCusto());</span>
+<span class="fc" id="L85">            Efeito efeito_forca = c.getEfeitoForca();</span>
+<span class="fc" id="L86">            Efeito efeito_fraqueza = c.getEfeitoFraqueza();</span>
+<span class="fc" id="L87">            jogo.inscrever(efeito_forca);</span>
+<span class="fc" id="L88">            jogo.inscrever(efeito_fraqueza);</span>
+<span class="fc" id="L89">            System.out.println(&quot;-//-&quot;);</span>
+<span class="fc" id="L90">            System.out.println(&quot;Você jogou em si mesmo o efeito de &quot; + efeito_forca.getString() + &quot; e no seu inimigo o efeito de &quot; + efeito_fraqueza.getString());</span>
+<span class="fc" id="L91">            System.out.println(&quot;-//-&quot;);</span>
+<span class="fc" id="L92">            System.out.println();</span>
+<span class="fc" id="L93">            baralho.descartar(indice_carta_escolhida);</span>
+<span class="fc" id="L94">            return c.getCusto();</span>
+        }
+<span class="nc" id="L96">        return 0;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

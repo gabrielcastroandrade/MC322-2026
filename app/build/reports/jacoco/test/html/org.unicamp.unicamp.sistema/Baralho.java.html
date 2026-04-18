@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Baralho.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">org.unicamp.unicamp.sistema</a> &gt; <span class="el_source">Baralho.java</span></div><h1>Baralho.java</h1><pre class="source lang-java linenums">package org.unicamp.unicamp.sistema;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Stack;
+
+import org.unicamp.unicamp.conteudos.Carta;
+import org.unicamp.unicamp.conteudos.CartaDano;
+import org.unicamp.unicamp.conteudos.CartaDanoEscudo;
+import org.unicamp.unicamp.conteudos.CartaEfeitoForca;
+import org.unicamp.unicamp.conteudos.CartaEfeitoForcaFraqueza;
+import org.unicamp.unicamp.conteudos.CartaEfeitoFraqueza;
+import org.unicamp.unicamp.conteudos.CartaEscudo;
+
+/**
+ * Classe responsável por guardar e gerenciar todos os baralhos do jogo (pilhas de compra, descarte e mão do jogador)
+ */
+public class Baralho {
+
+    private final List&lt;Carta&gt; mao; 
+    private final Stack&lt;Carta&gt; compra;
+    private final Stack&lt;Carta&gt; descarte;
+
+    public Baralho() 
+<span class="fc" id="L26">    {</span>
+<span class="fc" id="L27">        this.mao  = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L28">        this.compra = new Stack&lt;&gt;();</span>
+<span class="fc" id="L29">        this.descarte = new Stack&lt;&gt;();</span>
+
+<span class="fc" id="L31">        compra.push(new CartaDano(&quot;ataque fofo&quot;, &quot;causa dano base&quot;, 1));</span>
+<span class="fc" id="L32">        compra.push(new CartaDano(&quot;ataque sagaz&quot;, &quot;causa 2 vezes o dano&quot;, 2));</span>
+<span class="fc" id="L33">        compra.push(new CartaDano(&quot;ataque violento&quot;, &quot;causa 3 vezes o dano&quot;, 3));</span>
+<span class="fc" id="L34">        compra.push(new CartaEscudo(&quot;defesa desajeitada&quot;, &quot;levanta 1 de escudo&quot;, 1));</span>
+<span class="fc" id="L35">        compra.push(new CartaEscudo(&quot;defesa eficiente&quot;, &quot;levanta 2 de escudo&quot;, 2));</span>
+<span class="fc" id="L36">        compra.push(new CartaEscudo(&quot;defesa impenetrável&quot;, &quot;levanta 3 de escudo&quot;, 3));</span>
+<span class="fc" id="L37">        compra.push(new CartaEfeitoFraqueza(&quot;farmar aura&quot;, &quot;enfraquece os ataques do seu inimigo&quot;, 2));</span>
+<span class="fc" id="L38">        compra.push(new CartaEfeitoForca(&quot;farmar ego&quot;, &quot;torna seus ataques mais fortes&quot;, 2));</span>
+<span class="fc" id="L39">        compra.push(new CartaDanoEscudo(&quot;técnica faixa branca&quot;, &quot;causa 1 de dano e levanta 2 de escudo&quot;, 3));        </span>
+<span class="fc" id="L40">        compra.push(new CartaDanoEscudo(&quot;técnica faixa preta&quot;, &quot;causa 2 de dano e levanta 3 de escudo&quot;, 5));        </span>
+<span class="fc" id="L41">        compra.push(new CartaEfeitoForcaFraqueza(&quot;farmar aura + ego&quot;, &quot;te da força e causa fraqueza no oponente&quot;, 5));</span>
+<span class="fc" id="L42">        Collections.shuffle(compra);</span>
+<span class="fc" id="L43">    }</span>
+
+    /**
+     * Retorna a carta de um índice específico da mão do jogador
+     * @param indice int - indice da carta que se quer obter
+     * @return Carta
+     */
+    public Carta getMaoIndice(int indice) 
+    {
+<span class="fc" id="L52">        return mao.get(indice);</span>
+    }
+
+    public int getLenCompra() 
+    {
+<span class="fc" id="L57">        return compra.size();</span>
+    }
+
+    public int getLenMao() 
+    {
+<span class="fc" id="L62">        return mao.size();</span>
+    }
+
+    public int getLenDescarte() 
+    {
+<span class="fc" id="L67">        return descarte.size();</span>
+    }
+
+    // jogo
+    public void embaralhar() 
+    {
+<span class="nc" id="L73">        Collections.shuffle(descarte);</span>
+<span class="nc" id="L74">    }</span>
+
+    public void comprar() 
+    {
+        Carta carta;
+<span class="fc" id="L79">        carta = compra.removeFirst();</span>
+<span class="fc" id="L80">        mao.addFirst(carta);</span>
+<span class="fc" id="L81">    }</span>
+
+    /**
+     * Envia uma carta da mão do jogador para o baralho de descarte.
+     * @param indice int - indice que a carta a ser descartada está na mão do jogador
+     */
+    public void descartar(int indice) 
+    {
+<span class="fc" id="L89">        Carta carta = mao.remove(indice);</span>
+<span class="fc" id="L90">        descarte.push(carta);</span>
+<span class="fc" id="L91">    }</span>
+
+    /**
+     * Devolve todas as cartas da mão do jogador e do descarte para a pilha de compra, embaralhando
+     */
+    public void reiniciar() 
+    {
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">        while (!mao.isEmpty()) </span>
+        {
+<span class="nc" id="L100">            Carta carta = mao.removeFirst();</span>
+<span class="nc" id="L101">            descarte.addLast(carta);</span>
+<span class="nc" id="L102">        }</span>
+<span class="fc" id="L103">        Collections.shuffle(descarte);</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        while (!descarte.empty()) </span>
+        {
+<span class="fc" id="L106">            Carta carta = descarte.removeFirst();</span>
+<span class="fc" id="L107">            compra.addLast(carta);</span>
+<span class="fc" id="L108">        }</span>
+<span class="fc" id="L109">        Collections.shuffle(compra);</span>
+<span class="fc" id="L110">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

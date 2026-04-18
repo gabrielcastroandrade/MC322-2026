@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>App.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">org.unicamp.unicamp.sistema</a> &gt; <span class="el_source">App.java</span></div><h1>App.java</h1><pre class="source lang-java linenums">package org.unicamp.unicamp.sistema;
+
+import java.util.Scanner;
+
+/**
+ * Classe App é a principal classe para rodar o jogo, nela está contido o método main(), que faz todo o jogo rodar.
+ */
+<span class="fc" id="L8">public class App {</span>
+    public static void main(String[] args) throws Exception {
+        
+<span class="nc" id="L11">        Scanner input = new Scanner(System.in);</span>
+
+<span class="nc" id="L13">        System.out.println(&quot;&quot;);</span>
+<span class="nc" id="L14">        System.out.println(&quot;Boa noite Ogro, seja bem vindo ao Shrek 2077: a volta dos que não foram!!!&quot;);</span>
+
+<span class="nc" id="L16">        Jogo jogo = new Jogo(input);</span>
+<span class="nc" id="L17">        boolean resultado = jogo.rodarJogo();</span>
+<span class="nc bnc" id="L18" title="All 2 branches missed.">        if (resultado) </span>
+        {
+<span class="nc" id="L20">            System.out.println(&quot;Parabéns, você agora pode ficar em paz e seu pântano.&quot;);</span>
+        }
+<span class="nc bnc" id="L22" title="All 2 branches missed.">        if (!resultado) </span>
+        {
+<span class="nc" id="L24">            System.out.println(&quot;Não foi dessa vez, os invasores acabaram com você e seu pântano.&quot;);</span>
+        }
+
+<span class="nc" id="L27">        System.out.println(&quot;&quot;);</span>
+<span class="nc" id="L28">        System.out.println(&quot;Jogo encerrado. Obrigado por jogar!!!&quot;);</span>
+<span class="nc" id="L29">        System.out.println(&quot;Créditos: Arthur Midon (247271) e Gabriel Castro (280869)&quot;);</span>
+<span class="nc" id="L30">        input.close();</span>
+<span class="nc" id="L31">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

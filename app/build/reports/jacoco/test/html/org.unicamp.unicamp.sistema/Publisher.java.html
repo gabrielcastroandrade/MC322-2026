@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Publisher.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">org.unicamp.unicamp.sistema</a> &gt; <span class="el_source">Publisher.java</span></div><h1>Publisher.java</h1><pre class="source lang-java linenums">package org.unicamp.unicamp.sistema;
+
+import java.util.ArrayList;
+
+/**
+ * Classe abstrata Publisher.
+ * Classe capaz de inscrever cartas da classe Subscriber à si mesma, sendo capaz de mandar 
+ * strings para suas inscritas pelo método notificar().
+ */
+public abstract class Publisher {
+
+    protected ArrayList&lt;Subscriber&gt; inscritos;
+
+    public Publisher() 
+<span class="fc" id="L15">    {</span>
+<span class="fc" id="L16">        this.inscritos = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L17">    };</span>
+
+    /**
+     * Método para inscrever Subscribers ao Publisher
+     * @param inscrito Subscriber - quem será inscrito a esse Publisher
+     */
+    public void inscrever(Subscriber inscrito) 
+    {
+<span class="fc" id="L25">        inscritos.add(inscrito);</span>
+<span class="fc" id="L26">    }</span>
+
+    /**
+     * Método para desinscrever Subscribers do Publisher
+     * @param inscrito Subscriber - quem será desinscrito a esse Publisher
+     */
+    public void desinscrever(Subscriber inscrito) 
+    {
+<span class="nc" id="L34">        inscritos.remove(inscrito);</span>
+<span class="nc" id="L35">    }</span>
+
+    /**
+     * Método para notificar os Subscribers desse Publisher, enviando à eles uma string.
+     * @param mensagem String - mensagem a ser enviada para todos os Subscribers
+     */
+    public void notificar(String mensagem) 
+    {
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (inscritos.isEmpty()) {return;}</span>
+<span class="nc" id="L44">        inscritos.forEach(inscrito -&gt; inscrito.serNotificado(mensagem));</span>
+<span class="nc" id="L45">    }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>
