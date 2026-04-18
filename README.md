@@ -6,7 +6,7 @@
 ## Como rodar o jogo:
 
 - Pelo terminal:
-    - navegue até o endereço: ~/MC322-2026/Projeto
+    - navegue até o endereço: ~/MC322-2026
     - digite: ./gradlew run 
 - Pelo VSCode
    - abra o arquivo App.java
@@ -15,8 +15,9 @@
 ## Inicie o jogo:
 
 - Insira o nome do seu jogador
-- Selecione seu oponente:
-   - em ordem crescente de dificuldade: A Dragoa, A Morte e $#%@&%% (oponente surpresa)
+- Selecione seu oponente, você deve derrotar os 3 para finalizar o jogo
+- A cada batalha, um mapa é gerado com suas escolhas de inimigos
+  
 
 ## A economia:
 
@@ -33,6 +34,7 @@
    - Força: aumenta o dano base (todos os ataques ficam mais fortes)
    - Fraqueza: diminui o dano base (todos os ataques ficam mais fracos)
    - Efeitos duram 3 rodadas. Eles podem se acumular, cada acúmulo faz o efeito ser mais forte e durar mais 2 rounds
+- Cartas podem fazer mais de uma coisa (dar dano e levantar escudo, ou jogar 2 efeitos) 
 
 ## Seus inimigos:
 
