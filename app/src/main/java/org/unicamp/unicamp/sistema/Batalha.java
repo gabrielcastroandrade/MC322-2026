@@ -52,6 +52,8 @@ public class Batalha extends Publisher{
         }
 
         inimigo = new Inimigo(nome_inimigo, vida_inimigo, dano_inimigo);
+        jogador.reinscreverEfeitos(this);
+        inimigo.reinscreverEfeitos(this);
     }
 
     public String getNomeInimigo() 

@@ -1,6 +1,7 @@
 package org.unicamp.unicamp.conteudos;
-
 import java.util.ArrayList;
+
+import org.unicamp.unicamp.sistema.Batalha;
 
 /**
  * Classe abstrata Entidade é a base para todos os personagens do jogo.
@@ -132,4 +133,12 @@ public abstract class Entidade {
         efeitos.removeIf(efeito -> efeito.getCarga() == 0);
     }
 
+    /**
+     * Inscreve todos os efeitos que a Entidade possui à uma Batalha
+     * @param batalha Batalha - batalha e serem inscritos os efeitos
+     */
+    public void reinscreverEfeitos(Batalha batalha) 
+    {
+        efeitos.forEach(efeito -> batalha.inscrever(efeito));
+    }
 }
