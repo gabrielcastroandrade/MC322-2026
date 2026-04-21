@@ -4,46 +4,46 @@ import java.util.Stack;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
- * Classe responsável por gerar um mapa de possibilidades de escolhas de combate do jogador
+ * Classe responsável por gerar um mapa de possibilidades de escolhas do jogador
  */
 public class Mapa {
 
     DefaultMutableTreeNode raiz = new DefaultMutableTreeNode();
-    Stack<String> inimigos;
+    Stack<String> escolhas;
     DefaultMutableTreeNode no_atual;
 
-    public Mapa(Stack<String> inimigos) 
+    public Mapa(Stack<String> escolhas) 
     {
-        this.inimigos = inimigos;
+        this.escolhas = escolhas;
         no_atual = raiz;
     }
 
     /**
-     * Recebe o nome do próximo inimigo a ser enfrentado e processa essa informação, contruindo assim o mapa
-     * @param proxInimigo String - nome do próximo inimigo que o jogador escolheu ennfrantar
+     * Recebe o nome da proxima escolha e processa essa informação, contruindo assim o mapa
+     * @param proxEscolha String - nome da próxima escolha
      */
-    public void proxInimigo(String proxInimigo) 
+    public void proxEscolha(String proxEscolha) 
     {
         DefaultMutableTreeNode prox_no = null;
-        for (int i = 0; i < inimigos.size(); i++) 
+        for (int i = 0; i < escolhas.size(); i++) 
         {
-            if (!inimigos.get(i).equals(proxInimigo)) 
+            if (!escolhas.get(i).equals(proxEscolha)) 
             {
-                DefaultMutableTreeNode no = new DefaultMutableTreeNode(inimigos.get(i));
+                DefaultMutableTreeNode no = new DefaultMutableTreeNode(escolhas.get(i));
                 no_atual.add(no);
             }
-            if (inimigos.get(i).equals(proxInimigo)) 
+            if (escolhas.get(i).equals(proxEscolha)) 
             {
-                prox_no = new DefaultMutableTreeNode(inimigos.get(i));
+                prox_no = new DefaultMutableTreeNode(escolhas.get(i));
                 no_atual.add(prox_no);
             }
         }
         no_atual = prox_no;
-        inimigos.remove(proxInimigo);
+        escolhas.remove(proxEscolha);
     }
 
     /**
-     * Printa os combates que o jogador ja realizou, na ordem em que foram enfrentados
+     * Printa as escolhas que jogador ja realizou, na ordem em que foram enfrentados
      */
     public void printCaminho() 
     {

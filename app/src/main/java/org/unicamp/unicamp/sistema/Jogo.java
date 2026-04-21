@@ -18,17 +18,18 @@ public class Jogo {
     private final int energia_base = 5;
     private final int num_cartas_mao = 4;
     private final int dano_base_jogador = 1;
-    private final Stack<String> inimigos = new Stack<>();;
+    private final Stack<String> escolhas = new Stack<>();;
 
     private Heroi jogador;
 
     public Jogo(Scanner input) 
     {
         this.input = input;
-        inimigos.push("A Dragão");
-        inimigos.push("A Morte");
-        inimigos.push("O Burro");
-
+        escolhas.push("A Dragão");
+        escolhas.push("A Morte");
+        escolhas.push("O Burro");
+        escolhas.push("Banho de lama"); // recupera toda sua vida, te dando +1 de brinde
+        escolhas.push("Treinamento ogro"); // adiciona as cartas de tecnica faixa preta e aura + ego ao seu deque
     }
 
     /**
@@ -39,13 +40,13 @@ public class Jogo {
     {
         String nome_jogador = this.lerNome();
         jogador = new Heroi(nome_jogador, vida_jogador, dano_base_jogador);
-        Mapa mapa = new Mapa(inimigos);
+        Mapa mapa = new Mapa(escolhas);
 
         System.err.println("Três desafiantes secretos invadem seu pântano...");
-        while(!inimigos.empty()) 
+        while(!escolhas.empty()) 
         {
-            String proxInimigo = this.lerInimigo();
-            mapa.proxInimigo(proxInimigo);
+            String proxInimigo = this.lerEscolha();
+            mapa.proxEscolha(proxInimigo);
             Batalha dueloAtual = new Batalha(jogador, proxInimigo, input, energia_base, num_cartas_mao);
             Entidade vencedor = dueloAtual.rodarBatalha();
             if (vencedor instanceof Heroi) 
@@ -81,20 +82,20 @@ public class Jogo {
     }
 
     /**
-     * Cuida de todo o processo do jogador escolher seu próximo combatente
-     * @return String - o nome do inimigo escolhido
+     * Cuida de todo o processo do jogador selecionar sua próxima escolha
+     * @return String - o nome da escolha selecionada
      */
-    public String lerInimigo() 
+    public String lerEscolha() 
     {
         System.out.println("Escolha seu oponente: ");
-        inimigos.forEach(nome -> System.out.println("[" + inimigos.indexOf(nome) + "] - " + nome));
+        escolhas.forEach(nome -> System.out.println("[" + escolhas.indexOf(nome) + "] - " + nome));
         int oponente = input.nextInt();
-        while ( !inimigos.contains((inimigos.get(oponente))) ) 
+        while ( !escolhas.contains((escolhas.get(oponente))) ) 
         {
             System.out.println("Oponente inválido, tente novamente: ");
             oponente = input.nextInt();
         }
-        return (inimigos.get(oponente));
+        return (escolhas.get(oponente));
     }
 
 
