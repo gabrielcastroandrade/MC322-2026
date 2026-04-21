@@ -157,12 +157,14 @@ public class Batalha extends Publisher{
         this.notificar("fim da rodada");
     };
        
+    @Override
+
     /**
      * Método responsável por fazer a batalha rodar.
      * Gera um loop de rodadas enquanto nenhum dos oponentes for derrotado.
      * @return Entidade vencedora
      */
-    public Entidade rodarBatalha() 
+    public Entidade iniciar(Heroi jogador) 
     {
         while (jogador.estarVivo() && inimigo.estarVivo()) 
         {

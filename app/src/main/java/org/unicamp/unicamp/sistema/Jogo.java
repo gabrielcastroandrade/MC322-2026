@@ -45,24 +45,28 @@ public class Jogo {
         System.err.println("Três desafiantes secretos invadem seu pântano...");
         while(!escolhas.empty()) 
         {
-            String proxInimigo = this.lerEscolha();
-            mapa.proxEscolha(proxInimigo);
-            Batalha dueloAtual = new Batalha(jogador, proxInimigo, input, energia_base, num_cartas_mao);
-            Entidade vencedor = dueloAtual.rodarBatalha();
+            String proxEscolha = this.lerEscolha();
+            mapa.proxEscolha(proxEscolha);
+            Batalha dueloAtual = new Batalha(jogador, proxEscolha, input, energia_base, num_cartas_mao);
+            Entidade vencedor = dueloAtual.iniciar(jogador);
             if (vencedor instanceof Heroi) 
             {
-                System.out.println("Você derrotou " + proxInimigo);
+                System.out.println("Você derrotou " + proxEscolha);
                 System.out.println();
                 mapa.printCaminho();
                 System.out.println();
             }
             if (vencedor instanceof Inimigo)
             {
-                System.out.println(proxInimigo + " te derrotou");
+                System.out.println(proxEscolha + " te derrotou");
                 System.out.println();
                 mapa.printCaminho();
                 System.out.println();
                 return false;
+            }
+            if (!jogador.estarVivo()) 
+            {
+                
             }
         }
         return true;
