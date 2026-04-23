@@ -34,11 +34,9 @@ public class Baralho {
         compra.push(new CartaEscudo("defesa desajeitada", "levanta 1 de escudo", 1));
         compra.push(new CartaEscudo("defesa eficiente", "levanta 2 de escudo", 2));
         compra.push(new CartaEscudo("defesa impenetrável", "levanta 3 de escudo", 3));
-        compra.push(new CartaEfeitoFraqueza("farmar aura", "enfraquece os ataques do seu inimigo", 2));
         compra.push(new CartaEfeitoForca("farmar ego", "torna seus ataques mais fortes", 2));
         compra.push(new CartaDanoEscudo("técnica faixa branca", "causa 1 de dano e levanta 2 de escudo", 3));        
-        compra.push(new CartaDanoEscudo("técnica faixa preta", "causa 2 de dano e levanta 3 de escudo", 5));        
-        compra.push(new CartaEfeitoForcaFraqueza("farmar aura + ego", "te da força e causa fraqueza no oponente", 5));
+        compra.push(new CartaEfeitoFraqueza("farmar aura", "enfraquece os ataques do seu inimigo", 2));        
         Collections.shuffle(compra);
     }
 
@@ -106,6 +104,16 @@ public class Baralho {
             Carta carta = descarte.removeFirst();
             compra.addLast(carta);
         }
+        Collections.shuffle(compra);
+    }
+
+    /**
+     * Adiciona 2 novas cartas ao baralho
+     */
+    public void upgrade() 
+    {
+        compra.push(new CartaEfeitoForcaFraqueza("farmar aura + ego", "te da força e causa fraqueza no oponente", 5));
+        compra.push(new CartaDanoEscudo("técnica faixa preta", "causa 2 de dano e levanta 3 de escudo", 5));        
         Collections.shuffle(compra);
     }
 }

@@ -12,6 +12,7 @@ public class App {
 
         System.out.println("");
         System.out.println("Boa noite Ogro, seja bem vindo ao Shrek 2077: a volta dos que não foram!!!");
+        System.out.println("");
 
         Jogo jogo = new Jogo(input);
         boolean resultado = jogo.rodarJogo();

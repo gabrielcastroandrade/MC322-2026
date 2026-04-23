@@ -55,13 +55,12 @@ public class Mapa {
             caminho.addFirst((String) no_percorrer.getUserObject());
             no_percorrer = (DefaultMutableTreeNode) no_percorrer.getParent();
         }
-        System.out.print("Seu mapa de combates é: ");
+        System.out.print("Seu mapa de escolhas é: ");
         int num_inimigos = caminho.size();
         for (int i = 0; i < num_inimigos -1; i++) 
         {
             if (num_inimigos != 1) {System.out.print(caminho.get(i) + " -> ");}
         }
         System.out.print(caminho.get(num_inimigos - 1));
-        System.out.println("");
     }
 }

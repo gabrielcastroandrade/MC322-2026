@@ -10,6 +10,7 @@ public abstract class Entidade {
 
     protected String nome;
     protected int vida;
+    protected int vida_inicial;
     protected int escudo;
     protected ArrayList<Efeito> efeitos;
     protected int dano_base = 1;
@@ -21,6 +22,7 @@ public abstract class Entidade {
         this.dano_base = dano_base;
         this.efeitos = new ArrayList<>();
         this.escudo = 0;
+        this.vida_inicial = vida;
     }
 
     // getters
@@ -140,5 +142,14 @@ public abstract class Entidade {
     public void reinscreverEfeitos(Batalha batalha) 
     {
         efeitos.forEach(efeito -> batalha.inscrever(efeito));
+    }
+
+    /**
+     * Recupera toda a vida com +1 de bônus 
+     * Se basea na vida inicial que a Entidade foi criada com
+     */
+    public void recuperarVida() 
+    {
+        vida = vida_inicial + 1;
     }
 }
