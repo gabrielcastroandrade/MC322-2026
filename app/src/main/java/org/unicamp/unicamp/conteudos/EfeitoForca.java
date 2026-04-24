@@ -22,7 +22,7 @@ public class EfeitoForca extends Efeito{
     {
         if (carga != 0) 
         {
-            if (mensagem.equals("fim do turno do jogador") && alvo instanceof Inimigo) 
+            if (mensagem.equals("inimigo vai escolher sua acao") && alvo instanceof Inimigo) 
             {
                 alvo.bulking(acumulo);
             }
