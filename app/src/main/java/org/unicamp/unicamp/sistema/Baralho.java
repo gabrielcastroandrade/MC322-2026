@@ -21,23 +21,29 @@ public class Baralho {
     private final List<Carta> mao; 
     private final Stack<Carta> compra;
     private final Stack<Carta> descarte;
+    private final Stack<Carta> desbloqueaveis;
 
     public Baralho() 
     {
         this.mao  = new ArrayList<>();
         this.compra = new Stack<>();
         this.descarte = new Stack<>();
+        this.desbloqueaveis = new Stack<>();
 
         compra.push(new CartaDano("ataque fofo", "causa dano base", 1));
         compra.push(new CartaDano("ataque sagaz", "causa 2 vezes o dano", 2));
-        compra.push(new CartaDano("ataque violento", "causa 3 vezes o dano", 3));
         compra.push(new CartaEscudo("defesa desajeitada", "levanta 1 de escudo", 1));
         compra.push(new CartaEscudo("defesa eficiente", "levanta 2 de escudo", 2));
-        compra.push(new CartaEscudo("defesa impenetrável", "levanta 3 de escudo", 3));
         compra.push(new CartaEfeitoForca("farmar ego", "torna seus ataques mais fortes", 2));
         compra.push(new CartaDanoEscudo("técnica faixa branca", "causa 1 de dano e levanta 2 de escudo", 3));        
-        compra.push(new CartaEfeitoFraqueza("farmar aura", "enfraquece os ataques do seu inimigo", 2));        
+        compra.push(new CartaEfeitoFraqueza("farmar aura", "enfraquece os ataques do seu inimigo", 2)); 
+        compra.push(new CartaEscudo("defesa impenetrável", "levanta 3 de escudo", 3)); 
         Collections.shuffle(compra);
+
+        desbloqueaveis.push(new CartaEfeitoForcaFraqueza("farmar aura + ego", "te da força e causa fraqueza no oponente", 5));
+        desbloqueaveis.push(new CartaDano("ataque violento", "causa 3 vezes o dano", 3)); 
+        desbloqueaveis.push(new CartaDanoEscudo("técnica faixa preta", "causa 2 de dano e levanta 3 de escudo", 5));    
+        Collections.shuffle(desbloqueaveis);    
     }
 
     /**
@@ -112,8 +118,13 @@ public class Baralho {
      */
     public void upgrade() 
     {
-        compra.push(new CartaEfeitoForcaFraqueza("farmar aura + ego", "te da força e causa fraqueza no oponente", 5));
-        compra.push(new CartaDanoEscudo("técnica faixa preta", "causa 2 de dano e levanta 3 de escudo", 5));        
-        Collections.shuffle(compra);
+        if (!desbloqueaveis.isEmpty()) 
+        {
+            Carta desbloqueada = desbloqueaveis.removeFirst();
+            compra.push(desbloqueada);
+            System.out.println("Você desbloqueou a carta " + desbloqueada.getNome());
+            Collections.shuffle(compra);
+            Collections.shuffle(desbloqueaveis);
+        }
     }
 }

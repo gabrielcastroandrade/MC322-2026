@@ -4,7 +4,7 @@ import org.unicamp.unicamp.sistema.Baralho;
 
 /**
 * Classe extensão de Escolha
-* Permite que o jogador ganhe 2 novas cartas para usar
+* Permite que o jogador ganhe novas cartas 
 */
 public class Alongamento extends Escolha {
 
@@ -18,8 +18,7 @@ public class Alongamento extends Escolha {
     public Entidade iniciar(Heroi jogador, Baralho baralho) 
     {
         System.out.println("");
-        System.out.println("Você parou para tomar dar uma alongadinha rápida, os inimigos podem esperar.");
-        System.out.println("Você ganhou 2 novas cartas: Farmar aura + ego e Ataque faixa preta");
+        System.out.println("Você parou para dar uma alongadinha rápida, os inimigos podem esperar");
         baralho.upgrade();
         return jogador;
     }

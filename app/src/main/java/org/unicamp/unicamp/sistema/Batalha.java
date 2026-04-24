@@ -71,6 +71,7 @@ public class Batalha extends Publisher{
         
         System.out.println("");
 
+        this.notificar("inimigo vai escolher sua acao");
         int acao_inimigo = inimigo.escolherAcao();
         this.notificar("inimgo vai defender");
         inimigo.agirDefesa(acao_inimigo, jogador);

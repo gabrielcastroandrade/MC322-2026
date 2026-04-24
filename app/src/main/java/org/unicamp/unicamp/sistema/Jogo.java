@@ -106,10 +106,13 @@ public class Jogo {
             Entidade vencedor = dueloAtual.iniciar(jogador, baralho);
             if (vencedor instanceof Heroi) 
             {
+                System.out.println("");
                 System.out.println("Você derrotou " + this.getNomeAcao(escolha));
+                baralho.upgrade();
             }
             if (vencedor instanceof Inimigo)
             {
+                System.out.println("");
                 System.out.println(this.getNomeAcao(escolha) + " te derrotou");
             } 
         }
