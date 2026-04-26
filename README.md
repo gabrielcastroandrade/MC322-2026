@@ -15,16 +15,21 @@
 ## Inicie o jogo:
 
 - Insira o nome do seu jogador
-- Selecione seu oponente, você deve derrotar os 3 para finalizar o jogo
-- A cada batalha, um mapa é gerado com suas escolhas de inimigos
-  
+- Selecione sua próxima ação
+- A cada ação, um mapa é gerado com suas escolhas
+
+## O objetivo e suas escolhas:
+
+- Você deve derrotar os 3 invasores para ganhar: A Dragão, a Morte e o Burro
+- Você pode escolher em qual ordem irá enfrentá-los
+- Além dos combates, você pode escolher à qualquer momento tomar um banho (recupera a vida) ou se aquecer (desbloqueia uma carta nova)
 
 ## A economia:
 
 - O jogo possui 3 recursos que você precisa gerenciar:
-   - Vida: quando ela chega à zero, o combatente é derrotado;
+   - Vida: quando ela chega à zero, o combatente é derrotado. Tome um banho para recuperá-la;
    - Escudo: toda rodada os combatentes começam com o escudo zerado. Crie escudos para evitar receber dano à vida;
-   - Energia: toda rodada você começa com 5 de energia. Usar cartas (realizando ações) gasta energia. Quando sua energia chega à zero, seu turno acaba. Caso não consiga mais usar nenhuma carta com a energia que possui, você pode encerrar sua rodada com a opção [0].
+   - Energia: toda rodada você começa com 5 de energia. Usar cartas gasta energia. Quando sua energia chega à zero, seu turno acaba. Caso não consiga mais usar nenhuma carta com a energia que possui, você pode encerrar sua rodada com a opção [0].
 
 ## As cartas:
 
@@ -33,15 +38,12 @@
 - Cartas de Efeito: jogam um efeito em você (se for positivo) ou em seu inimigo (se for negativo). Existem 2 efeitos:
    - Força: aumenta o dano base (todos os ataques ficam mais fortes)
    - Fraqueza: diminui o dano base (todos os ataques ficam mais fracos)
-   - Efeitos duram 3 rodadas. Eles podem se acumular, cada acúmulo faz o efeito ser mais forte e durar mais 2 rounds
+   - Efeitos duram 3 rodadas. Eles podem se acumular, cada acúmulo faz o efeito ser mais forte e durar mais 2 rodadas
 - Cartas podem fazer mais de uma coisa (dar dano e levantar escudo, ou jogar 2 efeitos) 
+- Ao se aquecer e ganhar batalhas você desbloqueia cartas novas
 
 ## Seus inimigos:
 
-- Cada oponente tem características diferentes: inimigos mais fortes têm mais vida e mais dano base;
-- Todos os inimigos agem da mesma forma. Toda rodada, os inimigos escolhem aleatoriamente 1 das ações a seguir para realizar: 
-  - Atacar 2 vezes em seguida;
-  - Atacar 1 vez;
-  - Levantar 1 de escudo;
-  - Levantar 2 de escudo;
-- Dica: No começo da cada rodada você é avisado de qual será a ação de seu inimigo.
+- Cada oponente tem características diferentes, variando sua vida, dano base ou ambos
+- Todos os inimigos agem da mesma forma. Toda rodada, os inimigos escolhem aleatoriamente uma ação para realizar 
+- Dica: No começo da cada rodada você é avisado de qual será a ação de seu inimigo

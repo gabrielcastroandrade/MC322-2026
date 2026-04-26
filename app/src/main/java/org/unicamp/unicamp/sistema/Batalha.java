@@ -63,13 +63,15 @@ public class Batalha extends Publisher{
 
     /**
      * Método responsável por fazer uma rodada acontecer (inclui o turno do inimigo e do jogador).
+     * @param baralho Baralho
      */
-    public void rodarRound() 
+    public void rodarRound(Baralho baralho) 
     {
-        // inicializa os dados dos baralhos
-        Baralho baralho = new Baralho();
         int energia = energia_base;
         
+        System.out.println("");
+
+        this.notificar("inimigo vai escolher sua acao");
         int acao_inimigo = inimigo.escolherAcao();
         this.notificar("inimgo vai defender");
         inimigo.agirDefesa(acao_inimigo, jogador);
@@ -157,16 +159,20 @@ public class Batalha extends Publisher{
         this.notificar("fim da rodada");
     };
        
+    @Override
+
     /**
-     * Método responsável por fazer a batalha rodar.
+     * Método responsável por fazer a batalha rodar
      * Gera um loop de rodadas enquanto nenhum dos oponentes for derrotado.
+     * @param jogador Heroi
+     * @param baralho Baralho
      * @return Entidade vencedora
      */
-    public Entidade rodarBatalha() 
+    public Entidade iniciar(Heroi jogador, Baralho baralho) 
     {
         while (jogador.estarVivo() && inimigo.estarVivo()) 
         {
-            this.rodarRound();
+            this.rodarRound(baralho);
             System.out.println("Pressione [1] para continuar: ");
             System.out.println();
             input.nextInt();
@@ -184,13 +190,6 @@ public class Batalha extends Publisher{
 
         return inimigo;
     };
-
-    // achar um lugar bunitin pra isso, tá dificil
-    public void limparTerminal() 
-    {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
 }
 
 
