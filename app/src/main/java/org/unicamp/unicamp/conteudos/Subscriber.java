@@ -1,7 +1,7 @@
 package org.unicamp.unicamp.conteudos;
 
 /**
- * Classe abstrata Subscriber.
+ * Classe abstrata Subscriber
  * Objetos dessa classe podem ser inscritos à Publishers, recebendo strings como notiicação desses Publishers.
  */
 public abstract class Subscriber{

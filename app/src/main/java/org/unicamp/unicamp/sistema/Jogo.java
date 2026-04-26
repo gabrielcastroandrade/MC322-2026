@@ -33,7 +33,9 @@ public class Jogo {
         escolhas.push("Enfrentar a Morte");
         escolhas.push("Enfrentar o Burro");
         escolhas.push("Tomar um Banho"); 
-        escolhas.push("Alongar"); 
+        escolhas.push("Alongar");
+        this.mapa = new Mapa(escolhas);
+        this.baralho = new Baralho(); 
     }
 
     /**
@@ -42,19 +44,20 @@ public class Jogo {
      */
     public boolean rodarJogo() 
     {
+        // criação do personagem do jogador
         String nome_jogador = this.lerNome();
         jogador = new Heroi(nome_jogador, vida_jogador, dano_base_jogador);
-        this.mapa = new Mapa(escolhas);
-        this.baralho = new Baralho();
 
         System.out.println("");
         System.err.println("Três desafiantes secretos invadem seu pântano...");
+
         while(!escolhas.empty()) 
         {
             String proxEscolha = this.lerEscolha();
             mapa.proxEscolha(proxEscolha);
             this.processarEscolha(proxEscolha);
             
+            // confere se o jogador morreu
             if (!jogador.estarVivo()) 
             {
                 return false;
@@ -98,8 +101,13 @@ public class Jogo {
         return (escolhas.get(escolha));
     }
 
+    /**
+     * Processa a escolha do jogador, identificando qual tipo de evento se trata e o realizando
+     * @param escolha String - nome do evento escolhido
+     */
     public void processarEscolha(String escolha) 
     {
+        // evento do tipo batalha
         if (escolha.equals("Enfrentar a Dragão") || escolha.equals("Enfrentar a Morte") || escolha.equals("Enfrentar o Burro")) 
         {
             Batalha dueloAtual = new Batalha(jogador, this.getNomeAcao(escolha), input, energia_base, num_cartas_mao);
@@ -116,11 +124,13 @@ public class Jogo {
                 System.out.println(this.getNomeAcao(escolha) + " te derrotou");
             } 
         }
+        // evento de banho de lama
         else if (escolha.equals("Tomar um Banho")) 
         {
             BanhoDeLama evento = new BanhoDeLama();
             evento.iniciar(jogador, null); 
         }
+        // evento de alongamento
         else if (escolha.equals("Alongar")) 
         {
             Alongamento evento = new Alongamento();

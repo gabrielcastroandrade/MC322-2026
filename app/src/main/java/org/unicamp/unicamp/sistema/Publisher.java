@@ -2,11 +2,11 @@ package org.unicamp.unicamp.sistema;
 
 import java.util.ArrayList;
 
-import org.unicamp.unicamp.conteudos.Subscriber;
 import org.unicamp.unicamp.conteudos.Evento;
+import org.unicamp.unicamp.conteudos.Subscriber;
 
 /**
- * Classe abstrata Publisher.
+ * Classe abstrata Publisher, extensão de Evento para fazer a classe Batalha possível
  * Classe capaz de inscrever cartas da classe Subscriber à si mesma, sendo capaz de mandar 
  * strings para suas inscritas pelo método notificar().
  */

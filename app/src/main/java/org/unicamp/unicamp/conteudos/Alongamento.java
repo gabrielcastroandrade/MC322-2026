@@ -11,7 +11,7 @@ public class Alongamento extends Escolha {
     @Override
 
     /**
-     * Adiciona novas cartas ao baralho do jogador
+     * Adiciona uma nova carta ao baralho do jogador
      * @param jogador Heroi
      * @param baralho Baralho 
      */
