@@ -83,7 +83,7 @@ public class Batalha extends Publisher{
         {
             if (!inimigo.estarVivo()) {break;}
 
-            // dados do duelo -------------------------------------------------------------------------------------------
+            // dados do duelo 
             System.out.println("-//-");
             System.out.println(
                 jogador.getNome() 
@@ -104,9 +104,7 @@ public class Batalha extends Publisher{
             System.out.println();
 
 
-            // opções de ação do jogador -----------------------------------------------------------------------------------
-            // System.out.println("(pilha de compra: " + baralho.getLenCompra() + " cartas)");
-            // System.out.println("(pilha de descarte: " + baralho.getLenDescarte() + " cartas)");
+            // opções de ação do jogador 
             System.out.println("(energia: " + energia + ")");
             System.out.println("["+0+"]" + " - Encerrar turno");
             for (int i = 0; i < baralho.getLenMao(); i++) 
@@ -132,23 +130,23 @@ public class Batalha extends Publisher{
                 carta_escolhida = baralho.getMaoIndice(escolha);
             }
 
-            // lidando com a escolha -------------------------------------------------------------------------------------
+            // lidando com a escolha 
             this.notificar("jogador vai realizar sua ação");
             int custo = jogador.agir(escolha, carta_escolhida, inimigo, baralho, this);
             energia -= custo;
             if (baralho.getLenCompra() == 0) {baralho.reiniciar();}
         }    
 
-        // fim do turno do jogador ------------------------------------------------------------------------------------------
+        // fim do turno do jogador 
         this.notificar("fim do turno do jogador");
         System.out.println("fim do turno");        
         if (!inimigo.estarVivo()) {return;}
         if (!jogador.estarVivo()) {return;}
 
-        // se o inimigo for atacar, ataca aqui -------------------------------------------------------------------------------
+        // se o inimigo for atacar, ataca aqui 
         this.notificar("inimmgo vai atacar");
         inimigo.agirAtaque(acao_inimigo, jogador);      
-        // fim da rodada ----------------------------------------------------------------------------------------------------
+        // fim da rodada 
         System.out.println();
 
         jogador.zerarEscudo();

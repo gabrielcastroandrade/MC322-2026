@@ -8,9 +8,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
  */
 public class Mapa {
 
-    DefaultMutableTreeNode raiz = new DefaultMutableTreeNode();
-    Stack<String> escolhas;
-    DefaultMutableTreeNode no_atual;
+    private final DefaultMutableTreeNode raiz = new DefaultMutableTreeNode();
+    private final Stack<String> escolhas;
+    private DefaultMutableTreeNode no_atual;
 
     public Mapa(Stack<String> escolhas) 
     {

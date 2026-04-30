@@ -3,6 +3,8 @@
 import java.util.Scanner;
 import java.util.Stack;
 
+import org.unicamp.unicamp.conteudos.Alongamento;
+import org.unicamp.unicamp.conteudos.BanhoDeLama;
 import org.unicamp.unicamp.conteudos.Entidade;
 import org.unicamp.unicamp.conteudos.Heroi;
 import org.unicamp.unicamp.conteudos.Inimigo;
@@ -14,22 +16,27 @@ public class Jogo {
 
     private final Scanner input;
 
-<span class="nc" id="L17">    private final int vida_jogador = 3;</span>
-<span class="nc" id="L18">    private final int energia_base = 5;</span>
-<span class="nc" id="L19">    private final int num_cartas_mao = 4;</span>
-<span class="nc" id="L20">    private final int dano_base_jogador = 1;</span>
-<span class="nc" id="L21">    private final Stack&lt;String&gt; inimigos = new Stack&lt;&gt;();;</span>
+<span class="nc" id="L19">    private final int vida_jogador = 3;</span>
+<span class="nc" id="L20">    private final int energia_base = 5;</span>
+<span class="nc" id="L21">    private final int num_cartas_mao = 4;</span>
+<span class="nc" id="L22">    private final int dano_base_jogador = 1;</span>
+<span class="nc" id="L23">    private final Stack&lt;String&gt; escolhas = new Stack&lt;&gt;();;</span>
+    private Baralho baralho;
+    private Mapa mapa;
 
     private Heroi jogador;
 
     public Jogo(Scanner input) 
-<span class="nc" id="L26">    {</span>
-<span class="nc" id="L27">        this.input = input;</span>
-<span class="nc" id="L28">        inimigos.push(&quot;A Dragão&quot;);</span>
-<span class="nc" id="L29">        inimigos.push(&quot;A Morte&quot;);</span>
-<span class="nc" id="L30">        inimigos.push(&quot;O Burro&quot;);</span>
-
-<span class="nc" id="L32">    }</span>
+<span class="nc" id="L30">    {</span>
+<span class="nc" id="L31">        this.input = input;</span>
+<span class="nc" id="L32">        escolhas.push(&quot;Enfrentar a Dragão&quot;);</span>
+<span class="nc" id="L33">        escolhas.push(&quot;Enfrentar a Morte&quot;);</span>
+<span class="nc" id="L34">        escolhas.push(&quot;Enfrentar o Burro&quot;);</span>
+<span class="nc" id="L35">        escolhas.push(&quot;Tomar um Banho&quot;); </span>
+<span class="nc" id="L36">        escolhas.push(&quot;Alongar&quot;);</span>
+<span class="nc" id="L37">        this.mapa = new Mapa(escolhas);</span>
+<span class="nc" id="L38">        this.baralho = new Baralho(); </span>
+<span class="nc" id="L39">    }</span>
 
     /**
      * Coloca o jogo em movimento
@@ -37,34 +44,30 @@ public class Jogo {
      */
     public boolean rodarJogo() 
     {
-<span class="nc" id="L40">        String nome_jogador = this.lerNome();</span>
-<span class="nc" id="L41">        jogador = new Heroi(nome_jogador, vida_jogador, dano_base_jogador);</span>
-<span class="nc" id="L42">        Mapa mapa = new Mapa(inimigos);</span>
+        // criação do personagem do jogador
+<span class="nc" id="L48">        String nome_jogador = this.lerNome();</span>
+<span class="nc" id="L49">        jogador = new Heroi(nome_jogador, vida_jogador, dano_base_jogador);</span>
 
-<span class="nc" id="L44">        System.err.println(&quot;Três desafiantes secretos invadem seu pântano...&quot;);</span>
-<span class="nc bnc" id="L45" title="All 2 branches missed.">        while(!inimigos.empty()) </span>
+<span class="nc" id="L51">        System.out.println(&quot;&quot;);</span>
+<span class="nc" id="L52">        System.err.println(&quot;Três desafiantes secretos invadem seu pântano...&quot;);</span>
+
+<span class="nc bnc" id="L54" title="All 2 branches missed.">        while(!escolhas.empty()) </span>
         {
-<span class="nc" id="L47">            String proxInimigo = this.lerInimigo();</span>
-<span class="nc" id="L48">            mapa.proxInimigo(proxInimigo);</span>
-<span class="nc" id="L49">            Batalha dueloAtual = new Batalha(jogador, proxInimigo, input, energia_base, num_cartas_mao);</span>
-<span class="nc" id="L50">            Entidade vencedor = dueloAtual.rodarBatalha();</span>
-<span class="nc bnc" id="L51" title="All 2 branches missed.">            if (vencedor instanceof Heroi) </span>
+<span class="nc" id="L56">            String proxEscolha = this.lerEscolha();</span>
+<span class="nc" id="L57">            mapa.proxEscolha(proxEscolha);</span>
+<span class="nc" id="L58">            this.processarEscolha(proxEscolha);</span>
+            
+            // confere se o jogador morreu
+<span class="nc bnc" id="L61" title="All 2 branches missed.">            if (!jogador.estarVivo()) </span>
             {
-<span class="nc" id="L53">                System.out.println(&quot;Você derrotou &quot; + proxInimigo);</span>
-<span class="nc" id="L54">                System.out.println();</span>
-<span class="nc" id="L55">                mapa.printCaminho();</span>
-<span class="nc" id="L56">                System.out.println();</span>
+<span class="nc" id="L63">                return false;</span>
             }
-<span class="nc bnc" id="L58" title="All 2 branches missed.">            if (vencedor instanceof Inimigo)</span>
-            {
-<span class="nc" id="L60">                System.out.println(proxInimigo + &quot; te derrotou&quot;);</span>
-<span class="nc" id="L61">                System.out.println();</span>
-<span class="nc" id="L62">                mapa.printCaminho();</span>
-<span class="nc" id="L63">                System.out.println();</span>
-<span class="nc" id="L64">                return false;</span>
-            }
-<span class="nc" id="L66">        }</span>
-<span class="nc" id="L67">        return true;</span>
+
+<span class="nc" id="L66">            System.out.println();</span>
+<span class="nc" id="L67">            mapa.printCaminho();</span>
+<span class="nc" id="L68">            System.out.println();</span>
+<span class="nc" id="L69">        }</span>
+<span class="nc" id="L70">        return true;</span>
 
     }
 
@@ -75,26 +78,86 @@ public class Jogo {
     public String lerNome() 
     {
         String nome_jogador;
-<span class="nc" id="L78">        System.out.println(&quot;Digite o nome de seu heroi ogro: &quot;);</span>
-<span class="nc" id="L79">        nome_jogador = input.nextLine();</span>
-<span class="nc" id="L80">        return nome_jogador;</span>
+<span class="nc" id="L81">        System.out.println(&quot;Digite o nome de seu heroi ogro: &quot;);</span>
+<span class="nc" id="L82">        nome_jogador = input.nextLine();</span>
+<span class="nc" id="L83">        return nome_jogador;</span>
     }
 
     /**
-     * Cuida de todo o processo do jogador escolher seu próximo combatente
-     * @return String - o nome do inimigo escolhido
+     * Cuida de todo o processo do jogador selecionar sua próxima escolha
+     * @return String - o nome da escolha selecionada
      */
-    public String lerInimigo() 
+    public String lerEscolha() 
     {
-<span class="nc" id="L89">        System.out.println(&quot;Escolha seu oponente: &quot;);</span>
-<span class="nc" id="L90">        inimigos.forEach(nome -&gt; System.out.println(&quot;[&quot; + inimigos.indexOf(nome) + &quot;] - &quot; + nome));</span>
-<span class="nc" id="L91">        int oponente = input.nextInt();</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">        while ( !inimigos.contains((inimigos.get(oponente))) ) </span>
+<span class="nc" id="L92">        System.out.println(&quot;&quot;);</span>
+<span class="nc" id="L93">        System.out.println(&quot;Escolha sua ação: &quot;);</span>
+<span class="nc" id="L94">        escolhas.forEach(nome -&gt; System.out.println(&quot;[&quot; + escolhas.indexOf(nome) + &quot;] - &quot; + nome));</span>
+<span class="nc" id="L95">        int escolha = input.nextInt();</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">        while ( !escolhas.contains((escolhas.get(escolha))) ) </span>
         {
-<span class="nc" id="L94">            System.out.println(&quot;Oponente inválido, tente novamente: &quot;);</span>
-<span class="nc" id="L95">            oponente = input.nextInt();</span>
+<span class="nc" id="L98">            System.out.println(&quot;Escolha inválida, tente novamente: &quot;);</span>
+<span class="nc" id="L99">            escolha = input.nextInt();</span>
         }
-<span class="nc" id="L97">        return (inimigos.get(oponente));</span>
+<span class="nc" id="L101">        return (escolhas.get(escolha));</span>
+    }
+
+    /**
+     * Processa a escolha do jogador, identificando qual tipo de evento se trata e o realizando
+     * @param escolha String - nome do evento escolhido
+     */
+    public void processarEscolha(String escolha) 
+    {
+        // evento do tipo batalha
+<span class="nc bnc" id="L111" title="All 6 branches missed.">        if (escolha.equals(&quot;Enfrentar a Dragão&quot;) || escolha.equals(&quot;Enfrentar a Morte&quot;) || escolha.equals(&quot;Enfrentar o Burro&quot;)) </span>
+        {
+<span class="nc" id="L113">            Batalha dueloAtual = new Batalha(jogador, this.getNomeAcao(escolha), input, energia_base, num_cartas_mao);</span>
+<span class="nc" id="L114">            Entidade vencedor = dueloAtual.iniciar(jogador, baralho);</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            if (vencedor instanceof Heroi) </span>
+            {
+<span class="nc" id="L117">                System.out.println(&quot;&quot;);</span>
+<span class="nc" id="L118">                System.out.println(&quot;Você derrotou &quot; + this.getNomeAcao(escolha));</span>
+<span class="nc" id="L119">                baralho.upgrade();</span>
+            }
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            if (vencedor instanceof Inimigo)</span>
+            {
+<span class="nc" id="L123">                System.out.println(&quot;&quot;);</span>
+<span class="nc" id="L124">                System.out.println(this.getNomeAcao(escolha) + &quot; te derrotou&quot;);</span>
+            } 
+<span class="nc" id="L126">        }</span>
+        // evento de banho de lama
+<span class="nc bnc" id="L128" title="All 2 branches missed.">        else if (escolha.equals(&quot;Tomar um Banho&quot;)) </span>
+        {
+<span class="nc" id="L130">            BanhoDeLama evento = new BanhoDeLama();</span>
+<span class="nc" id="L131">            evento.iniciar(jogador, null); </span>
+<span class="nc" id="L132">        }</span>
+        // evento de alongamento
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        else if (escolha.equals(&quot;Alongar&quot;)) </span>
+        {
+<span class="nc" id="L136">            Alongamento evento = new Alongamento();</span>
+<span class="nc" id="L137">            evento.iniciar(jogador, baralho); </span>
+        }
+<span class="nc" id="L139">    }</span>
+
+    /**
+     * Recebe a String da ação e devolve a String a ser impressa.
+     * @param acao String - nome da ação
+     * @return String - pode printar
+     */
+    public String getNomeAcao(String acao) 
+    {
+<span class="nc bnc" id="L148" title="All 2 branches missed.">        if (acao.equals(&quot;Enfrentar a Dragão&quot;)) </span>
+        {
+<span class="nc" id="L150">            return &quot;A Dragão&quot;;</span>
+        }
+<span class="nc bnc" id="L152" title="All 2 branches missed.">        else if (acao.equals(&quot;Enfrentar a Morte&quot;)) </span>
+        {
+<span class="nc" id="L154">            return &quot;A Morte&quot;;</span>
+        }
+<span class="nc bnc" id="L156" title="All 2 branches missed.">        else if (acao.equals(&quot;Enfrentar o Burro&quot;)) </span>
+        {
+<span class="nc" id="L158">            return &quot;O Burro&quot;;</span>
+        }
+<span class="nc" id="L160">        else {return &quot;&quot;;}</span>
     }
 
 

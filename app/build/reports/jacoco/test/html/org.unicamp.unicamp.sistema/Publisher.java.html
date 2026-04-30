@@ -2,19 +2,22 @@
 
 import java.util.ArrayList;
 
+import org.unicamp.unicamp.conteudos.Evento;
+import org.unicamp.unicamp.conteudos.Subscriber;
+
 /**
- * Classe abstrata Publisher.
+ * Classe abstrata Publisher, extensão de Evento para fazer a classe Batalha possível
  * Classe capaz de inscrever cartas da classe Subscriber à si mesma, sendo capaz de mandar 
  * strings para suas inscritas pelo método notificar().
  */
-public abstract class Publisher {
+public abstract class Publisher extends Evento {
 
     protected ArrayList&lt;Subscriber&gt; inscritos;
 
     public Publisher() 
-<span class="fc" id="L15">    {</span>
-<span class="fc" id="L16">        this.inscritos = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L17">    };</span>
+<span class="fc" id="L18">    {</span>
+<span class="fc" id="L19">        this.inscritos = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L20">    };</span>
 
     /**
      * Método para inscrever Subscribers ao Publisher
@@ -22,8 +25,8 @@ public abstract class Publisher {
      */
     public void inscrever(Subscriber inscrito) 
     {
-<span class="fc" id="L25">        inscritos.add(inscrito);</span>
-<span class="fc" id="L26">    }</span>
+<span class="fc" id="L28">        inscritos.add(inscrito);</span>
+<span class="fc" id="L29">    }</span>
 
     /**
      * Método para desinscrever Subscribers do Publisher
@@ -31,8 +34,8 @@ public abstract class Publisher {
      */
     public void desinscrever(Subscriber inscrito) 
     {
-<span class="nc" id="L34">        inscritos.remove(inscrito);</span>
-<span class="nc" id="L35">    }</span>
+<span class="nc" id="L37">        inscritos.remove(inscrito);</span>
+<span class="nc" id="L38">    }</span>
 
     /**
      * Método para notificar os Subscribers desse Publisher, enviando à eles uma string.
@@ -40,9 +43,9 @@ public abstract class Publisher {
      */
     public void notificar(String mensagem) 
     {
-<span class="nc bnc" id="L43" title="All 2 branches missed.">        if (inscritos.isEmpty()) {return;}</span>
-<span class="nc" id="L44">        inscritos.forEach(inscrito -&gt; inscrito.serNotificado(mensagem));</span>
-<span class="nc" id="L45">    }</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        if (inscritos.isEmpty()) {return;}</span>
+<span class="nc" id="L47">        inscritos.forEach(inscrito -&gt; inscrito.serNotificado(mensagem));</span>
+<span class="nc" id="L48">    }</span>
 
 
 }

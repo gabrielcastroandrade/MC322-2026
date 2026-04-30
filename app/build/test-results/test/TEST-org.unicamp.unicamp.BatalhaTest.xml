@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="org.unicamp.unicamp.BatalhaTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-04-17T16:19:34.500Z" hostname="castro" time="0.024">
+<testsuite name="org.unicamp.unicamp.BatalhaTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2026-04-30T18:35:50.719Z" hostname="castro" time="0.038">
   <properties/>
-  <testcase name="selecaoInimigo1()" classname="org.unicamp.unicamp.BatalhaTest" time="0.015"/>
+  <testcase name="selecaoInimigo1()" classname="org.unicamp.unicamp.BatalhaTest" time="0.028"/>
   <testcase name="selecaoInimigo2()" classname="org.unicamp.unicamp.BatalhaTest" time="0.002"/>
   <testcase name="selecaoInimigo3()" classname="org.unicamp.unicamp.BatalhaTest" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
