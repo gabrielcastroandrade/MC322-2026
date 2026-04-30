@@ -18,11 +18,18 @@
 - Selecione sua próxima ação
 - A cada ação, um mapa é gerado com suas escolhas
 
-## O objetivo e suas escolhas:
+## O objetivo e a progressão:
 
 - Você deve derrotar os 3 invasores para ganhar: A Dragão, a Morte e o Burro
 - Você pode escolher em qual ordem irá enfrentá-los
 - Além dos combates, você pode escolher à qualquer momento tomar um banho (recupera a vida) ou se aquecer (desbloqueia uma carta nova)
+- A progressão do mapa do jogo segue o padrão de design Composite, onde:
+  - tanto batalhas quanto eventos como "tomar banho" ou se "alongar" são tratadas da mesma forma: como escolhas
+  - suas escolhas são armazenas em uma árvore, onde cada nó é uma escolha
+  - sempre que uma escolha é tomada, a árvore é percorrida da raíz até essa escolha, mostrando o mapa de escolhas que o jogador realizou até o momento atual
+  - quando não restam mais escolhas a serem tomadas, a árvore chega em sua folha mais profunda, e o jogo termina
+  - ao final do jogo, a árvore completa representa todo o histórico do jogo. Cada altura revela quais escolhas o jogador podia tomar, e aquela com nós-filhos é aquela que realmente foi tomada
+  - essa implemetação foi utilizada pois ela permite que uma classe, a Mapa, faça esse acompanhamento, e só esse acompanhamento, sem se preocupar com a implementação de cada escolha individual, se alinhando perfeitamento com o paradigma da Programação Orientada a Objetos e facilitando a adição, remoção ou edição de eventos
 
 ## A economia:
 
